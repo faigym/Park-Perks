@@ -29,7 +29,8 @@
     murrayPark.latitude = 40.656847;
     murrayPark.longitude = -111.883451;
     murrayPark.phoneNumber = @"(801) 264-2614";
-    
+
+    #ifdef STRINGPERKS
     for (int i=0; i<[perkNames count]; i++) {
         Perk *newPerk = [[Perk alloc] init];
         newPerk.name = perkNames[i];
@@ -37,9 +38,17 @@
         
         [murrayPark.perks addObject:newPerk];
     }
+    #else
+    murrayPark.perkProps.WoodChips = true;
+    murrayPark.perkProps.MonkeyBars = true;
+    murrayPark.perkProps.Sand = true;
+    murrayPark.perkProps.Pond = true;
+    murrayPark.perkProps.ToddlerPlayEquipment = true;
+    murrayPark.perkProps.ChinUp = true;        
+    #endif
     
     NSLog(@"murray park object == %@", murrayPark);
-    //[murrayPark saveToDataBase];
+    [murrayPark saveToDataBase];
 }
 
 - (void)didReceiveMemoryWarning {

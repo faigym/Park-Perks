@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "Perk.h"
+
+//#define STRINGPERKS
+
+#ifdef STRINGPERKS
+    #import "Perk.h"
+#else
+    #import "PerkProperties.h"
+#endif
 
 static NSString *kSaveDoneNotification = @"saveDoneNotification";
 
@@ -20,8 +27,14 @@ static NSString *kSaveDoneNotification = @"saveDoneNotification";
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSString *phoneNumber;
+
+#ifdef STRINGPERKS			      
 @property (nonatomic, strong) NSMutableArray *perks;
+#else
+@property (nonatomic, strong) PerkProperties *perkProps;
+#endif
 
 - (BOOL)saveToDataBase;
+//- (NSString * __nonnull)parseClassName;
 
 @end

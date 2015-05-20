@@ -39,6 +39,7 @@
 		A55BCD341B0C00C60005F233 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD331B0C00C60005F233 /* SystemConfiguration.framework */; };
 		A55BCD361B0C00D10005F233 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD351B0C00D10005F233 /* UIKit.framework */; };
 		A55BCD371B0C00E30005F233 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */; };
+		A562EBC91B0C3E75001CA5F1 /* PerkProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A562EBC81B0C3E75001CA5F1 /* PerkProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,9 @@
 		A55BCD311B0C00BB0005F233 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A55BCD331B0C00C60005F233 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A55BCD351B0C00D10005F233 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A562EBC71B0C3E75001CA5F1 /* PerkProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerkProperties.h; sourceTree = "<group>"; };
+		A562EBC81B0C3E75001CA5F1 /* PerkProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerkProperties.m; sourceTree = "<group>"; };
+		A562EBCA1B0C47F8001CA5F1 /* PerkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerkConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,9 @@
 		067CF4CD1B0BE69600F9E879 /* Park Perks */ = {
 			isa = PBXGroup;
 			children = (
+				A562EBCA1B0C47F8001CA5F1 /* PerkConstants.h */,
+				A562EBC71B0C3E75001CA5F1 /* PerkProperties.h */,
+				A562EBC81B0C3E75001CA5F1 /* PerkProperties.m */,
 				A55BCD041B0BFC4D0005F233 /* Perk.h */,
 				A55BCD051B0BFC4D0005F233 /* Perk.m */,
 				A55BCCFE1B0BF0CC0005F233 /* ParkModel.h */,
@@ -335,6 +342,7 @@
 				067CF4D71B0BE69600F9E879 /* ViewController.m in Sources */,
 				A55BCD001B0BF0CC0005F233 /* ParkModel.m in Sources */,
 				067CF4D41B0BE69600F9E879 /* AppDelegate.m in Sources */,
+				A562EBC91B0C3E75001CA5F1 /* PerkProperties.m in Sources */,
 				067CF4D11B0BE69600F9E879 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
