@@ -10,12 +10,14 @@
 #import <Parse/Parse.h>
 
 //#define STRINGPERKS
+//#define BOOLARRAYPERKS
 
 #ifdef STRINGPERKS
     #import "Perk.h"
 #else
     #import "PerkProperties.h"
 #endif
+
 
 static NSString *kSaveDoneNotification = @"saveDoneNotification";
 
@@ -31,10 +33,15 @@ static NSString *kSaveDoneNotification = @"saveDoneNotification";
 #ifdef STRINGPERKS			      
 @property (nonatomic, strong) NSMutableArray *perks;
 #else
+#ifdef BOOLARRAYPERKS
+@property (nonatomic, strong) NSMutableArray *perks;
+#else
 @property (nonatomic, strong) PerkProperties *perkProps;
+#endif
 #endif
 
 - (BOOL)saveToDataBase;
 //- (NSString * __nonnull)parseClassName;
+- (void)dataForCategory:(NSString *)categoryStr nameStringArr:(NSMutableArray *)nameStringArr isCheckedArr:(NSMutableArray *)isCheckedArr;
 
 @end

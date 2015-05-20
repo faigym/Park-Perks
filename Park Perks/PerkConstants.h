@@ -1,3 +1,9 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#ifndef PERKCONSTANTS
+#define PERKCONSTANTS
+
 static NSString *kCategoryPlayground = @"CategoryPlayground";
 static NSString *kCategoryExercises  = @"CategoryExercises";
 static NSString *kCategoryNature     = @"CategoryNature";
@@ -6,6 +12,85 @@ static NSString *kCategorySports     = @"CategorySports";
 static NSString *kCategoryHistory    = @"CategoryHistory";
 static NSString *kCategoryFacilities = @"CategoryFacilities";
 static NSString *kCategoryPicnic     = @"CategoryPicnic";
+
+typedef enum PerkIndexEnumType : NSUInteger
+{
+  indexSeeSaw,
+    indexBabySwing,
+    indexSwings,
+    indexTireSwing,
+    indexTubeSlide,
+    indexOpenSlide,
+    indexToddlerPlayEquipment,
+    indexClimbingNet,
+    indexWoodChips,
+    indexRubber,
+    indexSand,
+    indexMonkeyBars,
+    indexPreschoolActivities,
+    indexSplashPad,
+    indexBucketSpinner,
+    indexHoopSpinner,
+    indexClimbingWall,
+    indexBalanceBeam,
+    indexNovelExerciseStations,
+    indexElectronicGameStations,
+    indexZipLine,
+    indexMerryGoRound,
+    indexPlaySystem,
+    indexSandDigger,
+    indexSpringRocker,
+    indexShaded,
+    indexWalkingJoggingPath,
+    indexChinUp,
+    indexExerciseStations,
+    indexCreek,
+    indexPond,
+    indexArboretum,
+    indexDucks,
+    indexFishing,
+    indexAviary,
+    indexOutdoorPool,
+    indexWaterSlide,
+    indexBabyPool,
+    indexLapSwim,
+    indexDrinkingFountain,
+    indexDivingBoard,
+    indexHighDive,
+    indexWaterNozzle,
+    indexBaseball,
+    indexSoccer,
+    indexFootball,
+    indexBasketBall,
+    indexTennis,
+    indexRaquetBall,
+    indexVolleyBall,
+    indexBMX,
+    indexSkate,
+    indexDiscGolf,
+    indexBicycling,
+    indexHorshoes,
+    indexMemorials,
+    indexBathroom,
+    indexWaterFountain,
+    indexElectricity,
+    indexLighting,
+    indexDogsAllowed,
+    indexDogsOffLeashAllowed,
+    indexDrones,
+    indexKites,
+    indexSurface,
+    indexShade,
+    indexBBQGas,
+    indexBBQFirePit,
+    indexBBQCharcoal,
+    indexShelter,
+    indexPavilion,
+    indexRamada,
+    indexAlcoholPermit,
+    indexSeating,
+    indexMaxEnumCount
+} PerkIndexEnumType;
 
 //static NSString *kPerkSeeSaw    = @"seeSaw";
 // ******** Playground		      
@@ -100,3 +185,17 @@ static NSString *kPavilion = @"Pavilion";
 static NSString *kRamada = @"Ramada";
 static NSString *kAlcoholPermit = @"AlcoholPermit";
 static NSString *kSeating = @"Seating";
+
+typedef enum CategoryType : NSUInteger
+{
+    enumPlayground = (1<<0),
+    enumExercise = (1<<1),
+    enumNature = (1<<2),
+    enumWater = (1<<3),
+    enumSports = (1<<4),
+    enumHistory = (1<<5),
+    enumFacilities = (1<<6),
+    enumPicnic = (1<<7)  
+} CategoryType;
+
+#endif

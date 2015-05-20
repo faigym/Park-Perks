@@ -15,4 +15,14 @@
     return self.name;
 }
 
+- (void)saveToDatabase
+{
+    PFObject *pfObj = [PFObject objectWithClassName:@"Perk"];
+    
+    pfObj[@"name"]=self.name;
+    pfObj[@"iconName"]=self.iconName;
+    pfObj[@"category"]=[NSNumber numberWithInt:self.category];
+    [pfObj saveInBackground];
+}
+
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Skyler Clark. All rights reserved.
 //
 
+#import "PerkConstants.h"
 #import "ParkModel.h"
 #ifdef STRINGPERKS
 #import "Perk.h"
@@ -39,12 +40,273 @@
         self.longitude = 0.0;
         self.phoneNumber = @"111-1111";
 	#ifdef STRINGPERKS
+        self.perks = [[NSMutableArray alloc] init];
+    #else
+       #ifdef BOOLARRAYPERKS
             self.perks = [[NSMutableArray alloc] init];
-	#else
-	    self.perkProps = [[PerkProperties alloc] init];
+    	#else
+            self.perkProps = [[PerkProperties alloc] init];
+        #endif
 	#endif
     }
     return self;
+}
+
+- (void)dataForCategory:(NSString *)categoryStr nameStringArr:(NSMutableArray *)nameStringArr isCheckedArr:(NSMutableArray *)isCheckedArr
+{
+     if ([categoryStr isEqualToString:kCategoryPlayground])
+     {
+       [nameStringArr addObject:kSeeSaw];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.SeeSaw]];
+       
+       [nameStringArr addObject:kBabySwing];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BabySwing]];
+       
+       [nameStringArr addObject:kSwings];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Swings]];
+       
+       [nameStringArr addObject:kTireSwing];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.TireSwing]];
+       
+       [nameStringArr addObject:kTubeSlide];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.TubeSlide]];
+       
+       [nameStringArr addObject:kOpenSlide];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.OpenSlide]];
+       
+       [nameStringArr addObject:kToddlerPlayEquipment];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ToddlerPlayEquipment]];
+       
+       [nameStringArr addObject:kClimbingNet];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ClimbingNet]];
+       
+       [nameStringArr addObject:kWoodChips];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.WoodChips]];
+       
+       [nameStringArr addObject:kRubber];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Rubber]];
+       
+       [nameStringArr addObject:kSand];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Sand]];
+       
+       [nameStringArr addObject:kMonkeyBars];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.MonkeyBars]];
+       
+       [nameStringArr addObject:kPreschoolActivities];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.PreschoolActivities]];
+       
+       [nameStringArr addObject:kSplashPad];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.SplashPad]];
+       
+       [nameStringArr addObject:kBucketSpinner];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BucketSpinner]];
+       
+       [nameStringArr addObject:kHoopSpinner];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.HoopSpinner]];
+       
+       [nameStringArr addObject:kClimbingWall];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ClimbingWall]];
+       
+       [nameStringArr addObject:kBalanceBeam];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BalanceBeam]];
+       
+       [nameStringArr addObject:kNovelExerciseStations];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.NovelExerciseStations]];
+       
+       [nameStringArr addObject:kElectronicGameStations];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ElectronicGameStations]];
+       
+       [nameStringArr addObject:kZipLine];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ZipLine]];
+       
+       [nameStringArr addObject:kMerryGoRound];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.MerryGoRound]];
+       
+       [nameStringArr addObject:kPlaySystem];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.PlaySystem]];
+       
+       [nameStringArr addObject:kSandDigger];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.SandDigger]];
+       
+       [nameStringArr addObject:kSpringRocker];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.SpringRocker]];
+       
+       [nameStringArr addObject:kShaded];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Shaded]];       
+     }
+     else if ([categoryStr isEqualToString:kCategoryExercises])
+     {
+       [nameStringArr addObject:kWalkingJoggingPath];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.WalkingJoggingPath]];
+       
+       [nameStringArr addObject:kChinUp];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ChinUp]];
+       
+       [nameStringArr addObject:kExerciseStations];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.ExerciseStations]];
+       
+     }
+     else if ([categoryStr isEqualToString:kCategoryNature])
+     {
+       [nameStringArr addObject:kCreek];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Creek]];
+       
+       [nameStringArr addObject:kPond];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Pond]];
+       
+       [nameStringArr addObject:kArboretum];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Arboretum]];
+       
+       [nameStringArr addObject:kDucks];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Ducks]];
+       
+       [nameStringArr addObject:kFishing];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Fishing]];
+       
+       [nameStringArr addObject:kAviary];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Aviary]];       
+     }     
+     else if ([categoryStr isEqualToString:kCategoryWater])
+     {
+       [nameStringArr addObject:kOutdoorPool];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.OutdoorPool]];
+       
+       [nameStringArr addObject:kWaterSlide];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.WaterSlide]];
+       
+       [nameStringArr addObject:kBabyPool];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BabyPool]];
+       
+       [nameStringArr addObject:kLapSwim];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.LapSwim]];
+       
+       [nameStringArr addObject:kCreek];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Creek]];
+       
+       [nameStringArr addObject:kPond];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Pond]];
+       
+       [nameStringArr addObject:kSplashPad];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.SplashPad]];
+       
+       [nameStringArr addObject:kDrinkingFountain];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.DrinkingFountain]];
+       
+       [nameStringArr addObject:kDivingBoard];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.DivingBoard]];
+       
+       [nameStringArr addObject:kHighDive];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.HighDive]];
+       
+       [nameStringArr addObject:kWaterNozzle];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.WaterNozzle]];       
+     }
+     else if ([categoryStr isEqualToString:kCategorySports])
+     {
+       [nameStringArr addObject:kBaseball];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Baseball]];
+       
+       [nameStringArr addObject:kSoccer];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Soccer]];
+       
+       [nameStringArr addObject:kFootball];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Football]];
+       
+       [nameStringArr addObject:kBasketBall];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BasketBall]];
+       
+       [nameStringArr addObject:kTennis];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Tennis]];
+       
+       [nameStringArr addObject:kRaquetBall];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.RaquetBall]];
+       
+       [nameStringArr addObject:kVolleyBall];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.VolleyBall]];
+       
+       [nameStringArr addObject:kBMX];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BMX]];
+       
+       [nameStringArr addObject:kSkate];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Skate]];
+       
+       [nameStringArr addObject:kDiscGolf];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.DiscGolf]];
+       
+       [nameStringArr addObject:kBicycling];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Bicycling]];
+       
+       [nameStringArr addObject:kHorshoes];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Horshoes]];       
+     }
+     else if ([categoryStr isEqualToString:kCategoryHistory])
+     {
+       [nameStringArr addObject:kMemorials];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Memorials]];
+       
+     }
+     else if ([categoryStr isEqualToString:kCategoryFacilities])
+     {
+       [nameStringArr addObject:kBathroom];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Bathroom]];
+       
+       [nameStringArr addObject:kWaterFountain];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.WaterFountain]];
+       
+       [nameStringArr addObject:kElectricity];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Electricity]];
+       
+       [nameStringArr addObject:kLighting];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Lighting]];
+       
+       [nameStringArr addObject:kDogsAllowed];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.DogsAllowed]];
+       
+       [nameStringArr addObject:kDogsOffLeashAllowed];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.DogsOffLeashAllowed]];
+       
+       [nameStringArr addObject:kDrones];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Drones]];
+       
+       [nameStringArr addObject:kKites];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Kites]];
+       
+       [nameStringArr addObject:kSurface];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Surface]];
+       
+       [nameStringArr addObject:kShade];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Shade]];       
+     }
+     else if ([categoryStr isEqualToString:kCategoryPicnic])
+     {
+       [nameStringArr addObject:kBBQGas];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BBQGas]];
+       
+       [nameStringArr addObject:kBBQFirePit];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BBQFirePit]];
+       
+       [nameStringArr addObject:kBBQCharcoal];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.BBQCharcoal]];
+       
+       [nameStringArr addObject:kShelter];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Shelter]];
+       
+       [nameStringArr addObject:kPavilion];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Pavilion]];
+       
+       [nameStringArr addObject:kRamada];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Ramada]];
+       
+       [nameStringArr addObject:kAlcoholPermit];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.AlcoholPermit]];
+       
+       [nameStringArr addObject:kSeating];
+       [isCheckedArr addObject:[NSNumber numberWithBool:self.perkProps.Seating]];
+     }
+     else
+     {
+          NSLog(@"Invalid category");
+     }	 
 }
 
 - (BOOL)saveToDataBase
@@ -154,7 +416,7 @@
     
     [pfObj saveInBackground];
     
-    return @YES;
+    return true;
 }
 
 - (NSString *)description
@@ -171,7 +433,8 @@
         [mutStr appendString:[perk toString]];
         [mutStr appendString:@"\n"];
     }*/
-    
+#ifdef STRINGPERKS
+#else
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.SeeSaw]];
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.BabySwing]];
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.Swings]];
@@ -265,7 +528,7 @@
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.Ramada]];
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.AlcoholPermit]];
     [mutStr appendString:[NSString stringWithFormat:@": %d\n", self.perkProps.Seating]];
-    
+#endif
     return mutStr;
 }
 

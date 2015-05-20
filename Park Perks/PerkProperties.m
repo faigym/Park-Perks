@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Skyler Clark. All rights reserved.
 //
 
+#import "PerkConstants.h"
 #import "PerkProperties.h"
 
 @implementation PerkProperties
@@ -100,6 +101,7 @@
   return self;
 }
 
+    
 - (NSDictionary *)sectionContentsForCategory:(NSString *)categoryStr
 {
      NSMutableDictionary *retDict = [NSMutableDictionary new];
@@ -210,7 +212,18 @@
           NSLog(@"Invalid category");
      }	 
      
-     return retDict;
+    return retDict;
 }
+
+/*- (void)setPerk:(NSString *)perkName toBool:(BOOL)setVal
+{
+    
+}
+
+- (BOOL)getPerk:(NSString *)perkName
+{
+    
+    return YES;
+}*/
 
 @end

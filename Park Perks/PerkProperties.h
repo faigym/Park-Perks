@@ -7,103 +7,105 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PerkConstants.h"
 
 @interface PerkProperties : NSObject
 
 // ********* Playground
-@property (nonatomic, assign) Boolean SeeSaw;
-@property (nonatomic, assign) Boolean BabySwing;
-@property (nonatomic, assign) Boolean Swings;
-@property (nonatomic, assign) Boolean TireSwing;
-@property (nonatomic, assign) Boolean TubeSlide;
-@property (nonatomic, assign) Boolean OpenSlide;
-@property (nonatomic, assign) Boolean ToddlerPlayEquipment;
-@property (nonatomic, assign) Boolean ClimbingNet;
-@property (nonatomic, assign) Boolean WoodChips;
-@property (nonatomic, assign) Boolean Rubber;
-@property (nonatomic, assign) Boolean Sand;
-@property (nonatomic, assign) Boolean MonkeyBars;
-@property (nonatomic, assign) Boolean PreschoolActivities;
-@property (nonatomic, assign) Boolean SplashPad;
-@property (nonatomic, assign) Boolean BucketSpinner;
-@property (nonatomic, assign) Boolean HoopSpinner;
-@property (nonatomic, assign) Boolean ClimbingWall;
-@property (nonatomic, assign) Boolean BalanceBeam;
-@property (nonatomic, assign) Boolean NovelExerciseStations;
-@property (nonatomic, assign) Boolean ElectronicGameStations;
-@property (nonatomic, assign) Boolean ZipLine;
-@property (nonatomic, assign) Boolean MerryGoRound;
-@property (nonatomic, assign) Boolean PlaySystem;
-@property (nonatomic, assign) Boolean SandDigger;
-@property (nonatomic, assign) Boolean SpringRocker;
-@property (nonatomic, assign) Boolean Shaded;
+@property (nonatomic, assign) BOOL SeeSaw;
+@property (nonatomic, assign) BOOL BabySwing;
+@property (nonatomic, assign) BOOL Swings;
+@property (nonatomic, assign) BOOL TireSwing;
+@property (nonatomic, assign) BOOL TubeSlide;
+@property (nonatomic, assign) BOOL OpenSlide;
+@property (nonatomic, assign) BOOL ToddlerPlayEquipment;
+@property (nonatomic, assign) BOOL ClimbingNet;
+@property (nonatomic, assign) BOOL WoodChips;
+@property (nonatomic, assign) BOOL Rubber;
+@property (nonatomic, assign) BOOL Sand;
+@property (nonatomic, assign) BOOL MonkeyBars;
+@property (nonatomic, assign) BOOL PreschoolActivities;
+@property (nonatomic, assign) BOOL SplashPad;
+@property (nonatomic, assign) BOOL BucketSpinner;
+@property (nonatomic, assign) BOOL HoopSpinner;
+@property (nonatomic, assign) BOOL ClimbingWall;
+@property (nonatomic, assign) BOOL BalanceBeam;
+@property (nonatomic, assign) BOOL NovelExerciseStations;
+@property (nonatomic, assign) BOOL ElectronicGameStations;
+@property (nonatomic, assign) BOOL ZipLine;
+@property (nonatomic, assign) BOOL MerryGoRound;
+@property (nonatomic, assign) BOOL PlaySystem;
+@property (nonatomic, assign) BOOL SandDigger;
+@property (nonatomic, assign) BOOL SpringRocker;
+@property (nonatomic, assign) BOOL Shaded;
 //
 // ******** Exercises
-@property (nonatomic, assign) Boolean WalkingJoggingPath;
-@property (nonatomic, assign) Boolean ChinUp;
-@property (nonatomic, assign) Boolean ExerciseStations;
+@property (nonatomic, assign) BOOL WalkingJoggingPath;
+@property (nonatomic, assign) BOOL ChinUp;
+@property (nonatomic, assign) BOOL ExerciseStations;
 //
 // ******** Nature
-@property (nonatomic, assign) Boolean Creek;
-@property (nonatomic, assign) Boolean Pond;
-@property (nonatomic, assign) Boolean Arboretum;
-@property (nonatomic, assign) Boolean Ducks;
-@property (nonatomic, assign) Boolean Fishing;
-@property (nonatomic, assign) Boolean Aviary;
+@property (nonatomic, assign) BOOL Creek;
+@property (nonatomic, assign) BOOL Pond;
+@property (nonatomic, assign) BOOL Arboretum;
+@property (nonatomic, assign) BOOL Ducks;
+@property (nonatomic, assign) BOOL Fishing;
+@property (nonatomic, assign) BOOL Aviary;
 //
 // ******** Water
-@property (nonatomic, assign) Boolean OutdoorPool;
-@property (nonatomic, assign) Boolean WaterSlide;
-@property (nonatomic, assign) Boolean BabyPool;
-@property (nonatomic, assign) Boolean LapSwim;
+@property (nonatomic, assign) BOOL OutdoorPool;
+@property (nonatomic, assign) BOOL WaterSlide;
+@property (nonatomic, assign) BOOL BabyPool;
+@property (nonatomic, assign) BOOL LapSwim;
 //static NSString *kCreek = @"Creek";
 //static NSString *kPond = @"Pond";
 //static NSString *kSplashPad = @"SplashPad";
-@property (nonatomic, assign) Boolean DrinkingFountain;
-@property (nonatomic, assign) Boolean DivingBoard;
-@property (nonatomic, assign) Boolean HighDive;
-@property (nonatomic, assign) Boolean WaterNozzle;
+@property (nonatomic, assign) BOOL DrinkingFountain;
+@property (nonatomic, assign) BOOL DivingBoard;
+@property (nonatomic, assign) BOOL HighDive;
+@property (nonatomic, assign) BOOL WaterNozzle;
 //
 // ******** Sports
-@property (nonatomic, assign) Boolean Baseball;
-@property (nonatomic, assign) Boolean Soccer;
-@property (nonatomic, assign) Boolean Football;
-@property (nonatomic, assign) Boolean BasketBall;
-@property (nonatomic, assign) Boolean Tennis;
-@property (nonatomic, assign) Boolean RaquetBall;
-@property (nonatomic, assign) Boolean VolleyBall;
-@property (nonatomic, assign) Boolean BMX;
-@property (nonatomic, assign) Boolean Skate;
-@property (nonatomic, assign) Boolean DiscGolf;
-@property (nonatomic, assign) Boolean Bicycling;
-@property (nonatomic, assign) Boolean Horshoes;
+@property (nonatomic, assign) BOOL Baseball;
+@property (nonatomic, assign) BOOL Soccer;
+@property (nonatomic, assign) BOOL Football;
+@property (nonatomic, assign) BOOL BasketBall;
+@property (nonatomic, assign) BOOL Tennis;
+@property (nonatomic, assign) BOOL RaquetBall;
+@property (nonatomic, assign) BOOL VolleyBall;
+@property (nonatomic, assign) BOOL BMX;
+@property (nonatomic, assign) BOOL Skate;
+@property (nonatomic, assign) BOOL DiscGolf;
+@property (nonatomic, assign) BOOL Bicycling;
+@property (nonatomic, assign) BOOL Horshoes;
 //
 // ******** History
-@property (nonatomic, assign) Boolean Memorials;
+@property (nonatomic, assign) BOOL Memorials;
 //
 // ******** Facilities
-@property (nonatomic, assign) Boolean Bathroom;
-@property (nonatomic, assign) Boolean WaterFountain;
-@property (nonatomic, assign) Boolean Electricity;
-@property (nonatomic, assign) Boolean Lighting;
-@property (nonatomic, assign) Boolean DogsAllowed;
-@property (nonatomic, assign) Boolean DogsOffLeashAllowed;
-@property (nonatomic, assign) Boolean Drones;
-@property (nonatomic, assign) Boolean Kites;
-@property (nonatomic, assign) Boolean Surface;
-@property (nonatomic, assign) Boolean Shade;
+@property (nonatomic, assign) BOOL Bathroom;
+@property (nonatomic, assign) BOOL WaterFountain;
+@property (nonatomic, assign) BOOL Electricity;
+@property (nonatomic, assign) BOOL Lighting;
+@property (nonatomic, assign) BOOL DogsAllowed;
+@property (nonatomic, assign) BOOL DogsOffLeashAllowed;
+@property (nonatomic, assign) BOOL Drones;
+@property (nonatomic, assign) BOOL Kites;
+@property (nonatomic, assign) BOOL Surface;
+@property (nonatomic, assign) BOOL Shade;
 //
 // ******** Picnic
-@property (nonatomic, assign) Boolean BBQGas;
-@property (nonatomic, assign) Boolean BBQFirePit;
-@property (nonatomic, assign) Boolean BBQCharcoal;
-@property (nonatomic, assign) Boolean Shelter;
-@property (nonatomic, assign) Boolean Pavilion;
-@property (nonatomic, assign) Boolean Ramada;
-@property (nonatomic, assign) Boolean AlcoholPermit;
-@property (nonatomic, assign) Boolean Seating;
+@property (nonatomic, assign) BOOL BBQGas;
+@property (nonatomic, assign) BOOL BBQFirePit;
+@property (nonatomic, assign) BOOL BBQCharcoal;
+@property (nonatomic, assign) BOOL Shelter;
+@property (nonatomic, assign) BOOL Pavilion;
+@property (nonatomic, assign) BOOL Ramada;
+@property (nonatomic, assign) BOOL AlcoholPermit;
+@property (nonatomic, assign) BOOL Seating;
 
 - (NSDictionary *)sectionContentsForCategory:(NSString *)categoryStr;
-			      
+
+- (void)setPerk;
+- (BOOL)getPerk;
+
 @end
