@@ -1,17 +1,17 @@
 //
-//  AppDelegate.h
-//  Park Perks
+//  ParseStarterProjectAppDelegate.h
 //
-//  Created by Skyler Clark on 5/19/15.
-//  Copyright (c) 2015 Skyler Clark. All rights reserved.
+//  Copyright 2011-present Parse Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class ViewController;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface AppDelegate : NSObject <UIApplicationDelegate>
 
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+
+@property (nonatomic, strong) IBOutlet ViewController *viewController;
 
 @end
-
