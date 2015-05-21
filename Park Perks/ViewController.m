@@ -39,25 +39,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
     }
     
-    if (indexPath.section == 0) { // Playground
-        cell.textLabel.text = [[Constants sharedInstance] playgroundStringLUT][indexPath.row];
-    } else if (indexPath.section == 1) { // Exercises
-        cell.textLabel.text = [[Constants sharedInstance] exerciseStringLUT][indexPath.row];
-    } else if (indexPath.section == 2) { // Nature
-        cell.textLabel.text = [[Constants sharedInstance] natureStringLUT][indexPath.row];
-    } else if (indexPath.section == 3) { // Water
-        cell.textLabel.text = [[Constants sharedInstance] waterStringLUT][indexPath.row];
-    } else if (indexPath.section == 4) { // Sports
-        cell.textLabel.text = [[Constants sharedInstance] sportsStringLUT][indexPath.row];
-    } else if (indexPath.section == 5) { // History
-        cell.textLabel.text = [[Constants sharedInstance] historyStringLUT][indexPath.row];
-    } else if (indexPath.section == 6) { // Facilities
-        cell.textLabel.text = [[Constants sharedInstance] facilitiesStringLUT][indexPath.row];
-    } else if (indexPath.section == 7) { // Picnic
-        cell.textLabel.text = [[Constants sharedInstance] picnicStringLUT][indexPath.row];
-    } else {
-      cell.textLabel.text = @"Invalid Section";
+    switch (indexPath.section)
+    {
+        case CategoryTypePlayground: cell.textLabel.text = [[Constants sharedInstance] playgroundStringLUT][indexPath.row]; break;
+        case CategoryTypeExercise:   cell.textLabel.text = [[Constants sharedInstance] exerciseStringLUT][indexPath.row];   break;
+        case CategoryTypeNature:     cell.textLabel.text = [[Constants sharedInstance] natureStringLUT][indexPath.row];     break;
+        case CategoryTypeWater:      cell.textLabel.text = [[Constants sharedInstance] waterStringLUT][indexPath.row];      break;
+        case CategoryTypeSports:     cell.textLabel.text = [[Constants sharedInstance] sportsStringLUT][indexPath.row];     break;
+        case CategoryTypeHistory:    cell.textLabel.text = [[Constants sharedInstance] historyStringLUT][indexPath.row];    break;
+        case CategoryTypeFacilities: cell.textLabel.text = [[Constants sharedInstance] facilitiesStringLUT][indexPath.row]; break;
+        case CategoryTypePicnic:     cell.textLabel.text = [[Constants sharedInstance] picnicStringLUT][indexPath.row];     break;
+        default:                     cell.textLabel.text = @"Invalid Section";                                              break;
     }
+    
     return cell;
 }
 
@@ -74,25 +68,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) { // Playground
-        return [[[Constants sharedInstance] playgroundStringLUT] count];
-    } else if (section == 1) { // Exercises
-      return [[[Constants sharedInstance] exerciseStringLUT] count];
-    } else if (section == 2) { // Nature
-      return [[[Constants sharedInstance] natureStringLUT] count];
-    } else if (section == 3) { // Water
-      return [[[Constants sharedInstance] waterStringLUT] count];
-    } else if (section == 4) { // Sports
-      return [[[Constants sharedInstance] sportsStringLUT] count];
-    } else if (section == 5) { // History
-      return [[[Constants sharedInstance] historyStringLUT] count];
-    } else if (section == 6) { // Facilities
-      return [[[Constants sharedInstance] facilitiesStringLUT] count];
-    } else if (section == 7) { // Picnic
-      return [[[Constants sharedInstance] picnicStringLUT] count];
-    } else {
-      NSLog(@"Invalid Section");
-      return 0;
+    switch (section) {
+        case CategoryTypePlayground: return [[[Constants sharedInstance] playgroundStringLUT] count]; break;
+        case CategoryTypeExercise:   return [[[Constants sharedInstance] exerciseStringLUT] count];   break;
+        case CategoryTypeNature:     return [[[Constants sharedInstance] natureStringLUT] count];     break;
+        case CategoryTypeWater:      return [[[Constants sharedInstance] waterStringLUT] count];      break;
+        case CategoryTypeSports:     return [[[Constants sharedInstance] sportsStringLUT] count];     break;
+        case CategoryTypeHistory:    return [[[Constants sharedInstance] historyStringLUT] count];    break;
+        case CategoryTypeFacilities: return [[[Constants sharedInstance] facilitiesStringLUT] count]; break;
+        case CategoryTypePicnic:     return [[[Constants sharedInstance] picnicStringLUT] count];     break;
+        default:                     NSLog(@"return zero"); return 0;                                 break;
     }
 }
 
