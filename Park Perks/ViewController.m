@@ -12,6 +12,9 @@
 #import "ParkPFObject.h"
 #import "Foursquare2.h"
 
+static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
+static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
+
 @interface ViewController ()
 
 
@@ -30,22 +33,67 @@
     self.tableView.dataSource = self;
 
     //[self saveParksToDatabase];
-    
+    //Latitude:40.656847°
+    //Longitude:-111.883451°
     //[self queryTest];
-    [self queryForCategory:kFoursquareCategoryParkID];
+    //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.656847 longitude:-111.883451 radius:5000.0];
+    //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.645817 longitude:-111.879021 radius:1000.0];
     
+    //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.656847 longitude:-111.883451 radius:1500.0];
+    
+    //[self remakeDB];
+    //[self queryForPerks:@[kMerryGoRound, kSand] withObjectIds:@[kMurrayParkFoursquareId, kFriendshipParkFoursquareId]];
+    [self queryForPerks:@[kVolleyBall, kSand] withObjectIds:@[kFriendshipParkFoursquareId]];
 }
 
--(void)queryForCategory:(NSString *)category
+-(void)queryForPerks:(NSArray *)perkArr withObjectIds:(NSArray *)idArr
+{
+    PFQuery *query = [ParkPFObject query];
+    [query whereKey:@"foursquareObjectId" containedIn:idArr];
+    [query whereKey:@"perks" containsAllObjectsInArray:perkArr];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"objects: %@", objects);
+        NSLog(@"found %ld objects", objects.count);
+        
+        for (ParkPFObject *park in objects)
+        {
+            //NSLog(@"park name==%@", park.name);
+            for (int i=0; i<[park.perks count]; i++)
+            {
+                NSLog(@"perks[%d]==%@", i, park.perks[i]);
+            }
+        }
+    }];
+}
+
+-(void)remakeDB
+{
+    ParkPFObject *park1 = [ParkPFObject new];
+    park1.foursquareObjectId = @"4bc0fe774cdfc9b671ee9321";
+    park1.rating = [NSNumber numberWithInt:5];
+    park1.perks = @[kPond, kDucks, kChinUp, kToddlerPlayEquipment, kSand, kTubeSlide];
+    [park1 pinInBackground];
+    [park1 saveInBackground];
+    
+    ParkPFObject *park = [ParkPFObject new];
+    park.foursquareObjectId = @"4bf6ab6f5efe2d7f428d6734";
+    park.rating = [NSNumber numberWithInt:4];
+    park.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kSand, kVolleyBall];
+    [park pinInBackground];
+    [park saveInBackground];
+}
+
+-(void)foursquarefoursquareQueryForCategory:(NSString *)category latitude:(double)latitude longitude:(double)longitude radius:(double)radius
 {
     NSNumber *numVenues = @3;
     [Foursquare2
-     venueSearchNearByLatitude:@(40.75)
-     longitude:@(-111.8833)
+     venueSearchNearByLatitude:[NSNumber numberWithDouble:latitude]
+     longitude:[NSNumber numberWithDouble:longitude]
      query:nil
      limit:numVenues
      intent:intentCheckin
-     radius:@(10000)
+     radius:[NSNumber numberWithDouble:radius]
      categoryId:category
      callback:^(BOOL success, id result){
          if (success) {

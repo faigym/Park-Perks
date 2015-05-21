@@ -11,9 +11,9 @@
 
 @interface ParkPFObject : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) NSString *fourSquareObjectId;
+@property (nonatomic, strong) NSString *foursquareObjectId;
 @property (nonatomic, strong) NSNumber *rating;
-@property (nonatomic, strong) NSMutableArray *perks;
+@property (nonatomic, strong) NSArray *perks;
 
 + (NSString *)parseClassName;
 
