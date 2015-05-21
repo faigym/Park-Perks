@@ -38,7 +38,14 @@
 		A55BCD361B0C00D10005F233 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD351B0C00D10005F233 /* UIKit.framework */; };
 		A55BCD371B0C00E30005F233 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */; };
 		A591C2C71B0E330300AA92A0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C41B0E330300AA92A0 /* Constants.m */; };
-		A591C2C81B0E330300AA92A0 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C61B0E330300AA92A0 /* Park.m */; };
+		A591C2C81B0E330300AA92A0 /* ParkPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C61B0E330300AA92A0 /* ParkPFObject.m */; };
+		A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2CB1B0E5F2A00AA92A0 /* Foursquare2.m */; };
+		A591C2D61B0E5F2A00AA92A0 /* FSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2CD1B0E5F2A00AA92A0 /* FSKeychain.m */; };
+		A591C2D71B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2CF1B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m */; };
+		A591C2D81B0E5F2A00AA92A0 /* FSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2D11B0E5F2A00AA92A0 /* FSOperation.m */; };
+		A591C2D91B0E5F2A00AA92A0 /* FSWebLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2D31B0E5F2A00AA92A0 /* FSWebLogin.m */; };
+		A591C2DA1B0E5F2A00AA92A0 /* FSWebLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = A591C2D41B0E5F2A00AA92A0 /* FSWebLogin.xib */; };
+		A591C2DD1B0E62BD00AA92A0 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2DC1B0E62BD00AA92A0 /* Park.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +98,22 @@
 		A55BCD351B0C00D10005F233 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A591C2C31B0E330300AA92A0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A591C2C41B0E330300AA92A0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		A591C2C51B0E330300AA92A0 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
-		A591C2C61B0E330300AA92A0 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
+		A591C2C51B0E330300AA92A0 /* ParkPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkPFObject.h; sourceTree = "<group>"; };
+		A591C2C61B0E330300AA92A0 /* ParkPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParkPFObject.m; sourceTree = "<group>"; };
+		A591C2CA1B0E5F2A00AA92A0 /* Foursquare2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Foursquare2.h; path = Foursquare2/Foursquare2.h; sourceTree = "<group>"; };
+		A591C2CB1B0E5F2A00AA92A0 /* Foursquare2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Foursquare2.m; path = Foursquare2/Foursquare2.m; sourceTree = "<group>"; };
+		A591C2CC1B0E5F2A00AA92A0 /* FSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSKeychain.h; path = Foursquare2/FSKeychain.h; sourceTree = "<group>"; };
+		A591C2CD1B0E5F2A00AA92A0 /* FSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSKeychain.m; path = Foursquare2/FSKeychain.m; sourceTree = "<group>"; };
+		A591C2CE1B0E5F2A00AA92A0 /* FSOAuthNoAppStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSOAuthNoAppStore.h; path = Foursquare2/FSOAuthNoAppStore.h; sourceTree = "<group>"; };
+		A591C2CF1B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSOAuthNoAppStore.m; path = Foursquare2/FSOAuthNoAppStore.m; sourceTree = "<group>"; };
+		A591C2D01B0E5F2A00AA92A0 /* FSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSOperation.h; path = Foursquare2/FSOperation.h; sourceTree = "<group>"; };
+		A591C2D11B0E5F2A00AA92A0 /* FSOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSOperation.m; path = Foursquare2/FSOperation.m; sourceTree = "<group>"; };
+		A591C2D21B0E5F2A00AA92A0 /* FSWebLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSWebLogin.h; path = Foursquare2/FSWebLogin.h; sourceTree = "<group>"; };
+		A591C2D31B0E5F2A00AA92A0 /* FSWebLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSWebLogin.m; path = Foursquare2/FSWebLogin.m; sourceTree = "<group>"; };
+		A591C2D41B0E5F2A00AA92A0 /* FSWebLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSWebLogin.xib; path = Foursquare2/FSWebLogin.xib; sourceTree = "<group>"; };
+		A591C2DB1B0E62BD00AA92A0 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
+		A591C2DC1B0E62BD00AA92A0 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
+		A591C2DE1B0E721F00AA92A0 /* Foursquare_API_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foursquare_API_Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +160,7 @@
 		067CF4C21B0BE69600F9E879 = {
 			isa = PBXGroup;
 			children = (
+				A591C2C91B0E5E2600AA92A0 /* Foursquare2 */,
 				A55BCD381B0C01820005F233 /* Frameworks */,
 				067CF4CD1B0BE69600F9E879 /* Park Perks */,
 				067CF4E71B0BE69600F9E879 /* Park PerksTests */,
@@ -160,8 +182,10 @@
 			children = (
 				A591C2C31B0E330300AA92A0 /* Constants.h */,
 				A591C2C41B0E330300AA92A0 /* Constants.m */,
-				A591C2C51B0E330300AA92A0 /* Park.h */,
-				A591C2C61B0E330300AA92A0 /* Park.m */,
+				A591C2C51B0E330300AA92A0 /* ParkPFObject.h */,
+				A591C2C61B0E330300AA92A0 /* ParkPFObject.m */,
+				A591C2DB1B0E62BD00AA92A0 /* Park.h */,
+				A591C2DC1B0E62BD00AA92A0 /* Park.m */,
 				067CF4D21B0BE69600F9E879 /* AppDelegate.h */,
 				067CF4D31B0BE69600F9E879 /* AppDelegate.m */,
 				067CF4D51B0BE69600F9E879 /* ViewController.h */,
@@ -229,6 +253,25 @@
 				A55BCD091B0BFF6C0005F233 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A591C2C91B0E5E2600AA92A0 /* Foursquare2 */ = {
+			isa = PBXGroup;
+			children = (
+				A591C2DE1B0E721F00AA92A0 /* Foursquare_API_Prefix.pch */,
+				A591C2CA1B0E5F2A00AA92A0 /* Foursquare2.h */,
+				A591C2CB1B0E5F2A00AA92A0 /* Foursquare2.m */,
+				A591C2CC1B0E5F2A00AA92A0 /* FSKeychain.h */,
+				A591C2CD1B0E5F2A00AA92A0 /* FSKeychain.m */,
+				A591C2CE1B0E5F2A00AA92A0 /* FSOAuthNoAppStore.h */,
+				A591C2CF1B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m */,
+				A591C2D01B0E5F2A00AA92A0 /* FSOperation.h */,
+				A591C2D11B0E5F2A00AA92A0 /* FSOperation.m */,
+				A591C2D21B0E5F2A00AA92A0 /* FSWebLogin.h */,
+				A591C2D31B0E5F2A00AA92A0 /* FSWebLogin.m */,
+				A591C2D41B0E5F2A00AA92A0 /* FSWebLogin.xib */,
+			);
+			name = Foursquare2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +357,7 @@
 				067CF4DA1B0BE69600F9E879 /* Main.storyboard in Resources */,
 				067CF4DF1B0BE69600F9E879 /* LaunchScreen.xib in Resources */,
 				067CF4DC1B0BE69600F9E879 /* Images.xcassets in Resources */,
+				A591C2DA1B0E5F2A00AA92A0 /* FSWebLogin.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,11 +375,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A591C2C81B0E330300AA92A0 /* Park.m in Sources */,
+				A591C2D81B0E5F2A00AA92A0 /* FSOperation.m in Sources */,
+				A591C2C81B0E330300AA92A0 /* ParkPFObject.m in Sources */,
 				067CF4D71B0BE69600F9E879 /* ViewController.m in Sources */,
 				067CF4D41B0BE69600F9E879 /* AppDelegate.m in Sources */,
+				A591C2D71B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m in Sources */,
+				A591C2DD1B0E62BD00AA92A0 /* Park.m in Sources */,
+				A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */,
 				067CF4D11B0BE69600F9E879 /* main.m in Sources */,
+				A591C2D91B0E5F2A00AA92A0 /* FSWebLogin.m in Sources */,
 				A591C2C71B0E330300AA92A0 /* Constants.m in Sources */,
+				A591C2D61B0E5F2A00AA92A0 /* FSKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +517,8 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Foursquare_API_Prefix.pch;
 				INFOPLIST_FILE = "Park Perks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,6 +533,8 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Foursquare_API_Prefix.pch;
 				INFOPLIST_FILE = "Park Perks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

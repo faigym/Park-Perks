@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Park.h"
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *parkArray;
 
 @end
 

@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "Constants.h"
 #import "Park.h"
+#import "ParkPFObject.h"
+#import "Foursquare2.h"
 
 @interface ViewController ()
 
@@ -30,6 +32,80 @@
     //[self saveParksToDatabase];
     
     //[self queryTest];
+    [self queryForCategory:kFoursquareCategoryParkID];
+    
+}
+
+-(void)queryForCategory:(NSString *)category
+{
+    NSNumber *numVenues = @3;
+    [Foursquare2
+     venueSearchNearByLatitude:@(40.75)
+     longitude:@(-111.8833)
+     query:nil
+     limit:numVenues
+     intent:intentCheckin
+     radius:@(10000)
+     categoryId:category
+     callback:^(BOOL success, id result){
+         if (success) {
+             NSDictionary *dic = result;
+             //NSLog(@"dic=%@", dic);
+             NSArray *venues = [dic valueForKeyPath:@"response.venues"];
+             NSLog(@"query success");
+             NSLog(@"%@", venues);
+             
+             
+             //int randomIndex = arc4random_uniform([venues count]);
+             self.parkArray = [NSMutableArray new];
+             for (int i=0; i < [venues count]; i++)
+             {
+                 Park *park = [Park new];
+                 
+                 NSString *string;
+                 
+                 string=[venues[i] valueForKeyPath:@"id"];
+                 if (string) { park.foursquareObjectId = string;} else {park.foursquareObjectId = @"No data for Foursquare Object ID.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"name"];
+                 if (string) { park.name = string;} else {park.name = @"No data for name.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.address"];
+                 if (string) { park.street = string;} else {park.street = @"No data for street.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.city"];
+                 if (string) { park.city = string;} else {park.city = @"No data for city.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.postalCode"];
+                 if (string) { park.zipCode = string;} else {park.zipCode = @"No data for zip code.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.state"];
+                 if (string) { park.state = string;} else {park.state = @"No data for state.";}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.distance"];
+                 if (string) { park.distance = [string floatValue];} else {park.distance = MAXFLOAT;}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.lat"];
+                 if (string) { park.latitude = [string floatValue];} else {park.latitude = MAXFLOAT;}
+                 
+                 string=[venues[i] valueForKeyPath:@"location.lng"];
+                 if (string) { park.longitude = [string floatValue];} else {park.longitude = MAXFLOAT;}
+                 
+                 string=[venues[i] valueForKeyPath:@"contact.formattedPhone"];
+                 if (string) { park.phoneNumber = string;} else {park.phoneNumber = @"No data for phone number.";}
+                 
+                 [self.parkArray addObject:park];
+             }
+         } else {
+             NSLog(@"%@",result);
+         }
+         
+         for (int i=0; i<[self.parkArray count]; i++) {
+             NSLog(@"Park %d: \n%@", i, self.parkArray[i]);
+         }
+         [[NSNotificationCenter defaultCenter] postNotificationName:kParseQueryCompletedId object:self userInfo:nil];
+     }];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,16 +169,16 @@
     //PFQuery *query = [Park queryWithPredicate:compoundPredicate];
     //PFQuery *query = [Park queryWithPredicate:predicate];
     
-    PFQuery *query = [Park query];
+    PFQuery *query = [ParkPFObject query];
     [query whereKey:@"perks" containsAllObjectsInArray:@[kTubeSlide, kSand]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSLog(@"objects: %@", objects);
         NSLog(@"found %ld objects", objects.count);
         
-        for (Park *park in objects)
+        for (ParkPFObject *park in objects)
         {
-            NSLog(@"park name==%@", park.name);
+            //NSLog(@"park name==%@", park.name);
             for (int i=0; i<[park.perks count]; i++)
             {
                 NSLog(@"perks[%d]==%@", i, park.perks[i]);
@@ -133,7 +209,7 @@
     [park saveInBackground];*/
 
     
-    Park *park = [[Park alloc] init];
+    /*Park *park = [[Park alloc] init];
     park.name = @"Friendship Park";;
     park.street = @"5766 Bridlechase Ln";
     park.city = @"Murray";
@@ -149,7 +225,7 @@
         [park.perks addObject:str];
     }
     [park pinInBackground];
-    [park saveInBackground];
+     [park saveInBackground];*/
 }
 
 - (void)didReceiveMemoryWarning {

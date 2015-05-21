@@ -18,7 +18,8 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import <Parse/Parse.h>
-#import "Park.h"
+#import "ParkPFObject.h"
+#import "Foursquare2.h"
 
 @implementation AppDelegate
 
@@ -30,10 +31,14 @@
     // use Local Datastore features or want to use cachePolicy.
     [Parse enableLocalDatastore];
     
-    [Park registerSubclass];
+    [ParkPFObject registerSubclass];
     
     [Parse setApplicationId:@"L2PiG6qkphRbZ0QdlE2ttZcSnWrYyQoKpdkNPUFz"
                   clientKey:@"mboMmNW8godpWGzxYGJrrnEY6R7NmwT5IFeC0nLj"];
+    
+    [Foursquare2 setupFoursquareWithClientId:@"Y0D0NQHGKR4CZY4PYVJHL5N55AZUZJICDNY43C4M24GYQZNC"
+                                      secret:@"II2HF3VKGMCDH2IEM5TO2LDH4SJYVQA4MFD0T4FUOZM1MT4B"
+                                 callbackURL:@"http://songloopslowdowninfo.webs.com"];
     
     // ****************************************************************************
     // Uncomment this line if you want to enable Crash Reporting
