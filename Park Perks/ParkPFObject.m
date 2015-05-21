@@ -1,5 +1,5 @@
 //
-//  ParkModel.m
+//  ParkPFObject.m
 //  Park Perks
 //
 //  Created by Douglas Voss on 5/19/15.
@@ -9,7 +9,7 @@
 #import "PerkConstants.h"
 #import "ParkPFObject.h"
 
-@implementation ParkPFObject : NSObject
+@implementation ParkModel : NSObject
 
 
 
@@ -30,7 +30,7 @@
 
 + (NSString *)parseClassName
 {
-    return @"ParkPFObject"
+    return @"ParkModel"
 }
 
 - (void)dataForCategory:(NSString *)categoryStr nameStringArr:(NSMutableArray *)nameStringArr isCheckedArr:(NSMutableArray *)isCheckedArr
@@ -292,7 +292,7 @@
 
 - (BOOL)saveToDataBase
 {
-    PFObject *pfObj = [PFObject objectWithClassName:@"ParkPFObject"];
+    PFObject *pfObj = [PFObject objectWithClassName:@"ParkModel"];
     pfObj[@"name"]=self.name;
     //[pfObj addObject:self.name forKey:@"name"];
     pfObj[@"address"]=self.address;

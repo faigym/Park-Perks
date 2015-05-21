@@ -18,7 +18,6 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import <Parse/Parse.h>
-#import "Park.h"
 
 @implementation AppDelegate
 
@@ -29,8 +28,6 @@
     // Enable storing and querying data from Local Datastore. Remove this line if you don't want to
     // use Local Datastore features or want to use cachePolicy.
     [Parse enableLocalDatastore];
-    
-    [Park registerSubclass];
     
     [Parse setApplicationId:@"L2PiG6qkphRbZ0QdlE2ttZcSnWrYyQoKpdkNPUFz"
                   clientKey:@"mboMmNW8godpWGzxYGJrrnEY6R7NmwT5IFeC0nLj"];

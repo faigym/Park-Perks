@@ -7,443 +7,164 @@
 //
 
 #import "ViewController.h"
-#import "ParkModel.h"
-#import "Perk.h"
+#import "Constants.h"
+#import "Park.h"
 
 @interface ViewController ()
+
 
 @end
 
 @implementation ViewController
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSArray *perkNames = @[kWaterFountain, kWoodChips, kOpenSlide, kTubeSlide, kVolleyBall, kSand, kPond, kDucks, kSoccer, kOutdoorPool, kWaterSlide, kChinUp, kWalkingJoggingPath, kExerciseStations, kToddlerPlayEquipment, kBabySwing, kSwings, kTireSwing];
-    
     self.view.backgroundColor = [UIColor redColor];
     
-    //[self makePerkDatabase];    
+    self.tableView = [[UITableView alloc] initWithFrame:[self.view bounds]];
+    [self.view addSubview:self.tableView];
+    self.tableView.dataSource = self;
+
+    //[self saveParksToDatabase];
     
-    // Do any additional setup after loading the view, typically from a nib.
-    ParkModel *murrayPark = [[ParkModel alloc] init];
-    murrayPark.name = @"Murray Park";
-    murrayPark.address = @"296 East Murray Park Avenue,\nMurray, UT 84107";
-    murrayPark.latitude = 40.656847;
-    murrayPark.longitude = -111.883451;
-    murrayPark.phoneNumber = @"(801) 264-2614";
+    //[self queryTest];
+}
 
-#ifdef STRINGPERKS
-    for (int i=0; i<[perkNames count]; i++) {
-        Perk *newPerk = [[Perk alloc] init];
-        newPerk.name = perkNames[i];
-        newPerk.category = enumPlayground;
-        
-        [murrayPark.perks addObject:newPerk];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
     }
-#else
-#ifdef BOOLARRAYPERKS
-    murrayPark.perks = [[NSMutableArray alloc] initWithCapacity:indexMaxEnumCount];
-    for (int i=0; i<[murrayPark.perks count]; i++)
-    {
-        murrayPark.perks[i] = [NSNumber numberWithBool:false];
-    }
-#else
-    murrayPark.perkProps.WoodChips = true;
-    murrayPark.perkProps.MonkeyBars = true;
-    murrayPark.perkProps.Sand = true;
-    murrayPark.perkProps.Pond = true;
-    murrayPark.perkProps.ToddlerPlayEquipment = true;
-    murrayPark.perkProps.ChinUp = true;
-#endif
-#endif
     
-    //NSLog(@"murray park object == %@", murrayPark);
-    //[murrayPark saveToDataBase];
-
-    NSMutableArray *nameStrMutArr = [NSMutableArray new];
-    NSMutableArray *isCheckedArr = [NSMutableArray new];
-    [murrayPark dataForCategory:kCategoryPlayground nameStringArr:nameStrMutArr isCheckedArr:isCheckedArr];
-
-    for (int i=0; i<[nameStrMutArr count]; i++) {
-      NSLog(@"row %d name: %@ isChecked: %d", i, nameStrMutArr[i], [isCheckedArr[i] integerValue]);
+    if (indexPath.section == 0) { // Playground
+        cell.textLabel.text = [[Constants sharedInstance] playgroundStringLUT][indexPath.row];
+    } else if (indexPath.section == 1) { // Exercises
+        cell.textLabel.text = [[Constants sharedInstance] exerciseStringLUT][indexPath.row];
+    } else if (indexPath.section == 2) { // Nature
+        cell.textLabel.text = [[Constants sharedInstance] natureStringLUT][indexPath.row];
+    } else if (indexPath.section == 3) { // Water
+        cell.textLabel.text = [[Constants sharedInstance] waterStringLUT][indexPath.row];
+    } else if (indexPath.section == 4) { // Sports
+        cell.textLabel.text = [[Constants sharedInstance] sportsStringLUT][indexPath.row];
+    } else if (indexPath.section == 5) { // History
+        cell.textLabel.text = [[Constants sharedInstance] historyStringLUT][indexPath.row];
+    } else if (indexPath.section == 6) { // Facilities
+        cell.textLabel.text = [[Constants sharedInstance] facilitiesStringLUT][indexPath.row];
+    } else if (indexPath.section == 7) { // Picnic
+        cell.textLabel.text = [[Constants sharedInstance] picnicStringLUT][indexPath.row];
+    } else {
+      cell.textLabel.text = @"Invalid Section";
     }
+    return cell;
 }
 
 
-- (void)makePerkDatabase
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-      Perk *perk = [Perk new];
-    perk.name = kSeeSaw;
-    perk.iconName = @"icoSeeSaw.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
+    return CategoryTypeNumCategories;
+}
 
-    perk.name = kBabySwing;
-    perk.iconName = @"icoBabySwing.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kSwings;
-    perk.iconName = @"icoSwings.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kTireSwing;
-    perk.iconName = @"icoTireSwing.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kTubeSlide;
-    perk.iconName = @"icoTubeSlide.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kOpenSlide;
-    perk.iconName = @"icoOpenSlide.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kToddlerPlayEquipment;
-    perk.iconName = @"icoToddlerPlayEquipment.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kClimbingNet;
-    perk.iconName = @"icoClimbingNet.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kWoodChips;
-    perk.iconName = @"icoWoodChips.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kRubber;
-    perk.iconName = @"icoRubber.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kSand;
-    perk.iconName = @"icoSand.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kMonkeyBars;
-    perk.iconName = @"icoMonkeyBars.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kPreschoolActivities;
-    perk.iconName = @"icoPreschoolActivities.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kSplashPad;
-    perk.iconName = @"icoSplashPad.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kBucketSpinner;
-    perk.iconName = @"icoBucketSpinner.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kHoopSpinner;
-    perk.iconName = @"icoHoopSpinner.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kClimbingWall;
-    perk.iconName = @"icoClimbingWall.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kBalanceBeam;
-    perk.iconName = @"icoBalanceBeam.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kNovelExerciseStations;
-    perk.iconName = @"icoNovelExerciseStations.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kElectronicGameStations;
-    perk.iconName = @"icoElectronicGameStations.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kZipLine;
-    perk.iconName = @"icoZipLine.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kMerryGoRound;
-    perk.iconName = @"icoMerryGoRound.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kPlaySystem;
-    perk.iconName = @"icoPlaySystem.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kSandDigger;
-    perk.iconName = @"icoSandDigger.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kSpringRocker;
-    perk.iconName = @"icoSpringRocker.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kShaded;
-    perk.iconName = @"icoShaded.png";
-    perk.category = enumPlayground;
-    [perk saveToDatabase];
-    
-    perk.name = kWalkingJoggingPath;
-    perk.iconName = @"icoWalkingJoggingPath.png";
-    perk.category = enumExercise;
-    [perk saveToDatabase];
-    
-    perk.name = kChinUp;
-    perk.iconName = @"icoChinUp.png";
-    perk.category = enumExercise;
-    [perk saveToDatabase];
-    
-    perk.name = kExerciseStations;
-    perk.iconName = @"icoExerciseStations.png";
-    perk.category = enumExercise;
-    [perk saveToDatabase];
-    
-    perk.name = kCreek;
-    perk.iconName = @"icoCreek.png";
-    perk.category = enumNature | enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kPond;
-    perk.iconName = @"icoPond.png";
-    perk.category = enumNature | enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kArboretum;
-    perk.iconName = @"icoArboretum.png";
-    perk.category = enumNature;
-    [perk saveToDatabase];
-    
-    perk.name = kDucks;
-    perk.iconName = @"icoDucks.png";
-    perk.category = enumNature | enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kFishing;
-    perk.iconName = @"icoFishing.png";
-    perk.category = enumNature | enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kAviary;
-    perk.iconName = @"icoAviary.png";
-    perk.category = enumNature;
-    [perk saveToDatabase];
-    
-    perk.name = kOutdoorPool;
-    perk.iconName = @"icoOutdoorPool.png";
-    perk.category = enumWater | enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kWaterSlide;
-    perk.iconName = @"icoWaterSlide.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kBabyPool;
-    perk.iconName = @"icoBabyPool.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kLapSwim;
-    perk.iconName = @"icoLapSwim.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kDrinkingFountain;
-    perk.iconName = @"icoDrinkingFountain.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kDivingBoard;
-    perk.iconName = @"icoDivingBoard.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kHighDive;
-    perk.iconName = @"icoHighDive.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kWaterNozzle;
-    perk.iconName = @"icoWaterNozzle.png";
-    perk.category = enumWater;
-    [perk saveToDatabase];
-    
-    perk.name = kBaseball;
-    perk.iconName = @"icoBaseball.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kSoccer;
-    perk.iconName = @"icoSoccer.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kFootball;
-    perk.iconName = @"icoFootball.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kBasketBall;
-    perk.iconName = @"icoBasketBall.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kTennis;
-    perk.iconName = @"icoTennis.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kRaquetBall;
-    perk.iconName = @"icoRaquetBall.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kVolleyBall;
-    perk.iconName = @"icoVolleyBall.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kBMX;
-    perk.iconName = @"icoBMX.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kSkate;
-    perk.iconName = @"icoSkate.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kDiscGolf;
-    perk.iconName = @"icoDiscGolf.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kBicycling;
-    perk.iconName = @"icoBicycling.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kHorshoes;
-    perk.iconName = @"icoHorshoes.png";
-    perk.category = enumSports;
-    [perk saveToDatabase];
-    
-    perk.name = kMemorials;
-    perk.iconName = @"icoMemorials.png";
-    perk.category = enumHistory;
-    [perk saveToDatabase];
-    
-    perk.name = kBathroom;
-    perk.iconName = @"icoBathroom.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kWaterFountain;
-    perk.iconName = @"icoWaterFountain.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kElectricity;
-    perk.iconName = @"icoElectricity.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kLighting;
-    perk.iconName = @"icoLighting.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kDogsAllowed;
-    perk.iconName = @"icoDogsAllowed.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kDogsOffLeashAllowed;
-    perk.iconName = @"icoDogsOffLeashAllowed.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kDrones;
-    perk.iconName = @"icoDrones.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kKites;
-    perk.iconName = @"icoKites.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kSurface;
-    perk.iconName = @"icoSurface.png";
-    perk.category = enumFacilities;
-    [perk saveToDatabase];
-    
-    perk.name = kShade;
-    perk.iconName = @"icoShade.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kBBQGas;
-    perk.iconName = @"icoBBQGas.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kBBQFirePit;
-    perk.iconName = @"icoBBQFirePit.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kBBQCharcoal;
-    perk.iconName = @"icoBBQCharcoal.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kShelter;
-    perk.iconName = @"icoShelter.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kPavilion;
-    perk.iconName = @"icoPavilion.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kRamada;
-    perk.iconName = @"icoRamada.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kAlcoholPermit;
-    perk.iconName = @"icoAlcoholPermit.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
-    
-    perk.name = kSeating;
-    perk.iconName = @"icoSeating.png";
-    perk.category = enumPicnic;
-    [perk saveToDatabase];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[Constants sharedInstance] categoryTitleForSection:section];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) { // Playground
+        return [[[Constants sharedInstance] playgroundStringLUT] count];
+    } else if (section == 1) { // Exercises
+      return [[[Constants sharedInstance] exerciseStringLUT] count];
+    } else if (section == 2) { // Nature
+      return [[[Constants sharedInstance] natureStringLUT] count];
+    } else if (section == 3) { // Water
+      return [[[Constants sharedInstance] waterStringLUT] count];
+    } else if (section == 4) { // Sports
+      return [[[Constants sharedInstance] sportsStringLUT] count];
+    } else if (section == 5) { // History
+      return [[[Constants sharedInstance] historyStringLUT] count];
+    } else if (section == 6) { // Facilities
+      return [[[Constants sharedInstance] facilitiesStringLUT] count];
+    } else if (section == 7) { // Picnic
+      return [[[Constants sharedInstance] picnicStringLUT] count];
+    } else {
+      NSLog(@"Invalid Section");
+      return 0;
+    }
+}
+
+- (void)queryTest
+{
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"perks == %@", kMerryGoRound];
+   // NSPredicate *predicate = [NSPredicate predicateWithFormat:@"perks == %@", kMerryGoRound];
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"perks = %@ AND perks = %@", kTubeSlide, kMerryGoRound];
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ IN perks", kTubeSlide];
+    //NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"%@ IN perks", kMerryGoRound];
+    //NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, predicate2]];
+    //NSLog(@"compoundPredicate=%@", compoundPredicate);
+    //PFQuery *query = [Park queryWithPredicate:compoundPredicate];
+    //PFQuery *query = [Park queryWithPredicate:predicate];
+    
+    PFQuery *query = [Park query];
+    [query whereKey:@"perks" containsAllObjectsInArray:@[kTubeSlide, kSand]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"objects: %@", objects);
+        NSLog(@"found %ld objects", objects.count);
+        
+        for (Park *park in objects)
+        {
+            NSLog(@"park name==%@", park.name);
+            for (int i=0; i<[park.perks count]; i++)
+            {
+                NSLog(@"perks[%d]==%@", i, park.perks[i]);
+            }
+        }
+    }];
+}
+
+- (void)saveParksToDatabase
+{
+    /*
+    Park *park = [[Park alloc] init];
+    park.name = @"Murray Park";;
+    park.street = @"296 East Murray Park Avenue";
+    park.city = @"Murray";
+    park.zipCode = @"84107";
+    park.state = @"Utah";
+    //park.location = [CLLocation ];
+    park.latitude = 40.656847;
+    park.longitude = -111.883451;
+    park.phoneNumber = @"(801) 264-2614";
+    park.perks = [[NSMutableArray alloc] init];
+    NSArray *perkNames = @[kWaterFountain, kWoodChips, kOpenSlide, kTubeSlide, kVolleyBall, kSand, kPond, kDucks, kSoccer, kOutdoorPool, kWaterSlide, kChinUp, kWalkingJoggingPath, kExerciseStations, kToddlerPlayEquipment, kBabySwing, kSwings, kTireSwing];
+    for (NSString *str in perkNames) {
+        [park.perks addObject:str];
+    }
+    [park pinInBackground];
+    [park saveInBackground];*/
+
+    
+    Park *park = [[Park alloc] init];
+    park.name = @"Friendship Park";;
+    park.street = @"5766 Bridlechase Ln";
+    park.city = @"Murray";
+    park.zipCode = @"84107";
+    park.state = @"Utah";
+    //park.location = [CLLocation ];
+    park.latitude = 40.64567;
+    park.longitude = -111.8808458;
+    park.phoneNumber = @"not available";
+    park.perks = [[NSMutableArray alloc] init];
+    NSArray *perkNames = @[kMerryGoRound, kToddlerPlayEquipment, kSwings, kSand, kVolleyBall, kBaseball, kLighting, kPavilion, kWalkingJoggingPath];
+    for (NSString *str in perkNames) {
+        [park.perks addObject:str];
+    }
+    [park pinInBackground];
+    [park saveInBackground];
 }
 
 - (void)didReceiveMemoryWarning {
