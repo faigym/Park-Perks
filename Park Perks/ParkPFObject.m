@@ -10,7 +10,7 @@
 
 @implementation ParkPFObject
 
-@dynamic fourSquareObjectId;
+@dynamic foursquareObjectId;
 @dynamic rating;
 @dynamic perks;
 

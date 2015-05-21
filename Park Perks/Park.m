@@ -20,7 +20,9 @@
   [mutStr appendString:[NSString stringWithFormat:@"city: %@\r", self.city]];
   [mutStr appendString:[NSString stringWithFormat:@"zip: %@\r", self.zipCode]];
   [mutStr appendString:[NSString stringWithFormat:@"state: %@\r", self.state]];
-  [mutStr appendString:[NSString stringWithFormat:@"distance: %f\r", self.distance]];
+  NSLocale *locale = [NSLocale currentLocale];
+  NSString *units = [locale objectForKey: NSLocaleMeasurementSystem] ? @"meters" : @"feet";
+  [mutStr appendString:[NSString stringWithFormat:@"distance: %f %@\r", self.distance, units]];
   [mutStr appendString:[NSString stringWithFormat:@"latitude: %f\r", self.latitude]];
   [mutStr appendString:[NSString stringWithFormat:@"longitude: %f\r", self.longitude]];
   [mutStr appendString:[NSString stringWithFormat:@"phone number: %@\r", self.phoneNumber]];
