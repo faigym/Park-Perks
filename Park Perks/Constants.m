@@ -7,11 +7,10 @@
 //
 
 #import "Constants.h"
-#import "PerkPropLUTPFObject.h"
 
 @interface Constants()
 
-@property (nonatomic, strong) PerkPropLUTPFObject *perkPropLUT;
+@property (nonatomic, strong, readwrite) PerkPropLUTPFObject *perkPropLUT;
 
 @end
 
@@ -33,7 +32,8 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             sharedInstance.perkPropLUT = objects[0];
             NSLog(@"perkPropLUT loaded in Singleton Constants");
-            NSLog(@"Categories:%@ Images:%@", sharedInstance.perkPropLUT.categoryMapArr, sharedInstance.perkPropLUT.imageMapArr);
+            NSLog(@"Categories:%@ Images:%@", sharedInstance.perkPropLUT.categoryDict, sharedInstance.perkPropLUT.imageDict);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPerkPropLUTLoaded object:nil];
         }];
     });
 
@@ -46,6 +46,92 @@
         
     }
 }*/
+
+- (NSArray *)allPerks
+{
+return @[
+kCategoryPlayground,
+kSeeSaw,
+kBabySwing,
+kSwings,
+kTireSwing,
+kTubeSlide,
+kOpenSlide,
+kToddlerPlayEquipment,
+kClimbingNet,
+kWoodChips,
+kRubber,
+kSand,
+kMonkeyBars,
+kPreschoolActivities,
+kSplashPad,
+kBucketSpinner,
+kHoopSpinner,
+kClimbingWall,
+kBalanceBeam,
+kExerciseStations,
+kElectronicGameStations,
+kZipLine,
+kMerryGoRound,
+kPlaySystem,
+kSandDigger,
+kSpringRocker,
+kShaded,
+kCategoryExercise,
+kWalkingJoggingPath,
+kChinUp,
+kCategoryNature,
+kCreek,
+kPond,
+kArboretum,
+kDucks,
+kFishing,
+kAviary,
+kCategoryWater,
+kOutdoorPool,
+kWaterSlide,
+kBabyPool,
+kLapSwim,
+kDrinkingFountain,
+kDivingBoard,
+kHighDive,
+kWaterNozzle,
+kCategorySports,
+kBaseball,
+kSoccer,
+kFootball,
+kBasketBall,
+kTennis,
+kRaquetBall,
+kVolleyBall,
+kBMX,
+kSkate,
+kDiscGolf,
+kBicycling,
+kHorseShoes,
+kCategoryHistory,
+kMemorials,
+kCategoryFacilities,
+kBathroom,
+kWaterFountain,
+kElectricity,
+kLighting,
+kDogsAllowed,
+kDogsOffLeashAllowed,
+kDrones,
+kKites,
+kSurface,
+kShade,
+kCategoryPicnic,
+kBBQGas,
+kBBQFirePit,
+kBBQCharcoal,
+kShelter,
+kPavilion,
+kRamada,
+kAlcoholPermit,
+kSeating];
+}
 
 - (NSArray *)playgroundStringLUT
 {

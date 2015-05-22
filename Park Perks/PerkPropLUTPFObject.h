@@ -10,8 +10,8 @@
 
 @interface PerkPropLUTPFObject : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) NSArray *categoryMapArr;
-@property (nonatomic, strong) NSArray *imageMapArr;
+@property (nonatomic, strong) NSDictionary *categoryDict;
+@property (nonatomic, strong) NSDictionary *imageDict;
 
 + (NSString *)parseClassName;
 

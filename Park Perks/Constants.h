@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PerkPropLUTPFObject.h"
 
 // ******** Playground
 static NSString *kCategoryPlayground = @"Playground";
@@ -112,6 +113,8 @@ static NSString *kSeating = @"Seating";
 // ******** Others (just a section title placeholder for rogue categories that have creeped on us).  Shouldn't ever come up
 static NSString *kCategoryOther = @"Other";
 
+static NSString *kPerkPropLUTLoaded = @"PerkPropLUTLoaded";
+
 static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 
@@ -131,6 +134,8 @@ typedef enum CategoryType : NSUInteger
 
 @interface Constants : NSObject
 
+@property (nonatomic, strong, readonly) PerkPropLUTPFObject *perkPropLUT;
+
 + (instancetype)sharedInstance;
 
 - (NSArray *)playgroundStringLUT;
@@ -142,6 +147,8 @@ typedef enum CategoryType : NSUInteger
 - (NSArray *)facilitiesStringLUT;
 - (NSArray *)picnicStringLUT;
 - (NSString *)categoryTitleForSection:(NSInteger)section;
+
+- (NSArray *)allPerks;
 //- (NSArray *)categoriesForPerk:(NSString *)perk;
 
 @end

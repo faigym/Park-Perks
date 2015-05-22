@@ -30,13 +30,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Enable storing and querying data from Local Datastore. Remove this line if you don't want to
     // use Local Datastore features or want to use cachePolicy.
-    [Parse enableLocalDatastore];
     
-    [ParkPFObject registerSubclass];
-    [PerkPropLUTPFObject registerSubclass];
+    [Parse enableLocalDatastore];
     
     [Parse setApplicationId:@"L2PiG6qkphRbZ0QdlE2ttZcSnWrYyQoKpdkNPUFz"
                   clientKey:@"mboMmNW8godpWGzxYGJrrnEY6R7NmwT5IFeC0nLj"];
+    
+    [ParkPFObject registerSubclass];
+    [PerkPropLUTPFObject registerSubclass];
     
     [Foursquare2 setupFoursquareWithClientId:@"Y0D0NQHGKR4CZY4PYVJHL5N55AZUZJICDNY43C4M24GYQZNC"
                                       secret:@"II2HF3VKGMCDH2IEM5TO2LDH4SJYVQA4MFD0T4FUOZM1MT4B"
@@ -62,6 +63,8 @@
     [defaultACL setPublicReadAccess:YES];
     
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    [Constants sharedInstance]; // Start query for PerkPropsLUT by creating the Constants sharedInstance
     
     // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] init];

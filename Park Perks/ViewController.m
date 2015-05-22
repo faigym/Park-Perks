@@ -16,9 +16,6 @@
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
 static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
-static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
-
-
 @interface ViewController ()
 
 @property (nonatomic, strong) PerkPropLUTPFObject *perkPropLUT;
@@ -26,8 +23,6 @@ static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
 @end
 
 @implementation ViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,15 +48,24 @@ static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
     
     //[self remakePerkLUT];
 
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:@"notify" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:kPerkPropLUTLoaded object:nil];
     //[self readPerkPropLUT];
+    
 }
 
 -(void)readPerkPropLUTComplete
 {
     NSLog(@"readPerkPropLUTComplete!");
-    NSLog(@"Categories: %@", self.perkPropLUT.categoryMapArr);
-    NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
+    //NSLog(@"Categories: %@", self.perkPropLUT.categoryMapArr);
+    //NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
+    
+    //NSArray *perkArr = [[Constants sharedInstance] allPerks];
+    NSArray *perkArr = @[kMerryGoRound, kSoccer, kSand];
+    for (int i=0; i<[perkArr count]; i++)
+    {
+        NSString *category = [[Constants sharedInstance].perkPropLUT.categoryDict valueForKey:perkArr[i]];
+        NSLog(@"%@ : %@", perkArr[i], category);
+    }
 }
 
 -(void)readPerkPropLUT
@@ -76,7 +80,7 @@ static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
             // The find succeeded. Add the returned objects to allObjects
             NSLog(@"query succeeded: %@", objects);
             self.perkPropLUT = objects[0];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"notify" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPerkPropLUTLoaded object:nil];
         } else {
             NSLog(@"query failed");
         }}];
@@ -85,8 +89,8 @@ static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
 -(void)remakePerkLUT
 {
     PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];
-    perkProp.categoryMapArr = @[@{kMerryGoRound:kCategoryPlayground}, @{kSoccer:kCategorySports}];
-    perkProp.imageMapArr = @[@{kMerryGoRound:@"merry.jpg"}, @{kSoccer:@"socField.jpg"}];
+    perkProp.categoryDict = @{kMerryGoRound:kCategoryPlayground, kSoccer:kCategorySports};
+    perkProp.imageDict = @{kMerryGoRound:@"merry.jpg", kSoccer:@"socField.jpg"};
     
     [perkProp pinInBackground];
     [perkProp saveInBackground];

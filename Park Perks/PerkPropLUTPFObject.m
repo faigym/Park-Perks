@@ -10,8 +10,8 @@
 
 @implementation PerkPropLUTPFObject
 
-@dynamic categoryMapArr;
-@dynamic imageMapArr;
+@dynamic categoryDict;
+@dynamic imageDict;
 
 + (NSString *)parseClassName
 {
