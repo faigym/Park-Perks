@@ -112,6 +112,9 @@
     return [self.perkDict allKeys];
 }
 
+// This uploads the parse database for the PerkPropLUT Class
+// The PerkPropLUT maps perks to one or more categories
+//
 -(void)remakePerkLUT
 {
     PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];

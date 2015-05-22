@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Park.h"
+#import "ParkPFObject.h"
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *parkArray;
+@property (strong, nonatomic) NSMutableArray *searchPerksArr;
+@property (strong, nonatomic) NSMutableArray *parkPFObjArr;
 
 @end
 

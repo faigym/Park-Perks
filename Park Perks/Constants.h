@@ -119,6 +119,8 @@ static NSString *kCategoryOther = @"Other";
 static NSString *kPerkPropLUTLoaded = @"PerkPropLUTLoaded";
 
 static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
+
+static NSString *kFoursquareQueryCompletedId = @"FoursquareQueryCompletedId";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 
 /*

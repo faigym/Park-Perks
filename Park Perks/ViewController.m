@@ -41,13 +41,26 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.656847 longitude:-111.883451 radius:1500.0];
     
-    [self queryForPerks:@[kMerryGoRound, kSand] withObjectIds:@[kFriendshipParkFoursquareId, kMurrayParkFoursquareId]];
+    //[self queryForPerks:@[kMerryGoRound, kSand] withObjectIds:@[kFriendshipParkFoursquareId, kMurrayParkFoursquareId]];
+    
+    
     
     //[[Constants sharedInstance] remakePerkLUT];
     //[[Constants sharedInstance] remakeParkTestDatabase];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:kPerkPropLUTLoaded object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(querySearchPerks) name:kFoursquareQueryCompletedId object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryComplete) name:kParseQueryCompletedId object:nil];
     
+}
+
+-(void)queryComplete
+{
+    NSLog(@"dualqueryComplete!");
+    for (ParkPFObject *park in self.parkPFObjArr)
+    {
+        NSLog(@"Park:\n %@", park);
+    }
 }
 
 -(void)readPerkPropLUTComplete
@@ -74,6 +87,9 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //NSLog(@"sportsPerks == %@", sportsPerks);
     
     //NSLog(@"dict=%@", [Constants sharedInstance].categoryDict);
+    
+    NSArray *perkArr = @[kChinUp];
+    [self queryForPerksCombine:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];
     
     [self.tableView reloadData];
 }
@@ -115,7 +131,44 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
             }
             NSLog(@"\n");
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kParseQueryCompletedId object:self userInfo:nil];
     }];
+}
+
+-(void)querySearchPerks
+{
+    PFQuery *query = [ParkPFObject query];
+    NSMutableArray *objIdArr = [NSMutableArray new];
+    for (Park *park in self.parkArray) {
+        [objIdArr addObject:park.foursquareObjectId];
+    }
+    [query whereKey:@"foursquareObjectId" containedIn:objIdArr];
+    [query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"objects: %@", objects);
+        NSLog(@"found %ld objects", objects.count);
+        
+        self.parkPFObjArr = [NSMutableArray new];
+        for (ParkPFObject *park in objects)
+        {
+            NSLog(@"park name==%@", park.name);
+            for (int i=0; i<[park.perks count]; i++)
+            {
+                NSLog(@"perks[%d]==%@", i, park.perks[i]);
+            }
+            NSLog(@"\n");
+            
+            [self.parkPFObjArr addObject:park];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kParseQueryCompletedId object:self userInfo:nil];
+    }];
+}
+
+-(void)queryForPerksCombine:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius
+{
+    self.searchPerksArr = perkArr;
+    [self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:latitude longitude:longitude radius:radius];
 }
 
 -(void)foursquareQueryForCategory:(NSString *)category latitude:(double)latitude longitude:(double)longitude radius:(double)radius
@@ -185,9 +238,8 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
          for (int i=0; i<[self.parkArray count]; i++) {
              NSLog(@"Park %d: \n%@", i, self.parkArray[i]);
          }
-         [[NSNotificationCenter defaultCenter] postNotificationName:kParseQueryCompletedId object:self userInfo:nil];
+         [[NSNotificationCenter defaultCenter] postNotificationName:kFoursquareQueryCompletedId object:self userInfo:nil];
      }];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

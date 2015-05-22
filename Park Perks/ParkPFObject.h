@@ -21,4 +21,6 @@
 
 + (NSString *)parseClassName;
 
+- (NSString *)description;
+
 @end
