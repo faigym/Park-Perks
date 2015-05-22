@@ -54,7 +54,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 -(void)readPerkPropLUTComplete
 {
-    NSLog(@"readPerkPropLUTComplete!");
+    //NSLog(@"readPerkPropLUTComplete!");
     //NSLog(@"Categories: %@", self.perkPropLUT.categoryMapArr);
     //NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
     
@@ -71,6 +71,9 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     NSArray *naturePerks = [[Constants sharedInstance] perksForCategory:kCategoryNature];
     NSLog(@"naturePerks == %@", naturePerks);
+    
+    NSArray *sportsPerks = [[Constants sharedInstance] perksForCategory:kCategorySports];
+    NSLog(@"sportsPerks == %@", sportsPerks);
 }
 
 -(void)readPerkPropLUT
@@ -94,7 +97,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 -(void)remakePerkLUT
 {
     PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];
-    perkProp.categoryDict = @{
+    perkProp.perkDict = @{
       kSeeSaw:@[kCategoryPlayground],
       kBabySwing:@[kCategoryPlayground],
       kSwings:@[kCategoryPlayground],

@@ -10,7 +10,7 @@
 
 @implementation PerkPropLUTPFObject
 
-@dynamic categoryDict;
+@dynamic perkDict;
 
 + (NSString *)parseClassName
 {

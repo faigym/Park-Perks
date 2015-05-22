@@ -10,7 +10,7 @@
 
 @interface PerkPropLUTPFObject : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) NSDictionary *categoryDict;
+@property (nonatomic, strong) NSDictionary *perkDict;
 
 + (NSString *)parseClassName;
 

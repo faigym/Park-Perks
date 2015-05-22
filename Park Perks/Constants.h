@@ -134,9 +134,11 @@ typedef enum CategoryType : NSUInteger
 
 @interface Constants : NSObject
 
-@property (nonatomic, strong, readonly) PerkPropLUTPFObject *perkPropLUT;
+@property (nonatomic, strong, readonly) NSDictionary *perkDict;
+@property (nonatomic, strong, readonly) NSDictionary *categoryDict;
 
 + (instancetype)sharedInstance;
++ (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict;
 
 - (NSArray *)playgroundStringLUT;
 - (NSArray *)exerciseStringLUT;
@@ -149,8 +151,7 @@ typedef enum CategoryType : NSUInteger
 - (NSString *)categoryTitleForSection:(NSInteger)section;
 
 - (NSArray *)allPerks;
-//- (NSArray *)categoriesForPerk:(NSString *)perk;
-
+- (NSArray *)allCategories;
 - (NSArray *)perksForCategory:(NSString *)category;
 
 @end

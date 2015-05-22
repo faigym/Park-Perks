@@ -7,10 +7,13 @@
 //
 
 #import "Constants.h"
+#import "PerkPropLUTPFObject.h"
 
 @interface Constants()
 
 @property (nonatomic, strong, readwrite) PerkPropLUTPFObject *perkPropLUT;
+@property (nonatomic, strong, readwrite) NSDictionary *perkDict;
+@property (nonatomic, strong, readwrite) NSDictionary *categoryDict;
 
 @end
 
@@ -31,6 +34,8 @@
         [query setSkip: skip];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             sharedInstance.perkPropLUT = objects[0];
+            sharedInstance.perkDict = sharedInstance.perkPropLUT.perkDict;
+            sharedInstance.categoryDict = [Constants categoryDictFromPerkDict:sharedInstance.perkDict];
             //NSLog(@"perkPropLUT loaded in Singleton Constants");
             //NSLog(@"Categories:%@", sharedInstance.perkPropLUT.categoryDict);
             [[NSNotificationCenter defaultCenter] postNotificationName:kPerkPropLUTLoaded object:nil];
@@ -40,13 +45,13 @@
     return sharedInstance;
 }
 
-- (NSArray *)perksForCategory:(NSString *)category
++ (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict
 {
     NSMutableDictionary *mutDict = [NSMutableDictionary new];
     
-    for (NSString *perk in [self allPerks])
+    for (NSString *perk in [perkDict allKeys])
     {
-        NSArray *categoryArr = [self.perkPropLUT.categoryDict valueForKey:perk];
+        NSArray *categoryArr = [perkDict valueForKey:perk];
         NSMutableArray *perksPerCategory;
         for (NSString *categoryStr in categoryArr)
         {
@@ -58,10 +63,13 @@
             [perksPerCategory addObject:perk];
         }
     }
-    
     //NSLog(@"mutDict==%@", mutDict);
-    
-    return [mutDict valueForKey:category];
+    return mutDict;
+}
+
+- (NSArray *)perksForCategory:(NSString *)category
+{
+    return [self.categoryDict valueForKey:category];
 }
 
 /*- (NSArray *)categoriesForPerk:(NSString *perk)
@@ -71,9 +79,14 @@
     }
 }*/
 
+- (NSArray *)allCategories
+{
+    return [self.categoryDict allKeys];
+}
+
 - (NSArray *)allPerks
 {
-    return [self.perkPropLUT.categoryDict allKeys];
+    return [self.perkDict allKeys];
 /*return @[
 kCategoryPlayground,
 kSeeSaw,
