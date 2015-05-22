@@ -7,6 +7,13 @@
 //
 
 #import "Constants.h"
+#import "PerkPropLUTPFObject.h"
+
+@interface Constants()
+
+@property (nonatomic, strong) PerkPropLUTPFObject *perkPropLUT;
+
+@end
 
 @implementation Constants
 
@@ -16,9 +23,27 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[Constants alloc] init];
+        
+        /*self.perkPropLUT = [PerkPropLUTPFObject new];
+        PFQuery *query = [PerkPropLUTPFObject query];
+        NSUInteger limit = 0;
+        NSUInteger skip = 0;
+        [query setLimit: limit];
+        [query setSkip: skip];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSLog(@"perkPropLUT loaded");
+         }];*/
     });
+
     return sharedInstance;
 }
+                  
+/*- (NSArray *)categoriesForPerk:(NSString *perk)
+{
+    if (self.perkPropLUT) {
+        
+    }
+}*/
 
 - (NSArray *)playgroundStringLUT
 {

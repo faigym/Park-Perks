@@ -11,12 +11,17 @@
 #import "Park.h"
 #import "ParkPFObject.h"
 #import "Foursquare2.h"
+#import "PerkPropLUTPFObject.h"
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
 static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
+static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
+
+
 @interface ViewController ()
 
+@property (nonatomic, strong) PerkPropLUTPFObject *perkPropLUT;
 
 @end
 
@@ -42,15 +47,56 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.656847 longitude:-111.883451 radius:1500.0];
     
     //[self remakeDB];
-    //[self queryForPerks:@[kMerryGoRound, kSand] withObjectIds:@[kMurrayParkFoursquareId, kFriendshipParkFoursquareId]];
-    [self queryForPerks:@[kVolleyBall, kSand] withObjectIds:@[kFriendshipParkFoursquareId]];
+    
+    //[self queryForPerks:@[@{kMerryGoRound:kCategorySports}, @{kSand:kCategoryPlayground}] withObjectIds:@[kMurrayParkFoursquareId, kFriendshipParkFoursquareId]];
+    //[self queryForPerks:@[kVolleyBall, kSand] withObjectIds:@[kFriendshipParkFoursquareId]];
+    
+    //[self remakePerkLUT];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:@"notify" object:nil];
+    [self readPerkPropLUT];
+}
+
+-(void)readPerkPropLUTComplete
+{
+    NSLog(@"readPerkPropLUTComplete!");
+    NSLog(@"Categories: %@", self.perkPropLUT.categoryMapArr);
+    NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
+}
+
+-(void)readPerkPropLUT
+{
+    PFQuery *query = [PerkPropLUTPFObject query];
+    NSUInteger limit = 1;
+    NSUInteger skip = 0;
+    [query setLimit: limit];
+    [query setSkip: skip];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded. Add the returned objects to allObjects
+            NSLog(@"query succeeded: %@", objects);
+            self.perkPropLUT = objects[0];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"notify" object:nil];
+        } else {
+            NSLog(@"query failed");
+        }}];
+}
+
+-(void)remakePerkLUT
+{
+    PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];
+    perkProp.categoryMapArr = @[@{kMerryGoRound:kCategoryPlayground}, @{kSoccer:kCategorySports}];
+    perkProp.imageMapArr = @[@{kMerryGoRound:@"merry.jpg"}, @{kSoccer:@"socField.jpg"}];
+    
+    [perkProp pinInBackground];
+    [perkProp saveInBackground];
 }
 
 -(void)queryForPerks:(NSArray *)perkArr withObjectIds:(NSArray *)idArr
 {
     PFQuery *query = [ParkPFObject query];
     [query whereKey:@"foursquareObjectId" containedIn:idArr];
-    [query whereKey:@"perks" containsAllObjectsInArray:perkArr];
+    //[query whereKey:@"perks" containsAllObjectsInArray:perkArr];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSLog(@"objects: %@", objects);
@@ -79,7 +125,8 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     ParkPFObject *park = [ParkPFObject new];
     park.foursquareObjectId = @"4bf6ab6f5efe2d7f428d6734";
     park.rating = [NSNumber numberWithInt:4];
-    park.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kSand, kVolleyBall];
+    //park.perks = @[@{kSand:kCategoryPlayground}, @{kMerryGoRound:kCategoryPlayground}, @{kToddlerPlayEquipment:kCategoryPlayground}, @{kVolleyBall:kCategorySports}];
+    park.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBall];
     [park pinInBackground];
     [park saveInBackground];
 }

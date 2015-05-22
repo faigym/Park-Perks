@@ -142,5 +142,6 @@ typedef enum CategoryType : NSUInteger
 - (NSArray *)facilitiesStringLUT;
 - (NSArray *)picnicStringLUT;
 - (NSString *)categoryTitleForSection:(NSInteger)section;
+//- (NSArray *)categoriesForPerk:(NSString *)perk;
 
 @end

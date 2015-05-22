@@ -19,6 +19,7 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import "ParkPFObject.h"
+#import "PerkPropLUTPFObject.h"
 #import "Foursquare2.h"
 
 @implementation AppDelegate
@@ -32,6 +33,7 @@
     [Parse enableLocalDatastore];
     
     [ParkPFObject registerSubclass];
+    [PerkPropLUTPFObject registerSubclass];
     
     [Parse setApplicationId:@"L2PiG6qkphRbZ0QdlE2ttZcSnWrYyQoKpdkNPUFz"
                   clientKey:@"mboMmNW8godpWGzxYGJrrnEY6R7NmwT5IFeC0nLj"];
