@@ -41,8 +41,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     //[self foursquareQueryForCategory:kFoursquareCategoryParkID latitude:40.656847 longitude:-111.883451 radius:1500.0];
     
-    //[self queryForPerks:@[@{kMerryGoRound:kCategorySports}, @{kSand:kCategoryPlayground}] withObjectIds:@[kMurrayParkFoursquareId, kFriendshipParkFoursquareId]];
-    //[self queryForPerks:@[kVolleyBall, kSand] withObjectIds:@[kFriendshipParkFoursquareId]];
+    [self queryForPerks:@[kMerryGoRound, kSand] withObjectIds:@[kFriendshipParkFoursquareId, kMurrayParkFoursquareId]];
     
     //[[Constants sharedInstance] remakePerkLUT];
     //[[Constants sharedInstance] remakeParkTestDatabase];
@@ -74,7 +73,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //NSArray *sportsPerks = [[Constants sharedInstance] perksForCategory:kCategorySports];
     //NSLog(@"sportsPerks == %@", sportsPerks);
     
-    NSLog(@"dict=%@", [Constants sharedInstance].categoryDict);
+    //NSLog(@"dict=%@", [Constants sharedInstance].categoryDict);
     
     [self.tableView reloadData];
 }
@@ -101,7 +100,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 {
     PFQuery *query = [ParkPFObject query];
     [query whereKey:@"foursquareObjectId" containedIn:idArr];
-    //[query whereKey:@"perks" containsAllObjectsInArray:perkArr];
+    [query whereKey:@"perks" containsAllObjectsInArray:perkArr];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSLog(@"objects: %@", objects);
@@ -109,11 +108,12 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
         
         for (ParkPFObject *park in objects)
         {
-            //NSLog(@"park name==%@", park.name);
+            NSLog(@"park name==%@", park.name);
             for (int i=0; i<[park.perks count]; i++)
             {
                 NSLog(@"perks[%d]==%@", i, park.perks[i]);
             }
+            NSLog(@"\n");
         }
     }];
 }

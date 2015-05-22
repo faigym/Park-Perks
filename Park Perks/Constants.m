@@ -67,7 +67,7 @@
             [perksPerCategory addObject:perk];
         }
     }
-    NSLog(@"mutDict==%@", mutDict);
+    //NSLog(@"mutDict==%@", mutDict);
     return mutDict;
 }
 
