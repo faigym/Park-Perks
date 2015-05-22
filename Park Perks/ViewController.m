@@ -53,8 +53,8 @@ static NSString *kPerkPropLUTComplete = @"PerkPropLUTComplete";
     
     //[self remakePerkLUT];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:@"notify" object:nil];
-    [self readPerkPropLUT];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:@"notify" object:nil];
+    //[self readPerkPropLUT];
 }
 
 -(void)readPerkPropLUTComplete

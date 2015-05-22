@@ -24,15 +24,17 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[Constants alloc] init];
         
-        /*self.perkPropLUT = [PerkPropLUTPFObject new];
+        sharedInstance.perkPropLUT = [PerkPropLUTPFObject new];
         PFQuery *query = [PerkPropLUTPFObject query];
-        NSUInteger limit = 0;
+        NSUInteger limit = 1;
         NSUInteger skip = 0;
         [query setLimit: limit];
         [query setSkip: skip];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            NSLog(@"perkPropLUT loaded");
-         }];*/
+            sharedInstance.perkPropLUT = objects[0];
+            NSLog(@"perkPropLUT loaded in Singleton Constants");
+            NSLog(@"Categories:%@ Images:%@", sharedInstance.perkPropLUT.categoryMapArr, sharedInstance.perkPropLUT.imageMapArr);
+        }];
     });
 
     return sharedInstance;
