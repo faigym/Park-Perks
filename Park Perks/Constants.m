@@ -39,7 +39,31 @@
 
     return sharedInstance;
 }
-                  
+
+- (NSArray *)perksForCategory:(NSString *)category
+{
+    NSMutableDictionary *mutDict = [NSMutableDictionary new];
+    
+    for (NSString *perk in [self allPerks])
+    {
+        NSArray *categoryArr = [self.perkPropLUT.categoryDict valueForKey:perk];
+        NSMutableArray *perksPerCategory;
+        for (NSString *categoryStr in categoryArr)
+        {
+            perksPerCategory = [mutDict objectForKey:categoryStr];
+            if (!perksPerCategory) {
+                NSMutableArray *perksPerCategory = [NSMutableArray new];
+                [mutDict setValue:perksPerCategory forKey:categoryStr];
+            }
+            [perksPerCategory addObject:perk];
+        }
+    }
+    
+    //NSLog(@"mutDict==%@", mutDict);
+    
+    return [mutDict valueForKey:category];
+}
+
 /*- (NSArray *)categoriesForPerk:(NSString *perk)
 {
     if (self.perkPropLUT) {
@@ -49,7 +73,8 @@
 
 - (NSArray *)allPerks
 {
-return @[
+    return [self.perkPropLUT.categoryDict allKeys];
+/*return @[
 kCategoryPlayground,
 kSeeSaw,
 kBabySwing,
@@ -130,7 +155,7 @@ kShelter,
 kPavilion,
 kRamada,
 kAlcoholPermit,
-kSeating];
+kSeating];*/
 }
 
 - (NSArray *)playgroundStringLUT

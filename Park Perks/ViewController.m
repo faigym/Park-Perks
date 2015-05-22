@@ -59,12 +59,18 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
     
     //NSArray *perkArr = [[Constants sharedInstance] allPerks];
-    NSArray *perkArr = @[kPond, kShade, kFishing];
+    /*NSArray *perkArr = @[kPond, kShade, kFishing];
     for (int i=0; i<[perkArr count]; i++)
     {
         NSArray *categoryArr = [[Constants sharedInstance].perkPropLUT.categoryDict valueForKey:perkArr[i]];
         NSLog(@"%@ : %@", perkArr[i], categoryArr);
-    }
+    }*/
+    
+    NSArray *waterPerks = [[Constants sharedInstance] perksForCategory:kCategoryWater];
+    NSLog(@"waterPerks == %@", waterPerks);
+    
+    NSArray *naturePerks = [[Constants sharedInstance] perksForCategory:kCategoryNature];
+    NSLog(@"naturePerks == %@", naturePerks);
 }
 
 -(void)readPerkPropLUT

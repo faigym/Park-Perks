@@ -151,4 +151,6 @@ typedef enum CategoryType : NSUInteger
 - (NSArray *)allPerks;
 //- (NSArray *)categoriesForPerk:(NSString *)perk;
 
+- (NSArray *)perksForCategory:(NSString *)category;
+
 @end
