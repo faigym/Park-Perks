@@ -12,12 +12,13 @@
 @interface ParkPFObject : PFObject <PFSubclassing>
 
 @property (nonatomic, strong) NSString *foursquareObjectId;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSArray *perks;
+@property (nonatomic, strong) NSArray *images;
 
 + (NSString *)parseClassName;
-
-- (NSString *)description;
-- (void)saveToDatabase;
 
 @end

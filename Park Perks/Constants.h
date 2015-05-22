@@ -52,6 +52,7 @@ static NSString *kArboretum = @"Arboretum";
 static NSString *kDucks = @"Ducks";
 static NSString *kFishing = @"Fishing";
 static NSString *kAviary = @"Aviary";
+static NSString *kLargeTrees = @"Large Trees";
 //
 // ******** Water
 static NSString *kCategoryWater = @"Water";
@@ -69,11 +70,11 @@ static NSString *kWaterNozzle = @"Water Nozzle";
 //
 // ******** Sports
 static NSString *kCategorySports = @"Sports";
-static NSString *kBaseball = @"Baseball";
-static NSString *kSoccer = @"Soccer";
-static NSString *kFootball = @"Football";
-static NSString *kBasketBall = @"BasketBall";
-static NSString *kTennis = @"Tennis";
+static NSString *kBaseball = @"Baseball field";
+static NSString *kSoccer = @"Soccer field";
+static NSString *kFootball = @"Football field";
+static NSString *kBasketBall = @"Basketball court";
+static NSString *kTennis = @"Tennis Court";
 static NSString *kRaquetBall = @"RaquetBall";
 static NSString *kVolleyBall = @"VolleyBall";
 static NSString *kBMX = @"BMX";
@@ -81,6 +82,7 @@ static NSString *kSkate = @"Skate";
 static NSString *kDiscGolf = @"Disc Golf";
 static NSString *kBicycling = @"Bicycling";
 static NSString *kHorseShoes = @"Horse-shoes";
+static NSString *kPickleball = @"Pickleball court";
 //
 // ******** History
 static NSString *kCategoryHistory = @"History";
@@ -98,6 +100,7 @@ static NSString *kDrones = @"Drones";
 static NSString *kKites = @"Kites";
 static NSString *kSurface = @"Surface";
 static NSString *kShade = @"Shade";
+static NSString *kHorsetrails = @"Horse trails";
 //
 // ******** Picnic
 static NSString *kCategoryPicnic = @"Picnic";
@@ -118,7 +121,7 @@ static NSString *kPerkPropLUTLoaded = @"PerkPropLUTLoaded";
 static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 
-
+/*
 typedef enum CategoryType : NSUInteger
 {
     CategoryTypePlayground,
@@ -131,6 +134,7 @@ typedef enum CategoryType : NSUInteger
     CategoryTypePicnic,
     CategoryTypeNumCategories
 } CategoryType;
+*/
 
 @interface Constants : NSObject
 
@@ -138,20 +142,16 @@ typedef enum CategoryType : NSUInteger
 @property (nonatomic, strong, readonly) NSDictionary *categoryDict;
 
 + (instancetype)sharedInstance;
-+ (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict;
 
-- (NSArray *)playgroundStringLUT;
-- (NSArray *)exerciseStringLUT;
-- (NSArray *)natureStringLUT;
-- (NSArray *)waterStringLUT;
-- (NSArray *)sportsStringLUT;
-- (NSArray *)historyStringLUT;
-- (NSArray *)facilitiesStringLUT;
-- (NSArray *)picnicStringLUT;
-- (NSString *)categoryTitleForSection:(NSInteger)section;
-
+- (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict;
+- (NSString *)categoryForTableviewSection:(NSInteger)section;
+- (NSInteger)numberOfPerksForCategory:(NSString *)category;
+- (NSInteger)numberOfPerksForTableviewSection:(NSInteger )section;
 - (NSArray *)allPerks;
 - (NSArray *)allCategories;
 - (NSArray *)perksForCategory:(NSString *)category;
+- (NSArray *)perksForTableviewSection:(NSInteger)section;
+-(void)remakePerkLUT;
+-(void)remakeParkTestDatabase;
 
 @end

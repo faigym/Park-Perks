@@ -8,6 +8,7 @@
 
 #import "Constants.h"
 #import "PerkPropLUTPFObject.h"
+#import "ParkPFObject.h"
 
 @interface Constants()
 
@@ -33,9 +34,12 @@
         [query setLimit: limit];
         [query setSkip: skip];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (objects==nil) {
+                NSLog(@"Load of perk dictionary from parse database failed.");
+            }
             sharedInstance.perkPropLUT = objects[0];
             sharedInstance.perkDict = sharedInstance.perkPropLUT.perkDict;
-            sharedInstance.categoryDict = [Constants categoryDictFromPerkDict:sharedInstance.perkDict];
+            sharedInstance.categoryDict = [sharedInstance categoryDictFromPerkDict:sharedInstance.perkDict];
             //NSLog(@"perkPropLUT loaded in Singleton Constants");
             //NSLog(@"Categories:%@", sharedInstance.perkPropLUT.categoryDict);
             [[NSNotificationCenter defaultCenter] postNotificationName:kPerkPropLUTLoaded object:nil];
@@ -45,7 +49,7 @@
     return sharedInstance;
 }
 
-+ (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict
+- (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict
 {
     NSMutableDictionary *mutDict = [NSMutableDictionary new];
     
@@ -57,14 +61,35 @@
         {
             perksPerCategory = [mutDict objectForKey:categoryStr];
             if (!perksPerCategory) {
-                NSMutableArray *perksPerCategory = [NSMutableArray new];
+                perksPerCategory = [NSMutableArray new];
                 [mutDict setValue:perksPerCategory forKey:categoryStr];
             }
             [perksPerCategory addObject:perk];
         }
     }
-    //NSLog(@"mutDict==%@", mutDict);
+    NSLog(@"mutDict==%@", mutDict);
     return mutDict;
+}
+
+- (NSString *)categoryForTableviewSection:(NSInteger)section
+{
+    NSArray *categoryArr = [self allCategories];
+    if (section >= [categoryArr count])
+    {
+        return @"Other";
+    } else {
+        return categoryArr[section];
+    }
+}
+
+- (NSInteger)numberOfPerksForCategory:(NSString *)category
+{
+    return [[self.categoryDict valueForKey:category] count];
+}
+
+- (NSInteger)numberOfPerksForTableviewSection:(NSInteger )section
+{
+    return [self numberOfPerksForCategory:[self categoryForTableviewSection:section]];
 }
 
 - (NSArray *)perksForCategory:(NSString *)category
@@ -72,12 +97,10 @@
     return [self.categoryDict valueForKey:category];
 }
 
-/*- (NSArray *)categoriesForPerk:(NSString *perk)
+- (NSArray *)perksForTableviewSection:(NSInteger)section
 {
-    if (self.perkPropLUT) {
-        
-    }
-}*/
+    return [self.categoryDict objectForKey:[self categoryForTableviewSection:section]];
+}
 
 - (NSArray *)allCategories
 {
@@ -87,220 +110,120 @@
 - (NSArray *)allPerks
 {
     return [self.perkDict allKeys];
-/*return @[
-kCategoryPlayground,
-kSeeSaw,
-kBabySwing,
-kSwings,
-kTireSwing,
-kTubeSlide,
-kOpenSlide,
-kToddlerPlayEquipment,
-kClimbingNet,
-kWoodChips,
-kRubber,
-kSand,
-kMonkeyBars,
-kPreschoolActivities,
-kSplashPad,
-kBucketSpinner,
-kHoopSpinner,
-kClimbingWall,
-kBalanceBeam,
-kExerciseStations,
-kElectronicGameStations,
-kZipLine,
-kMerryGoRound,
-kPlaySystem,
-kSandDigger,
-kSpringRocker,
-kShaded,
-kCategoryExercise,
-kWalkingJoggingPath,
-kChinUp,
-kCategoryNature,
-kCreek,
-kPond,
-kArboretum,
-kDucks,
-kFishing,
-kAviary,
-kCategoryWater,
-kOutdoorPool,
-kWaterSlide,
-kBabyPool,
-kLapSwim,
-kDrinkingFountain,
-kDivingBoard,
-kHighDive,
-kWaterNozzle,
-kCategorySports,
-kBaseball,
-kSoccer,
-kFootball,
-kBasketBall,
-kTennis,
-kRaquetBall,
-kVolleyBall,
-kBMX,
-kSkate,
-kDiscGolf,
-kBicycling,
-kHorseShoes,
-kCategoryHistory,
-kMemorials,
-kCategoryFacilities,
-kBathroom,
-kWaterFountain,
-kElectricity,
-kLighting,
-kDogsAllowed,
-kDogsOffLeashAllowed,
-kDrones,
-kKites,
-kSurface,
-kShade,
-kCategoryPicnic,
-kBBQGas,
-kBBQFirePit,
-kBBQCharcoal,
-kShelter,
-kPavilion,
-kRamada,
-kAlcoholPermit,
-kSeating];*/
 }
 
-- (NSArray *)playgroundStringLUT
+-(void)remakePerkLUT
 {
-return @[
-kSeeSaw,
-kBabySwing,
-kSwings,
-kTireSwing,
-kTubeSlide,
-kOpenSlide,
-kToddlerPlayEquipment,
-kClimbingNet,
-kWoodChips,
-kRubber,
-kSand,
-kMonkeyBars,
-kPreschoolActivities,
-kSplashPad,
-kBucketSpinner,
-kHoopSpinner,
-kClimbingWall,
-kBalanceBeam,
-kExerciseStations,
-kElectronicGameStations,
-kZipLine,
-kMerryGoRound,
-kPlaySystem,
-kSandDigger,
-kSpringRocker,
-kShaded];
+    PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];
+    /*perkProp.perkDict = @{kWalkingJoggingPath:@[kCategoryExercise],
+                          kChinUp:@[kCategoryExercise],
+                          kMemorials:@[kCategoryHistory]};*/
+    perkProp.perkDict = @{
+      kSeeSaw:@[kCategoryPlayground],
+      kBabySwing:@[kCategoryPlayground],
+      kSwings:@[kCategoryPlayground],
+      kTireSwing:@[kCategoryPlayground],
+      kTubeSlide:@[kCategoryPlayground],
+      kOpenSlide:@[kCategoryPlayground],
+      kToddlerPlayEquipment:@[kCategoryPlayground],
+      kClimbingNet:@[kCategoryPlayground],
+      kWoodChips:@[kCategoryPlayground],
+      kRubber:@[kCategoryPlayground],
+      kSand:@[kCategoryPlayground],
+      kMonkeyBars:@[kCategoryPlayground],
+      kPreschoolActivities:@[kCategoryPlayground],
+      kSplashPad:@[kCategoryPlayground],
+      kBucketSpinner:@[kCategoryPlayground],
+      kHoopSpinner:@[kCategoryPlayground],
+      kClimbingWall:@[kCategoryPlayground],
+      kBalanceBeam:@[kCategoryPlayground],
+      kExerciseStations:@[kCategoryPlayground, kCategoryExercise],
+      kElectronicGameStations:@[kCategoryPlayground],
+      kZipLine:@[kCategoryPlayground],
+      kMerryGoRound:@[kCategoryPlayground],
+      kPlaySystem:@[kCategoryPlayground],
+      kSandDigger:@[kCategoryPlayground],
+      kSpringRocker:@[kCategoryPlayground],
+      kShaded:@[kCategoryPlayground],
+      kWalkingJoggingPath:@[kCategoryExercise, kCategoryFacilities],
+      kChinUp:@[kCategoryExercise],
+      kCreek:@[kCategoryNature, kCategoryWater],
+      kPond:@[kCategoryNature, kCategoryWater],
+      kArboretum:@[kCategoryNature],
+      kDucks:@[kCategoryNature],
+      kFishing:@[kCategoryNature, kCategorySports],
+      kAviary:@[kCategoryNature],
+      kLargeTrees:@[kCategoryNature],
+      kOutdoorPool:@[kCategoryWater],
+      kWaterSlide:@[kCategoryWater],
+      kBabyPool:@[kCategoryWater],
+      kLapSwim:@[kCategoryWater],
+      kDrinkingFountain:@[kCategoryWater],
+      kDivingBoard:@[kCategoryWater],
+      kHighDive:@[kCategoryWater],
+      kWaterNozzle:@[kCategoryWater],
+      kBaseball:@[kCategorySports],
+      kSoccer:@[kCategorySports],
+      kFootball:@[kCategorySports],
+      kBasketBall:@[kCategorySports],
+      kTennis:@[kCategorySports],
+      kRaquetBall:@[kCategorySports],
+      kVolleyBall:@[kCategorySports],
+      kBMX:@[kCategorySports],
+      kSkate:@[kCategorySports],
+      kDiscGolf:@[kCategorySports],
+      kBicycling:@[kCategorySports],
+      kHorseShoes:@[kCategorySports],
+      kPickleball:@[kCategorySports],
+      kMemorials:@[kCategoryHistory],      
+      kBathroom:@[kCategoryFacilities],
+      kWaterFountain:@[kCategoryFacilities],
+      kElectricity:@[kCategoryFacilities],
+      kLighting:@[kCategoryFacilities],
+      kDogsAllowed:@[kCategoryFacilities],
+      kDogsOffLeashAllowed:@[kCategoryFacilities],
+      kDrones:@[kCategoryFacilities],
+      kKites:@[kCategoryFacilities],
+      kSurface:@[kCategoryFacilities],
+      kShade:@[kCategoryFacilities],
+      kBBQGas:@[kCategoryPicnic],
+      kBBQFirePit:@[kCategoryPicnic],
+      kBBQCharcoal:@[kCategoryPicnic],
+      kShelter:@[kCategoryPicnic],
+      kPavilion:@[kCategoryPicnic],
+      kRamada:@[kCategoryPicnic],
+      kAlcoholPermit:@[kCategoryPicnic],
+      kSeating:@[kCategoryFacilities, kCategoryPicnic],
+      kHorsetrails:@[kCategoryFacilities]
+    };
+    
+    [perkProp pinInBackground];
+    [perkProp saveInBackground];
 }
 
-- (NSArray *)exerciseStringLUT
+-(void)remakeParkTestDatabase
 {
-return @[
-kWalkingJoggingPath,
-kChinUp,
-kExerciseStations];
-}
-
-- (NSArray *)natureStringLUT
-{
-return @[
-kCreek,
-kPond,
-kArboretum,
-kDucks,
-kFishing,
-kAviary];
-}
-
-- (NSArray *)waterStringLUT
-{
-return @[
-kOutdoorPool,
-kWaterSlide,
-kBabyPool,
-kLapSwim,
-kCreek,
-kPond,
-kSplashPad,
-kDrinkingFountain,
-kDivingBoard,
-kHighDive,
-kWaterNozzle];
-}
-
-- (NSArray *)sportsStringLUT
-{
-return @[
-kBaseball,
-kSoccer,
-kFootball,
-kBasketBall,
-kTennis,
-kRaquetBall,
-kVolleyBall,
-kBMX,
-kSkate,
-kDiscGolf,
-kBicycling,
-kHorseShoes];
-}
-
-- (NSArray *)historyStringLUT
-{
-return @[
-kMemorials];
-}
-
-- (NSArray *)facilitiesStringLUT
-{
-return @[
-kBathroom,
-kWaterFountain,
-kElectricity,
-kLighting,
-kDogsAllowed,
-kDogsOffLeashAllowed,
-kDrones,
-kKites,
-kSurface,
-kShade];
-}
-
-- (NSArray *)picnicStringLUT
-{
-return @[
-kBBQGas,
-kBBQFirePit,
-kBBQCharcoal,
-kShelter,
-kPavilion,
-kRamada,
-kAlcoholPermit,
-kSeating];
-}
-
-- (NSString *)categoryTitleForSection:(NSInteger)section
-{
-    switch (section) {
-        case CategoryTypePlayground: return kCategoryPlayground;    break;
-        case CategoryTypeExercise:   return kCategoryExercise;      break;
-        case CategoryTypeNature:     return kCategoryNature;        break;
-        case CategoryTypeWater:      return kCategoryWater;         break;
-        case CategoryTypeSports:     return kCategorySports;        break;
-        case CategoryTypeHistory:    return kCategoryHistory;       break;
-        case CategoryTypeFacilities: return kCategoryFacilities;    break;
-        case CategoryTypePicnic:     return kCategoryPicnic;        break;
-        default:                     return kCategoryOther;         break;
-    }
+    ParkPFObject *murrayPark = [ParkPFObject new];
+    murrayPark.foursquareObjectId = @"4bc0fe774cdfc9b671ee9321";
+    murrayPark.name = @"Murray Park";
+    murrayPark.latitude = 40.65928505282439;
+    murrayPark.longitude = -111.8822121620178;
+    murrayPark.rating = [NSNumber numberWithInt:5];
+    murrayPark.perks = @[kPond, kDucks, kChinUp, kToddlerPlayEquipment, kSand, kTubeSlide];
+    murrayPark.images = nil;
+    [murrayPark pinInBackground];
+    [murrayPark saveInBackground];
+    
+    ParkPFObject *friendshipPark = [ParkPFObject new];
+    friendshipPark.foursquareObjectId = @"4bf6ab6f5efe2d7f428d6734";
+    friendshipPark.name = @"Friendship Park";
+    friendshipPark.latitude = 40.645818;
+    friendshipPark.longitude = -111.879023;
+    friendshipPark.rating = [NSNumber numberWithInt:4];
+    friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBall];
+    friendshipPark.images = nil;
+    [friendshipPark pinInBackground];
+    [friendshipPark saveInBackground];
 }
 
 @end

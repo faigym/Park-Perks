@@ -11,8 +11,12 @@
 @implementation ParkPFObject
 
 @dynamic foursquareObjectId;
+@dynamic name;
+@dynamic latitude;
+@dynamic longitude;
 @dynamic rating;
 @dynamic perks;
+@dynamic images;
 
 + (NSString *)parseClassName
 {
