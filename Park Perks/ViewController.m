@@ -50,7 +50,6 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:kPerkPropLUTLoaded object:nil];
     //[self readPerkPropLUT];
-    
 }
 
 -(void)readPerkPropLUTComplete
@@ -60,11 +59,11 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //NSLog(@"Images: %@", self.perkPropLUT.imageMapArr);
     
     //NSArray *perkArr = [[Constants sharedInstance] allPerks];
-    NSArray *perkArr = @[kMerryGoRound, kSoccer, kSand];
+    NSArray *perkArr = @[kPond, kShade, kFishing];
     for (int i=0; i<[perkArr count]; i++)
     {
-        NSString *category = [[Constants sharedInstance].perkPropLUT.categoryDict valueForKey:perkArr[i]];
-        NSLog(@"%@ : %@", perkArr[i], category);
+        NSArray *categoryArr = [[Constants sharedInstance].perkPropLUT.categoryDict valueForKey:perkArr[i]];
+        NSLog(@"%@ : %@", perkArr[i], categoryArr);
     }
 }
 
@@ -89,8 +88,81 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 -(void)remakePerkLUT
 {
     PerkPropLUTPFObject *perkProp = [PerkPropLUTPFObject new];
-    perkProp.categoryDict = @{kMerryGoRound:kCategoryPlayground, kSoccer:kCategorySports};
-    perkProp.imageDict = @{kMerryGoRound:@"merry.jpg", kSoccer:@"socField.jpg"};
+    perkProp.categoryDict = @{
+      kSeeSaw:@[kCategoryPlayground],
+      kBabySwing:@[kCategoryPlayground],
+      kSwings:@[kCategoryPlayground],
+      kTireSwing:@[kCategoryPlayground],
+      kTubeSlide:@[kCategoryPlayground],
+      kOpenSlide:@[kCategoryPlayground],
+      kToddlerPlayEquipment:@[kCategoryPlayground],
+      kClimbingNet:@[kCategoryPlayground],
+      kWoodChips:@[kCategoryPlayground],
+      kRubber:@[kCategoryPlayground],
+      kSand:@[kCategoryPlayground],
+      kMonkeyBars:@[kCategoryPlayground],
+      kPreschoolActivities:@[kCategoryPlayground],
+      kSplashPad:@[kCategoryPlayground],
+      kBucketSpinner:@[kCategoryPlayground],
+      kHoopSpinner:@[kCategoryPlayground],
+      kClimbingWall:@[kCategoryPlayground],
+      kBalanceBeam:@[kCategoryPlayground],
+      kExerciseStations:@[kCategoryPlayground],
+      kElectronicGameStations:@[kCategoryPlayground],
+      kZipLine:@[kCategoryPlayground],
+      kMerryGoRound:@[kCategoryPlayground],
+      kPlaySystem:@[kCategoryPlayground],
+      kSandDigger:@[kCategoryPlayground],
+      kSpringRocker:@[kCategoryPlayground],
+      kShaded:@[kCategoryPlayground],
+      kWalkingJoggingPath:@[kCategoryExercise],
+      kChinUp:@[kCategoryExercise],
+      kCreek:@[kCategoryNature, kCategoryWater],
+      kPond:@[kCategoryNature, kCategoryWater],
+      kArboretum:@[kCategoryNature],
+      kDucks:@[kCategoryNature],
+      kFishing:@[kCategoryNature, kCategorySports],
+      kAviary:@[kCategoryNature],	
+      kOutdoorPool:@[kCategoryWater],
+      kWaterSlide:@[kCategoryWater],
+      kBabyPool:@[kCategoryWater],
+      kLapSwim:@[kCategoryWater],
+      kDrinkingFountain:@[kCategoryWater],
+      kDivingBoard:@[kCategoryWater],
+      kHighDive:@[kCategoryWater],
+      kWaterNozzle:@[kCategoryWater],
+      kBaseball:@[kCategorySports],
+      kSoccer:@[kCategorySports],
+      kFootball:@[kCategorySports],
+      kBasketBall:@[kCategorySports],
+      kTennis:@[kCategorySports],
+      kRaquetBall:@[kCategorySports],
+      kVolleyBall:@[kCategorySports],
+      kBMX:@[kCategorySports],
+      kSkate:@[kCategorySports],
+      kDiscGolf:@[kCategorySports],
+      kBicycling:@[kCategorySports],
+      kHorseShoes:@[kCategorySports],
+      kMemorials:@[kCategoryHistory],      
+      kBathroom:@[kCategoryFacilities],
+      kWaterFountain:@[kCategoryFacilities],
+      kElectricity:@[kCategoryFacilities],
+      kLighting:@[kCategoryFacilities],
+      kDogsAllowed:@[kCategoryFacilities],
+      kDogsOffLeashAllowed:@[kCategoryFacilities],
+      kDrones:@[kCategoryFacilities],
+      kKites:@[kCategoryFacilities],
+      kSurface:@[kCategoryFacilities],
+      kShade:@[kCategoryFacilities],
+      kBBQGas:@[kCategoryPicnic],
+      kBBQFirePit:@[kCategoryPicnic],
+      kBBQCharcoal:@[kCategoryPicnic],
+      kShelter:@[kCategoryPicnic],
+      kPavilion:@[kCategoryPicnic],
+      kRamada:@[kCategoryPicnic],
+      kAlcoholPermit:@[kCategoryPicnic],
+      kSeating:@[kCategoryFacilities, kCategoryPicnic]
+    };
     
     [perkProp pinInBackground];
     [perkProp saveInBackground];

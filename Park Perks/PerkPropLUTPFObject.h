@@ -11,7 +11,6 @@
 @interface PerkPropLUTPFObject : PFObject <PFSubclassing>
 
 @property (nonatomic, strong) NSDictionary *categoryDict;
-@property (nonatomic, strong) NSDictionary *imageDict;
 
 + (NSString *)parseClassName;
 

@@ -11,7 +11,6 @@
 @implementation PerkPropLUTPFObject
 
 @dynamic categoryDict;
-@dynamic imageDict;
 
 + (NSString *)parseClassName
 {

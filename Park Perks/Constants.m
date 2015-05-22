@@ -31,8 +31,8 @@
         [query setSkip: skip];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             sharedInstance.perkPropLUT = objects[0];
-            NSLog(@"perkPropLUT loaded in Singleton Constants");
-            NSLog(@"Categories:%@ Images:%@", sharedInstance.perkPropLUT.categoryDict, sharedInstance.perkPropLUT.imageDict);
+            //NSLog(@"perkPropLUT loaded in Singleton Constants");
+            //NSLog(@"Categories:%@", sharedInstance.perkPropLUT.categoryDict);
             [[NSNotificationCenter defaultCenter] postNotificationName:kPerkPropLUTLoaded object:nil];
         }];
     });
