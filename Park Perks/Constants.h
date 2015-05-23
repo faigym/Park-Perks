@@ -118,25 +118,12 @@ static NSString *kCategoryOther = @"Other";
 
 static NSString *kPerkPropLUTLoaded = @"PerkPropLUTLoaded";
 
+static NSString *kPerkSearchCellId = @"PerkSearchCellId";
+
 static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
 
 static NSString *kFoursquareQueryCompletedId = @"FoursquareQueryCompletedId";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
-
-/*
-typedef enum CategoryType : NSUInteger
-{
-    CategoryTypePlayground,
-    CategoryTypeExercise,
-    CategoryTypeNature,
-    CategoryTypeWater,
-    CategoryTypeSports,
-    CategoryTypeHistory,
-    CategoryTypeFacilities,
-    CategoryTypePicnic,
-    CategoryTypeNumCategories
-} CategoryType;
-*/
 
 @interface Constants : NSObject
 
