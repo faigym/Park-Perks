@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *filteredParksPFObjIdArr;
 
 -(void)testDelegate;
--(void)queryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius;
+-(void)queryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit;
 
 @end
 
