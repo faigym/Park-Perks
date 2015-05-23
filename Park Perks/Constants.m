@@ -125,21 +125,15 @@
               kSeeSaw,
               kBabySwing,
               kSwings,
-              kTireSwing,
-              kTubeSlide,
-              kOpenSlide,
               kToddlerPlayEquipment,
               kClimbingNet,
               kWoodChips,
-              kRubber,
+              kRubberMat,
               kSand,
               kMonkeyBars,
               kPreschoolActivities,
               kSplashPad,
-              kBucketSpinner,
-              kHoopSpinner,
               kClimbingWall,
-              kBalanceBeam,
               kExerciseStations,
               kElectronicGameStations,
               kZipLine,
@@ -147,10 +141,10 @@
               kPlaySystem,
               kSandDigger,
               kSpringRocker,
-              kShaded],
+              kShade],
       kCategoryExercise:@[
               kWalkingJoggingPath,
-              kChinUp,
+              kMonkeyBars,
               kExerciseStations],
       kCategoryNature:@[
               kCreek,
@@ -165,43 +159,31 @@
               kOutdoorPool,
               kWaterSlide,
               kBabyPool,
-              kLapSwim,
-              kDrinkingFountain,
-              kDivingBoard,
               kHighDive,
               kWaterNozzle,
               kPond,
               kCreek],
       kCategorySports:@[
               kBaseball,
-              kSoccer,
-              kFootball,
+              kSoccerField,
+              kSoccerGoals,
               kBasketBall,
               kTennis,
               kRaquetBall,
-              kVolleyBall,
-              kBMX,
-              kSkate,
+              kVolleyBallSand,
+              kSkatePark,
               kDiscGolf,
               kBicycling,
               kHorseShoes,
               kPickleball,
-              kRugby,
-              kOutdoorIceRink],
-      kCategoryHistory:@[
-              kMemorials,
-              kPlaques,
-              kAntiAircraftGuns],
+              kIceRink],
       kCategoryFacilities:@[
-              kBathroom,
+              kBathrooms,
               kWaterFountain,
               kElectricity,
               kLighting,
               kDogsAllowed,
               kDogsOffLeashAllowed,
-              kDrones,
-              kKites,
-              kSurface,
               kShade,
               kBBQGas,
               kBBQFirePit,
@@ -211,8 +193,7 @@
               kRamada,
               kAlcoholPermit,
               kSeating,
-              kHorsetrails,
-              kOutdoorFireplace],
+              kHorsetrails],
       kCategoryPicnic:@[
               kBBQGas,
               kBBQFirePit,
@@ -221,7 +202,8 @@
               kPavilion,
               kRamada,
               kAlcoholPermit,
-              kSeating]
+              kSeating,
+              kPicnicTables]
       };
     
     [categoryLUT pinInBackground];
@@ -237,7 +219,7 @@
     murrayPark.longitude = -111.8822121620178;
     murrayPark.phoneNumber = @"801-264-2614";
     murrayPark.rating = [NSNumber numberWithInt:5];
-    murrayPark.perks = @[kPond, kDucks, kChinUp, kToddlerPlayEquipment, kSand, kTubeSlide, kOpenSlide, kOutdoorPool, kOutdoorIceRink, kWaterSlide, kRugby, kSoccer, kLargeTrees, kHills, kVolleyBall, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kOutdoorPool, kPlaySystem, kSwings, kBabySwing, kTireSwing];
+    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kOutdoorPool, kPlaySystem, kSwings, kBabySwing];
     /*murrayPark.images =
     @[
       UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5),
@@ -259,7 +241,7 @@
     friendshipPark.longitude = -111.879023;
     friendshipPark.phoneNumber = @"Not available";
     friendshipPark.rating = [NSNumber numberWithInt:3];
-    friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBall, kSwings, kPavilion, kBaseball, kWalkingJoggingPath, kOpenSlide, kPlaySystem, kBabySwing];
+    friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
     //friendshipPark.images = @[];
     [friendshipPark pinInBackground];
     [friendshipPark saveInBackground];
@@ -271,7 +253,7 @@
     rivertonPark.longitude = -111.9322;
     rivertonPark.phoneNumber = @"(801) 254-0704";
     rivertonPark.rating = [NSNumber numberWithInt:4];
-    rivertonPark.perks = @[kHorseShoes, kSkate, kBMX, kPickleball, kPavilion, kPlaySystem, kMemorials, kSwings];
+    rivertonPark.perks = @[kHorseShoes, kSkatePark, kPickleball, kPavilion, kPlaySystem, kSwings];
     //rivertonPark.images = @[];
     [rivertonPark pinInBackground];
     [rivertonPark saveInBackground];
