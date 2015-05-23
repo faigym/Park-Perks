@@ -21,7 +21,7 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSString *phoneNumber;
-@property (nonatomic, assign) NSNumber *rating;
+@property (nonatomic, assign) NSInteger rating;
 @property (nonatomic, strong) NSMutableArray *perks;
 
 - (NSString *)description;

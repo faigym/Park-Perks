@@ -38,6 +38,7 @@
 		A55BCD341B0C00C60005F233 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD331B0C00C60005F233 /* SystemConfiguration.framework */; };
 		A55BCD361B0C00D10005F233 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD351B0C00D10005F233 /* UIKit.framework */; };
 		A55BCD371B0C00E30005F233 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */; };
+		A56224991B0FFA7500C0C06E /* ParksWithPerksQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A56224981B0FFA7500C0C06E /* ParksWithPerksQuery.m */; };
 		A591C2C71B0E330300AA92A0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C41B0E330300AA92A0 /* Constants.m */; };
 		A591C2C81B0E330300AA92A0 /* ParkPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C61B0E330300AA92A0 /* ParkPFObject.m */; };
 		A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2CB1B0E5F2A00AA92A0 /* Foursquare2.m */; };
@@ -99,6 +100,8 @@
 		A55BCD311B0C00BB0005F233 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A55BCD331B0C00C60005F233 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A55BCD351B0C00D10005F233 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A56224971B0FFA7500C0C06E /* ParksWithPerksQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParksWithPerksQuery.h; sourceTree = "<group>"; };
+		A56224981B0FFA7500C0C06E /* ParksWithPerksQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParksWithPerksQuery.m; sourceTree = "<group>"; };
 		A591C2C31B0E330300AA92A0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A591C2C41B0E330300AA92A0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		A591C2C51B0E330300AA92A0 /* ParkPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkPFObject.h; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				067CF4D61B0BE69600F9E879 /* ViewController.m */,
 				A50CAA081B0E9D78002CF7B8 /* PerkPropLUTPFObject.h */,
 				A50CAA091B0E9D78002CF7B8 /* PerkPropLUTPFObject.m */,
+				A56224971B0FFA7500C0C06E /* ParksWithPerksQuery.h */,
+				A56224981B0FFA7500C0C06E /* ParksWithPerksQuery.m */,
 				067CF4D81B0BE69600F9E879 /* Main.storyboard */,
 				067CF4DB1B0BE69600F9E879 /* Images.xcassets */,
 				067CF4DD1B0BE69600F9E879 /* LaunchScreen.xib */,
@@ -385,6 +390,7 @@
 				067CF4D71B0BE69600F9E879 /* ViewController.m in Sources */,
 				067CF4D41B0BE69600F9E879 /* AppDelegate.m in Sources */,
 				A591C2D71B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m in Sources */,
+				A56224991B0FFA7500C0C06E /* ParksWithPerksQuery.m in Sources */,
 				A591C2DD1B0E62BD00AA92A0 /* Park.m in Sources */,
 				A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */,
 				A50CAA0A1B0E9D78002CF7B8 /* PerkPropLUTPFObject.m in Sources */,

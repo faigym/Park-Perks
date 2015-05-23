@@ -12,6 +12,7 @@
 #import "ParkPFObject.h"
 #import "Foursquare2.h"
 #import "PerkPropLUTPFObject.h"
+#import "ParksWithPerksQuery.h"
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
 static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
@@ -23,6 +24,15 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 @end
 
 @implementation ViewController
+
+-(void)queryCompleted
+{
+    NSLog(@"queryCompleted test worked!");
+    for (Park *park in self.query.filteredParksArr)
+    {
+        NSLog(@"Park result: %@", park);
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,19 +58,23 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //[[Constants sharedInstance] remakePerkLUT];
     //[[Constants sharedInstance] remakeParkTestDatabase];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:kPerkPropLUTLoaded object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(querySearchPerks) name:kFoursquareQueryCompletedId object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryComplete) name:kParseQueryCompletedId object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readPerkPropLUTComplete) name:kPerkPropLUTLoaded object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(querySearchPerks) name:kFoursquareQueryCompletedId object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryComplete) name:kParseQueryCompletedId object:nil];
     
+    self.query = [ParksWithPerksQuery new];
+    self.query.delegate = self;
+    NSArray *perkArr = @[kChinUp];
+    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];
 }
 
 -(void)queryComplete
 {
     NSLog(@"dualqueryComplete!");
-    for (ParkPFObject *park in self.parkPFObjArr)
+    /*for (ParkPFObject *park in self.parkPFObjArr)
     {
         NSLog(@"Park:\n %@", park);
-    }
+    }*/
 }
 
 -(void)readPerkPropLUTComplete
