@@ -219,7 +219,7 @@
     murrayPark.longitude = -111.8822121620178;
     murrayPark.phoneNumber = @"801-264-2614";
     murrayPark.rating = [NSNumber numberWithInt:5];
-    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kOutdoorPool, kPlaySystem, kSwings, kBabySwing];
+    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
     /*murrayPark.images =
     @[
       UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5),
@@ -234,6 +234,29 @@
     [murrayPark pinInBackground];
     [murrayPark saveInBackground];
     
+    PFObject *imagePFObj = [PFObject objectWithClassName:@"ParkImage"];
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5);
+    PFFile *imagePFFile = [PFFile fileWithName:@"MurrayParkEastPlaysystem.jpg" data:imageData];
+    imagePFObj[@"ImageFile"] = imagePFFile;
+    [imagePFObj setObject:murrayPark forKey:@"pointerToPark"];
+    [imagePFObj pinInBackground];
+    [imagePFObj saveInBackground];
+    
+    PFObject *imagePFObj2 = [PFObject objectWithClassName:@"ParkImage"];
+    NSData *imageData2 = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkWestPlaysystem.jpg"], 0.5);
+    PFFile *imagePFFile2 = [PFFile fileWithName:@"MurrayParkWestPlaysystem.jpg" data:imageData2];
+    imagePFObj2[@"ImageFile"] = imagePFFile2;
+    [imagePFObj2 setObject:murrayPark forKey:@"pointerToPark"];
+    [imagePFObj2 pinInBackground];
+    [imagePFObj2 saveInBackground];
+    
+    /*PFQuery *imageQuery = [PFQuery queryWithClassName:@"ParkImage"];
+    [imageQuery whereKey:@"pointerToPark" equalTo:murrayPark];
+    [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"image query completed; objects: %@", objects);
+        NSLog(@"found %ld objects", objects.count);
+     }];*/
+
     ParkPFObject *friendshipPark = [ParkPFObject new];
     friendshipPark.foursquareObjectId = @"4bf6ab6f5efe2d7f428d6734";
     friendshipPark.name = @"Friendship Park";

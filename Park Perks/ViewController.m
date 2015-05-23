@@ -32,13 +32,14 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     self.tableView = [[UITableView alloc] initWithFrame:[self.view bounds]];
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
-    self.query.delegate = self;
+    
     [Constants sharedInstance].delegate = self;
     //[[Constants sharedInstance] remakeParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
-    /*self.query = [ParksWithPerksQuery new];
-    NSArray *perkArr = @[kSand];
-    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];*/
+    self.query = [ParksWithPerksQuery new];
+    self.query.delegate = self;
+    NSArray *perkArr = @[kOutdoorPool];
+    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];
 }
 
 -(void)constantsLoaded
@@ -49,11 +50,22 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 -(void)queryCompleted
 {
-    NSLog(@"queryCompleted test worked!");
+    NSLog(@"queryCompleted!");
     for (Park *park in self.query.filteredParksArr)
     {
-        NSLog(@"Park result: %@", park);
+        //NSLog(@"Park result: %@", park);
     }
+    
+    NSLog(@"self.query.filteredParksPFObjIdArr[0]==%@", self.query.filteredParksPFObjIdArr[0]);
+    ParkPFObject *pointer = [ParkPFObject objectWithoutDataWithClassName:@"Park" objectId:self.query.filteredParksPFObjIdArr[0]];
+    NSLog(@"got here too");
+    
+    PFQuery *imageQuery = [PFQuery queryWithClassName:@"ParkImage"];
+    [imageQuery whereKey:@"pointerToPark" equalTo:pointer];
+    [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"image query completed; objects: %@", objects);
+        NSLog(@"found %ld objects", objects.count);
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

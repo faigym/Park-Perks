@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSArray *perks;
-@property (nonatomic, strong) PFFile *pfFileImage;
+@property (nonatomic, strong) PFFile *thumbnail;
 
 + (NSString *)parseClassName;
 

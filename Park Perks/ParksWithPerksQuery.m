@@ -33,7 +33,7 @@
              NSDictionary *dic = result;
              //NSLog(@"dic=%@", dic);
              NSArray *venues = [dic valueForKeyPath:@"response.venues"];
-             NSLog(@"query success");
+             NSLog(@"foursquare query success");
              //NSLog(@"%@", venues);
              
              self.parksInAreaArr = [NSMutableArray new];
@@ -92,6 +92,7 @@
          [query whereKey:@"foursquareObjectId" containedIn:idArr];
          [query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
          [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+             NSLog(@"perk query success");
              //NSLog(@"objects: %@", objects);
              //NSLog(@"found %ld objects", objects.count);
              
@@ -102,6 +103,7 @@
              }
              
              self.filteredParksArr = [NSMutableArray new];
+             self.filteredParksPFObjIdArr = [NSMutableArray new];
              for (int i=0; i<[objects count]; i++)
              {
                  ParkPFObject *parkPFObj = objects[i];
@@ -118,8 +120,8 @@
                          [park.perks addObject:parkPFObj.perks[i]];
                      }
                      [self.filteredParksArr addObject:park];
+                     [self.filteredParksPFObjIdArr addObject:parkPFObj.objectId];
                  }
-                 
              }
              
              /*for (int i=0; i<[self.filteredParksArr count]; i++)

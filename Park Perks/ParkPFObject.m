@@ -17,7 +17,7 @@
 @dynamic phoneNumber;
 @dynamic rating;
 @dynamic perks;
-@dynamic pfFileImage;
+@dynamic thumbnail;
 
 + (NSString *)parseClassName
 {
@@ -36,7 +36,6 @@
     for (int i=0; i < [self.perks count]; i++) {
         [mutStr appendString:[NSString stringWithFormat:@"perks[%d]: %@\r", i, self.perks[i]]];
     }
-    //[mutStr appendString:[NSString stringWithFormat:@"images count: %ld\r", [self.images count]]];
     
     return mutStr;
 }

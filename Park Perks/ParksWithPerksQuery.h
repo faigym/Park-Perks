@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *searchPerksArr;
 @property (nonatomic, strong) NSMutableArray *parksInAreaArr;
 @property (nonatomic, strong) NSMutableArray *filteredParksArr;
+@property (nonatomic, strong) NSMutableArray *filteredParksPFObjIdArr;
 
 -(void)testDelegate;
 -(void)queryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius;
