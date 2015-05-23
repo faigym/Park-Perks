@@ -11,7 +11,7 @@
 #import "Park.h"
 #import "ParkPFObject.h"
 #import "Foursquare2.h"
-#import "PerkPropLUTPFObject.h"
+#import "categoryLUTPFObject.h"
 #import "ParksWithPerksQuery.h"
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
@@ -19,7 +19,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 @interface ViewController ()
 
-@property (nonatomic, strong) PerkPropLUTPFObject *perkPropLUT;
+@property (nonatomic, strong) categoryLUTPFObject *perkPropLUT;
 
 @end
 
@@ -32,11 +32,19 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     self.tableView = [[UITableView alloc] initWithFrame:[self.view bounds]];
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
-
-    self.query = [ParksWithPerksQuery new];
     self.query.delegate = self;
+    [Constants sharedInstance].delegate = self;
+    //[[Constants sharedInstance] remakeParkTestDatabase];
+    //[[Constants sharedInstance] remakeCategoryLUT];
+    /*self.query = [ParksWithPerksQuery new];
     NSArray *perkArr = @[kSand];
-    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];
+    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0];*/
+}
+
+-(void)constantsLoaded
+{
+    NSLog(@"constants got loaded");
+    [self.tableView reloadData];
 }
 
 -(void)queryCompleted

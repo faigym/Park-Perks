@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Skyler Clark. All rights reserved.
 //
 
-#import "PerkPropLUTPFObject.h"
+#import "categoryLUTPFObject.h"
 
-@implementation PerkPropLUTPFObject
+@implementation categoryLUTPFObject
 
-@dynamic perkDict;
+@dynamic perksForCategoryDict;
 
 + (NSString *)parseClassName
 {
-    return @"PerkPropLUT";
+    return @"categoryLUT";
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PerkPropLUTPFObject.h"
+#import "categoryLUTPFObject.h"
 
 // ******** Playground
 static NSString *kCategoryPlayground = @"Playground";
@@ -53,6 +53,7 @@ static NSString *kDucks = @"Ducks";
 static NSString *kFishing = @"Fishing";
 static NSString *kAviary = @"Aviary";
 static NSString *kLargeTrees = @"Large Trees";
+static NSString *kHills = @"Hills";
 //
 // ******** Water
 static NSString *kCategoryWater = @"Water";
@@ -83,10 +84,14 @@ static NSString *kDiscGolf = @"Disc Golf";
 static NSString *kBicycling = @"Bicycling";
 static NSString *kHorseShoes = @"Horse-shoes";
 static NSString *kPickleball = @"Pickleball court";
+static NSString *kRugby = @"Rugby field";
+static NSString *kOutdoorIceRink = @"Outdoor Ice Rink";
 //
 // ******** History
 static NSString *kCategoryHistory = @"History";
 static NSString *kMemorials = @"Memorials";
+static NSString *kPlaques = @"Plaques";
+static NSString *kAntiAircraftGuns = @"Anti-Aircraft Guns";
 //
 // ******** Facilities
 static NSString *kCategoryFacilities = @"Facilities";
@@ -101,6 +106,7 @@ static NSString *kKites = @"Kites";
 static NSString *kSurface = @"Surface";
 static NSString *kShade = @"Shade";
 static NSString *kHorsetrails = @"Horse trails";
+static NSString *kOutdoorFireplace = @"Outdoor Fireplace";
 //
 // ******** Picnic
 static NSString *kCategoryPicnic = @"Picnic";
@@ -112,6 +118,7 @@ static NSString *kPavilion = @"Pavilion";
 static NSString *kRamada = @"Ramada";
 static NSString *kAlcoholPermit = @"Alcohol Permit";
 static NSString *kSeating = @"Seating";
+
 
 // ******** Others (just a section title placeholder for rogue categories that have creeped on us).  Shouldn't ever come up
 static NSString *kCategoryOther = @"Other";
@@ -125,14 +132,17 @@ static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
 static NSString *kFoursquareQueryCompletedId = @"FoursquareQueryCompletedId";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 
+@protocol ConstantsDelegate;
+
 @interface Constants : NSObject
 
+@property (nonatomic, weak) id<ConstantsDelegate> delegate;
 @property (nonatomic, strong, readonly) NSDictionary *perkDict;
 @property (nonatomic, strong, readonly) NSDictionary *categoryDict;
 
 + (instancetype)sharedInstance;
 
-- (NSDictionary *)categoryDictFromPerkDict:(NSDictionary *)perkDict;
+- (NSDictionary *)reversePerksForCategoryDict:(NSDictionary *)dict;
 - (NSString *)categoryForTableviewSection:(NSInteger)section;
 - (NSInteger)numberOfPerksForCategory:(NSString *)category;
 - (NSInteger)numberOfPerksForTableviewSection:(NSInteger )section;
@@ -140,7 +150,14 @@ static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 - (NSArray *)allCategories;
 - (NSArray *)perksForCategory:(NSString *)category;
 - (NSArray *)perksForTableviewSection:(NSInteger)section;
--(void)remakePerkLUT;
+-(void)remakeCategoryLUT;
 -(void)remakeParkTestDatabase;
+
+@end
+
+@protocol ConstantsDelegate <NSObject>
+
+@required
+-(void)constantsLoaded;
 
 @end

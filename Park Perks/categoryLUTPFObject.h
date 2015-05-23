@@ -8,9 +8,9 @@
 
 #import <Parse/Parse.h>
 
-@interface PerkPropLUTPFObject : PFObject <PFSubclassing>
+@interface categoryLUTPFObject : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) NSDictionary *perkDict;
+@property (nonatomic, strong) NSDictionary *perksForCategoryDict;
 
 + (NSString *)parseClassName;
 

@@ -15,9 +15,10 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
+@property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSArray *perks;
-@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) PFFile *pfFileImage;
 
 + (NSString *)parseClassName;
 

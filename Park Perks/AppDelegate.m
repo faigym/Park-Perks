@@ -19,7 +19,7 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import "ParkPFObject.h"
-#import "PerkPropLUTPFObject.h"
+#import "categoryLUTPFObject.h"
 #import "Foursquare2.h"
 
 @implementation AppDelegate
@@ -38,11 +38,12 @@
     // Don't want haX0rs trolling github using the parse access info to upload naughty things to 20GB of parse database space
     // No checking in of secret parse database access info, be careful
     //
-    //[Parse setApplicationId:@"fillmein"
-    //              clientKey:@"fillmein"];
+    // put in the [Parse setApplicationId:whateverItIs,
+    //                          clientKey:whateverThatIs];
+    // here
     
     [ParkPFObject registerSubclass];
-    [PerkPropLUTPFObject registerSubclass];
+    [categoryLUTPFObject registerSubclass];
     
     [Foursquare2 setupFoursquareWithClientId:@"Y0D0NQHGKR4CZY4PYVJHL5N55AZUZJICDNY43C4M24GYQZNC"
                                       secret:@"II2HF3VKGMCDH2IEM5TO2LDH4SJYVQA4MFD0T4FUOZM1MT4B"
