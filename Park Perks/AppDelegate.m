@@ -33,8 +33,13 @@
     
     [Parse enableLocalDatastore];
     
-    [Parse setApplicationId:@"L2PiG6qkphRbZ0QdlE2ttZcSnWrYyQoKpdkNPUFz"
-                  clientKey:@"mboMmNW8godpWGzxYGJrrnEY6R7NmwT5IFeC0nLj"];
+    // Uncomment following method for parse setup and fill in with the secret strings sent to you in slack
+    // Have to do this everytime you pull down sadly, unless you know of another way
+    // Don't want haX0rs trolling github using the parse access info to upload naughty things to 20GB of parse database space
+    // No checking in of secret parse database access info, be careful
+    //
+    //[Parse setApplicationId:@"fillmein"
+    //              clientKey:@"fillmein"];
     
     [ParkPFObject registerSubclass];
     [PerkPropLUTPFObject registerSubclass];
