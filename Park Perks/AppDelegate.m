@@ -42,8 +42,6 @@
     //                          clientKey:whateverThatIs];
     // here
 
-
-    
     [ParkPFObject registerSubclass];
     [categoryLUTPFObject registerSubclass];
     

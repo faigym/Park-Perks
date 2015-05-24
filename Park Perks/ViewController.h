@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 #import "Constants.h"
 #import "Park.h"
 #import "ParkPFObject.h"
@@ -19,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *searchPerksArr;
 @property (strong, nonatomic) NSMutableArray *parkPFObjArr;
 @property (strong, nonatomic) ParksWithPerksQuery *query;
+@property (strong, nonatomic) PFImageView *pfImageView;
+@property (strong, nonatomic) UIImageView *imageView2;
 
 
 @end
