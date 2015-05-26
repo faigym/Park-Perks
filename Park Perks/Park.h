@@ -8,9 +8,12 @@
 
 #import <Parse/Parse.h>
 #import "Constants.h"
+#import <MapKit/Mapkit.h>
 
-@interface Park : NSObject
+@interface Park : NSObject <MKAnnotation>
 
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) NSString *foursquareObjectId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *street;
@@ -20,6 +23,7 @@
 @property (nonatomic, assign) double distance;
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, assign) NSInteger rating;
 @property (nonatomic, strong) NSMutableArray *perks;

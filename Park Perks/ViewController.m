@@ -50,9 +50,20 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:mapFrame];
     [self.view addSubview:mapView];
     
-    mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
-    MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
+    //mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
+    mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+    //MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
+    double regionRadius = 1000; // in meters
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(40.645818, -111.879023), regionRadius*2.0, regionRadius*2.0);
     [mapView setRegion:region animated:YES];
+    
+    Park *testPark = [Park new];
+    testPark.title = @"Murray City Park";
+    testPark.subtitle = @"awesome sauce";
+    testPark.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+    
+    mapView.delegate = self;
+    [mapView addAnnotation:testPark];
     
     [Constants sharedInstance].delegate = self;
     //[[Constants sharedInstance] remakeParkTestDatabase];
@@ -115,6 +126,25 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     return [consts numberOfPerksForCategory:[consts categoryForTableviewSection:section]];
     
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"mapViewAnnotationId"];
+    if (!annotationView)
+    {
+        Park *testPark = [Park new];
+        testPark.title = @"Murray City Park";
+        testPark.subtitle = @"awesome sauce";
+        testPark.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+        
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:testPark reuseIdentifier:@"mapViewAnnotationId"];
+        
+        annotationView.canShowCallout = false;
+        annotationView.calloutOffset = CGPointMake(-5.0, 5.0);
+        //annotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIView
+    }
+    return annotationView;
 }
 
 @end
