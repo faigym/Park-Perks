@@ -49,9 +49,11 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //[[Constants sharedInstance] remakeCategoryLUT];
     self.query = [ParksWithPerksQuery new];
     self.query.delegate = self;
-    NSArray *perkArr = @[kOutdoorPool];
+    NSArray *perkArr = @[kPickleball];
     //NSArray *perkArr = @[];
-    [self.query queryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:5000.0 numResultsLimit:5];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:1500.0 numResultsLimit:10];
+    [self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
 }
 
 -(void)constantsLoaded
@@ -64,36 +66,10 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 {
     NSLog(@"queryCompleted!");
 
-    for (Park *park in self.query.filteredParksArr)
-    {
-        NSLog(@"Filtered park result: %@", park);
-     }
-    
-    NSLog(@"self.query.filteredParksPFObjIdArr[0]==%@", self.query.filteredParksPFObjIdArr[0]);
-    ParkPFObject *pointer = [ParkPFObject objectWithoutDataWithClassName:@"Park" objectId:self.query.filteredParksPFObjIdArr[0]];
-    
-    PFQuery *imageQuery = [PFQuery queryWithClassName:@"ParkImage"];
-    [imageQuery whereKey:@"pointerToPark" equalTo:pointer];
-    [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"image query completed; objects: %@", objects);
-        NSLog(@"found %ld objects", [objects count]);
-        for (int i=0; i<1; i++) {
-            PFObject *pfObj = objects[i];
-            PFFile *file = pfObj[@"ImageFile"];
-            self.pfImageView.file = file;
-            self.pfImageView.frame = CGRectMake(30, 40, 120, 120);
-            [self.pfImageView loadInBackground];
-            /*[file getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
-                //NSLog(@"NSData==%@", result);
-                NSLog(@"data in background block fired.");
-                UIImage *image = [UIImage imageWithData:result];
-                NSLog(@"image==%@", image);
-                self.imageView1 = [[UIImageView alloc] initWithImage:image];
-                self.imageView1.frame = CGRectMake(15, 30, 160, 160);
-            }];*/
-
-        }
-    }];
+    int i=0;
+    for (Park *park in self.query.filteredParksArr) {
+        NSLog(@"park[%d] = %@", i++, park);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

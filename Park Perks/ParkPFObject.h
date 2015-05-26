@@ -16,6 +16,9 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *street;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSArray *perks;
 @property (nonatomic, strong) PFFile *thumbnail;

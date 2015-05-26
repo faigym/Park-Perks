@@ -15,11 +15,41 @@
 
 @implementation ParksWithPerksQuery : NSObject
 
--(void)queryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.searchPerksArr = @[];
+        self.parksInAreaArr = [NSMutableArray new];
+        self.filteredParksArr = [NSMutableArray new];
+        self.filteredParksPFObjIdArr = [NSMutableArray new];
+    }
+    return self;
+}
+
+-(void)foursquareQueryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit
 {
     self.searchPerksArr = perkArr;
     
+    /*
+     void(^dbBlock)(FDataSnapshot *snapshot);
+     dbBlock = ^void(FDataSnapshot *snapshot) {
+     self.randomDVQuizQuestion = nil;
+     self.randomDVQuizQuestion =
+     [[DVQuizQuestion alloc]
+     init:snapshot.value[@"question"]
+     answerA:snapshot.value[@"answerA"]
+     answerB:snapshot.value[@"answerB"]
+     answerC:snapshot.value[@"answerC"]
+     answerD:snapshot.value[@"answerD"]
+     correctIndex:[snapshot.value[@"correctIndex"] integerValue]];
+     };*/
+    
+    /*void(^parseQueryBlock)();
+     parseQueryBlock = ^void() {*/
+    
     NSNumber *numVenues = [NSNumber numberWithUnsignedInteger:numResultsLimit];
+    
     [Foursquare2
      venueSearchNearByLatitude:[NSNumber numberWithDouble:latitude]
      longitude:[NSNumber numberWithDouble:longitude]
@@ -28,13 +58,15 @@
      intent:intentCheckin
      radius:[NSNumber numberWithDouble:radius]
      categoryId:kFoursquareCategoryParkID
-     callback:^(BOOL success, id result){
-         if (success) {
+     callback:^(BOOL success, id result)
+     {
+         if (success)
+         {
              NSDictionary *dic = result;
              //NSLog(@"dic=%@", dic);
              NSArray *venues = [dic valueForKeyPath:@"response.venues"];
              NSLog(@"foursquare query success");
-             //NSLog(@"%@", venues);
+             NSLog(@"%@", venues);
              
              self.parksInAreaArr = [NSMutableArray new];
              for (int i=0; i < [venues count]; i++)
@@ -75,12 +107,15 @@
                  
                  [self.parksInAreaArr addObject:park];
              }
-         } else {
+         }
+         else
+         {
              NSLog(@"%@",result);
          }
          
          NSMutableArray *idArr = [NSMutableArray new];
-         for (int i=0; i<[self.parksInAreaArr count]; i++) {
+         for (int i=0; i<[self.parksInAreaArr count]; i++)
+         {
              //NSLog(@"Park %d: \n%@", i, self.parksInAreaArr[i]);
              Park *park = self.parksInAreaArr[i];
              [idArr addObject:park.foursquareObjectId];
@@ -88,57 +123,152 @@
          }
          //NSLog(@"idArr==%@", idArr);
          //NSLog(@"searchPerks==%@", self.searchPerksArr);
-         PFQuery *query = [ParkPFObject query];
-         [query whereKey:@"foursquareObjectId" containedIn:idArr];
          // only search for perks if there are perks to be searched for, otherwise return the unfiltered parks in area
-         if ([self.searchPerksArr count] <= 0) {
+         if ([self.searchPerksArr count] <= 0)
+         {
              self.filteredParksArr = self.parksInAreaArr;
-             [self.delegate queryCompleted];
-         } else {
              
-             [query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
-             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                 NSLog(@"perk query success");
-                 //NSLog(@"objects: %@", objects);
-                 //NSLog(@"found %ld objects", objects.count);
-                 
-                 NSMutableArray *objIdArr = [NSMutableArray new];
-                 for (int i=0; i<[self.parksInAreaArr count]; i++) {
-                     Park *park = self.parksInAreaArr[i];
-                     [objIdArr addObject:park.foursquareObjectId];
-                 }
-                 
-                 self.filteredParksArr = [NSMutableArray new];
-                 self.filteredParksPFObjIdArr = [NSMutableArray new];
-                 for (int i=0; i<[objects count]; i++)
-                 {
-                     ParkPFObject *parkPFObj = objects[i];
-
-                     NSUInteger parkIndex = [objIdArr indexOfObject:parkPFObj.foursquareObjectId];
-                     
-                     if (parkIndex < [self.parksInAreaArr count]) {
-                         Park *park = self.parksInAreaArr[parkIndex];
-                         park.rating = [parkPFObj.rating integerValue];
-                         park.perks = [NSMutableArray new];
-                         for (int i=0; i<[parkPFObj.perks count]; i++)
-                         {
-                             //NSLog(@"perks[%d]==%@", i, parkPFObj.perks[i]);
-                             [park.perks addObject:parkPFObj.perks[i]];
-                         }
-                         [self.filteredParksArr addObject:park];
-                         [self.filteredParksPFObjIdArr addObject:parkPFObj.objectId];
-                     }
-                 }
-                 
-                 /*for (int i=0; i<[self.filteredParksArr count]; i++)
-                 {
-                     Park *park = self.filteredParksArr[i];
-                     NSLog(@"park[%d].perks=%@", i, park.perks);
-                 }*/
+             if (self.delegate && [self.delegate respondsToSelector:@selector(queryCompleted)])
+             {
                  [self.delegate queryCompleted];
-             }];
+             }
+         }
+         else
+         {
+             PFQuery *query = [ParkPFObject query];
+             [query whereKey:@"foursquareObjectId" containedIn:idArr];
+             [query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
+             [query findObjectsInBackgroundWithBlock:
+              ^(NSArray *objects, NSError *error)
+              {
+                  NSLog(@"perk query success");
+                  NSLog(@"objects: %@", objects);
+                  NSLog(@"found %ld objects", objects.count);
+                  
+                  NSMutableArray *objIdArr = [NSMutableArray new];
+                  for (int i=0; i<[self.parksInAreaArr count]; i++)
+                  {
+                      Park *park = self.parksInAreaArr[i];
+                      [objIdArr addObject:park.foursquareObjectId];
+                  }
+                  
+                  self.filteredParksArr = [NSMutableArray new];
+                  self.filteredParksPFObjIdArr = [NSMutableArray new];
+                  for (int i=0; i<[objects count]; i++)
+                  {
+                      ParkPFObject *parkPFObj = objects[i];
+                      
+                      NSUInteger parkIndex = [objIdArr indexOfObject:parkPFObj.foursquareObjectId];
+                      
+                      if (parkIndex < [self.parksInAreaArr count])
+                      {
+                          Park *park = self.parksInAreaArr[parkIndex];
+                          park.rating = [parkPFObj.rating integerValue];
+                          park.perks = [NSMutableArray new];
+                          for (int i=0; i<[parkPFObj.perks count]; i++)
+                          {
+                              //NSLog(@"perks[%d]==%@", i, parkPFObj.perks[i]);
+                              [park.perks addObject:parkPFObj.perks[i]];
+                          }
+                          [self.filteredParksArr addObject:park];
+                          [self.filteredParksPFObjIdArr addObject:parkPFObj.objectId];
+                      }
+                  }
+                  
+                  /*for (int i=0; i<[self.filteredParksArr count]; i++)
+                   {
+                   Park *park = self.filteredParksArr[i];
+                   NSLog(@"park[%d].perks=%@", i, park.perks);
+                   }*/
+                  [self.delegate queryCompleted];
+              }];
          }
      }];
+}
+
+-(void)parseOnlyQueryForPerks:(NSArray *)perkArr city:(NSString *)city state:(NSString *)state
+{
+    PFQuery *query = [ParkPFObject query];
+    self.searchPerksArr = perkArr;
+    self.searchCity = city;
+    self.searchState = state;
+    [query whereKey:@"city" equalTo:self.searchCity];
+    [query whereKey:@"state" equalTo:self.searchState];
+    [query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
+    [query findObjectsInBackgroundWithBlock:
+     ^(NSArray *objects, NSError *error)
+     {
+         //NSLog(@"perk query success");
+         //NSLog(@"objects: %@", objects);
+         //NSLog(@"found %ld objects", objects.count);
+         
+         self.parksInAreaArr = [NSMutableArray new];
+         self.filteredParksArr = [NSMutableArray new];
+         self.filteredParksPFObjIdArr = [NSMutableArray new];
+         for (int i=0; i<[objects count]; i++)
+         {
+             ParkPFObject *parkPFObj = objects[i];
+             
+             Park *park = [Park new];
+             park.name = parkPFObj.name;
+             park.rating = [parkPFObj.rating integerValue];
+             park.city = parkPFObj.city;
+             park.state = parkPFObj.state;
+             park.perks = [NSMutableArray new];
+             for (int i=0; i<[parkPFObj.perks count]; i++)
+             {
+                 //NSLog(@"perks[%d]==%@", i, parkPFObj.perks[i]);
+                 [park.perks addObject:parkPFObj.perks[i]];
+             }
+             [self.filteredParksArr addObject:park];
+             [self.filteredParksPFObjIdArr addObject:parkPFObj.objectId];
+             
+         }
+         self.parksInAreaArr = self.filteredParksArr;
+         
+         /*for (int i=0; i<[self.filteredParksArr count]; i++)
+          {
+          Park *park = self.filteredParksArr[i];
+          NSLog(@"park[%d].perks=%@", i, park.perks);
+          }*/
+         if (self.delegate && [self.delegate respondsToSelector:@selector(queryCompleted)])
+         {
+             [self.delegate queryCompleted];
+         }
+     }];
+}
+
+-(NSArray *)queryForImagesPointingToPFObjId:(NSString *)pfObjIdStr
+{
+    NSMutableArray *pfImageViewMutArr = [NSMutableArray new];
+    
+    ParkPFObject *pointer = [ParkPFObject objectWithoutDataWithClassName:@"Park" objectId:pfObjIdStr];
+    
+    PFQuery *imageQuery = [PFQuery queryWithClassName:@"ParkImage"];
+    [imageQuery whereKey:@"pointerToPark" equalTo:pointer];
+    [imageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"image query completed; objects: %@", objects);
+        NSLog(@"found %ld objects", [objects count]);
+        for (int i=0; i<[objects count]; i++) {
+            PFObject *pfObj = objects[i];
+            PFFile *file = pfObj[@"ImageFile"];
+            PFImageView *pfImageView = [PFImageView new];
+            pfImageView.file = file;
+            pfImageView.frame = CGRectMake(30, 40, 120, 120);
+            [pfImageView loadInBackground];
+            [pfImageViewMutArr addObject:pfImageView];
+            /*[file getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+                //NSLog(@"NSData==%@", result);
+                NSLog(@"data in background block fired.");
+                UIImage *image = [UIImage imageWithData:result];
+                NSLog(@"image==%@", image);
+                self.imageView1 = [[UIImageView alloc] initWithImage:image];
+                self.imageView1.frame = CGRectMake(15, 30, 160, 160);
+            }];*/
+
+        }
+    }];
+    return pfImageViewMutArr;
 }
 
 -(void)testDelegate {

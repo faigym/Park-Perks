@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ParseUI/ParseUI.h>
 
 @protocol ParksWithPerksQueryDelegate;
 
@@ -17,9 +18,13 @@
 @property (nonatomic, strong) NSMutableArray *parksInAreaArr;
 @property (nonatomic, strong) NSMutableArray *filteredParksArr;
 @property (nonatomic, strong) NSMutableArray *filteredParksPFObjIdArr;
+@property (nonatomic, strong) NSString *searchCity;
+@property (nonatomic, strong) NSString *searchState;
 
 -(void)testDelegate;
--(void)queryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit;
+-(void)foursquareQueryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit;
+-(void)parseOnlyQueryForPerks:(NSArray *)perkArr city:(NSString *)city state:(NSString *)state;
+-(NSArray *)queryForImagesPointingToPFObjId:(NSString *)pfObjIdStr;
 
 @end
 

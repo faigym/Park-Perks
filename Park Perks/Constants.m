@@ -214,10 +214,13 @@
 {
     ParkPFObject *murrayPark = [ParkPFObject new];
     murrayPark.foursquareObjectId = @"4bc0fe774cdfc9b671ee9321";
-    murrayPark.name = @"Murray Park";
+    murrayPark.name = @"Murray City Park";
     murrayPark.latitude = 40.65928505282439;
     murrayPark.longitude = -111.8822121620178;
     murrayPark.phoneNumber = @"801-264-2614";
+    murrayPark.street = @"296 East Murray Park Avenue";
+    murrayPark.city = @"Murray";
+    murrayPark.state = @"Utah";
     murrayPark.rating = [NSNumber numberWithInt:5];
     murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
     /*murrayPark.images =
@@ -235,7 +238,7 @@
     [murrayPark saveInBackground];
     
     PFObject *imagePFObj = [PFObject objectWithClassName:@"ParkImage"];
-    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5);
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem"], 0.5);
     PFFile *imagePFFile = [PFFile fileWithName:@"MurrayParkEastPlaysystem.jpg" data:imageData];
     imagePFObj[@"ImageFile"] = imagePFFile;
     [imagePFObj setObject:murrayPark forKey:@"pointerToPark"];
@@ -243,7 +246,7 @@
     [imagePFObj saveInBackground];
     
     PFObject *imagePFObj2 = [PFObject objectWithClassName:@"ParkImage"];
-    NSData *imageData2 = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkWestPlaysystem.jpg"], 0.5);
+    NSData *imageData2 = UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkWestPlaysystem"], 0.5);
     PFFile *imagePFFile2 = [PFFile fileWithName:@"MurrayParkWestPlaysystem.jpg" data:imageData2];
     imagePFObj2[@"ImageFile"] = imagePFFile2;
     [imagePFObj2 setObject:murrayPark forKey:@"pointerToPark"];
@@ -263,11 +266,29 @@
     friendshipPark.latitude = 40.645818;
     friendshipPark.longitude = -111.879023;
     friendshipPark.phoneNumber = @"Not available";
+    friendshipPark.street = @"5766 Bridlechase Ln";
+    friendshipPark.city = @"Murray";
+    friendshipPark.state = @"Utah";
     friendshipPark.rating = [NSNumber numberWithInt:3];
     friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
     //friendshipPark.images = @[];
     [friendshipPark pinInBackground];
     [friendshipPark saveInBackground];
+    
+    ParkPFObject *southCottonwoodPark = [ParkPFObject new];
+    southCottonwoodPark.foursquareObjectId = @"4ad4f28ff964a52080fd20e3";
+    southCottonwoodPark.name = @"South Cottonwood Park";
+    southCottonwoodPark.latitude = 40.6342;
+    southCottonwoodPark.longitude = -111.8617;
+    southCottonwoodPark.phoneNumber = @"(385) 468-1755";
+    southCottonwoodPark.street = @"6351 South 900 East";
+    southCottonwoodPark.city = @"Murray";
+    southCottonwoodPark.state = @"Utah";
+    southCottonwoodPark.rating = [NSNumber numberWithInt:3];
+    southCottonwoodPark.perks = @[kPavilion, kBathrooms, kPicnicTables, kPlaySystem, kLargeTrees];
+    //southCottonwoodPark.images = @[];
+    [southCottonwoodPark pinInBackground];
+    [southCottonwoodPark saveInBackground];
     
     ParkPFObject *rivertonPark = [ParkPFObject new];
     rivertonPark.foursquareObjectId = @"4bd3616a41b9ef3bdb0b00e6";
@@ -275,11 +296,29 @@
     rivertonPark.latitude = 40.5181;
     rivertonPark.longitude = -111.9322;
     rivertonPark.phoneNumber = @"(801) 254-0704";
+    rivertonPark.street = @"12830 S Redwood Rd";
+    rivertonPark.city = @"Riverton";
+    rivertonPark.state = @"Utah";
     rivertonPark.rating = [NSNumber numberWithInt:4];
     rivertonPark.perks = @[kHorseShoes, kSkatePark, kPickleball, kPavilion, kPlaySystem, kSwings];
     //rivertonPark.images = @[];
     [rivertonPark pinInBackground];
     [rivertonPark saveInBackground];
+    
+    ParkPFObject *westFieldDownsPark = [ParkPFObject new];
+    westFieldDownsPark.foursquareObjectId = @"4fc6564ce4b0b383d5755dcb";
+    westFieldDownsPark.name = @"West Field Downs Park";
+    westFieldDownsPark.latitude = 40.5321810769231;
+    westFieldDownsPark.longitude = -111.957629;
+    westFieldDownsPark.phoneNumber = @"(801) 208-3101";
+    westFieldDownsPark.street = @"12075 S 2700 W";
+    westFieldDownsPark.city = @"Riverton";
+    westFieldDownsPark.state = @"Utah";
+    westFieldDownsPark.rating = [NSNumber numberWithInt:4];
+    westFieldDownsPark.perks = @[kPlaySystem, kBathrooms, kPavilion, kSoccerGoals];
+    //westFieldDownsPark.images = @[];
+    [westFieldDownsPark pinInBackground];
+    [westFieldDownsPark saveInBackground];
 }
 
 @end

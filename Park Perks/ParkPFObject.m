@@ -15,9 +15,13 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic phoneNumber;
+@dynamic street;
+@dynamic city;
+@dynamic state;
 @dynamic rating;
 @dynamic perks;
 @dynamic thumbnail;
+
 
 + (NSString *)parseClassName
 {
@@ -32,6 +36,9 @@
     [mutStr appendString:[NSString stringWithFormat:@"latitude: %f\r", self.latitude]];
     [mutStr appendString:[NSString stringWithFormat:@"longitude: %f\r", self.longitude]];
     [mutStr appendString:[NSString stringWithFormat:@"phone number: %@\r",self.phoneNumber]];
+    [mutStr appendString:[NSString stringWithFormat:@"street: %@\r",self.street]];
+    [mutStr appendString:[NSString stringWithFormat:@"city: %@\r",self.city]];
+    [mutStr appendString:[NSString stringWithFormat:@"state: %@\r",self.state]];
     [mutStr appendString:[NSString stringWithFormat:@"longitude: %ld\r", [self.rating integerValue]]];
     for (int i=0; i < [self.perks count]; i++) {
         [mutStr appendString:[NSString stringWithFormat:@"perks[%d]: %@\r", i, self.perks[i]]];
