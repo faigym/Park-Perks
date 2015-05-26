@@ -14,6 +14,7 @@
 #import "categoryLUTPFObject.h"
 #import "ParksWithPerksQuery.h"
 #import <Mapkit/Mapkit.h>
+#import "CurrentLocation.h"
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
 static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
@@ -28,7 +29,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.locationManager requestWhenInUseAuthorization];
     self.view.backgroundColor = [UIColor redColor];
     
     self.tableView = [[UITableView alloc] initWithFrame:[self.view bounds]];
@@ -66,6 +67,26 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     [mapView addAnnotation:testPark];
     
     [Constants sharedInstance].delegate = self;
+    //[CurrentLocation sharedInstance].locationManager.delegate = self;        
+    
+    self.locationManager = [CLLocationManager new];
+    
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    
+    // Set a movement threshold for new events.
+//    self.locationManager.distanceFilter = 500; // meters
+    
+    CLLocation *location = [CLLocation new];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
+    
+    
     //[[Constants sharedInstance] remakeParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
     self.query = [ParksWithPerksQuery new];
@@ -145,6 +166,24 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
         //annotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIView
     }
     return annotationView;
+}
+
+// Delegate method from the CLLocationManagerDelegate protocol.
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    
+    NSLog(@"locationManager got called");
+    // If it's a relatively recent event, turn off updates to save power.
+    CLLocation *location = (CLLocation *)locations[0];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < 15.0) {
+        // If the event is recent, do something with it.
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              location.coordinate.latitude,
+              location.coordinate.longitude);
+    }
+    //[self.locationManager stopUpdatingLocation];
 }
 
 @end

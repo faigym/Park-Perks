@@ -342,6 +342,7 @@
 				TargetAttributes = {
 					067CF4CA1B0BE69600F9E879 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = KR64YVZD26;
 					};
 					067CF4E31B0BE69600F9E879 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -535,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -551,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",

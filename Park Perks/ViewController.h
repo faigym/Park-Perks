@@ -14,7 +14,7 @@
 #import "ParkPFObject.h"
 #import "ParksWithPerksQuery.h"
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParksWithPerksQueryDelegate, ConstantsDelegate, MKMapViewDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParksWithPerksQueryDelegate, ConstantsDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *parkArray;
