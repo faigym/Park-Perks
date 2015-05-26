@@ -12,7 +12,7 @@
 #import "Park.h"
 #import <Parse/Parse.h>
 #import "ParkPFObject.h"
-#import <CoreLocation/CoreLocation.h>
+#import "CurrentLocation.h"
 
 @implementation ParksWithPerksQuery : NSObject
 
@@ -222,9 +222,10 @@
              destCoord.latitude = park.latitude;
              destCoord.longitude = park.longitude;
              
-             CLLocationCoordinate2D srcCoord;
-             srcCoord.latitude = 40.65928505282439;
-             srcCoord.longitude = -111.8822121620178;
+             CLLocationCoordinate2D srcCoord=[CurrentLocation sharedInstance].location.coordinate;
+             NSLog(@"srcCoord.latitude=%f longitude=%f", srcCoord.latitude, srcCoord.longitude);
+             //srcCoord.latitude = 40.65928505282439;
+             //srcCoord.longitude = -111.8822121620178;
              
              park.distance = [self haversineFormulaDistanceWithDestCoord:destCoord srcCoord:srcCoord];
              park.perks = [NSMutableArray new];

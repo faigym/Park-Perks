@@ -48,6 +48,8 @@
 		A591C2D91B0E5F2A00AA92A0 /* FSWebLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2D31B0E5F2A00AA92A0 /* FSWebLogin.m */; };
 		A591C2DA1B0E5F2A00AA92A0 /* FSWebLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = A591C2D41B0E5F2A00AA92A0 /* FSWebLogin.xib */; };
 		A591C2DD1B0E62BD00AA92A0 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2DC1B0E62BD00AA92A0 /* Park.m */; };
+		A59286851B14251100427921 /* CurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A59286841B14251100427921 /* CurrentLocation.m */; };
+		A5F104441B14B0C5002B1BA0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F104431B14B0C5002B1BA0 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,9 @@
 		A591C2DB1B0E62BD00AA92A0 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
 		A591C2DC1B0E62BD00AA92A0 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
 		A591C2DE1B0E721F00AA92A0 /* Foursquare_API_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foursquare_API_Prefix.pch; sourceTree = "<group>"; };
+		A59286831B14251100427921 /* CurrentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentLocation.h; sourceTree = "<group>"; };
+		A59286841B14251100427921 /* CurrentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentLocation.m; sourceTree = "<group>"; };
+		A5F104431B14B0C5002B1BA0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F104441B14B0C5002B1BA0 /* MapKit.framework in Frameworks */,
 				A55BCD371B0C00E30005F233 /* libsqlite3.0.dylib in Frameworks */,
 				A55BCD361B0C00D10005F233 /* UIKit.framework in Frameworks */,
 				A55BCD341B0C00C60005F233 /* SystemConfiguration.framework in Frameworks */,
@@ -196,6 +202,8 @@
 				067CF4D31B0BE69600F9E879 /* AppDelegate.m */,
 				067CF4D51B0BE69600F9E879 /* ViewController.h */,
 				067CF4D61B0BE69600F9E879 /* ViewController.m */,
+				A59286831B14251100427921 /* CurrentLocation.h */,
+				A59286841B14251100427921 /* CurrentLocation.m */,
 				A50CAA081B0E9D78002CF7B8 /* categoryLUTPFObject.h */,
 				A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */,
 				A56224971B0FFA7500C0C06E /* ParksWithPerksQuery.h */,
@@ -237,6 +245,7 @@
 		A55BCD381B0C01820005F233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5F104431B14B0C5002B1BA0 /* MapKit.framework */,
 				A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */,
 				A55BCD0B1B0BFF830005F233 /* Frameworks */,
 				A55BCD351B0C00D10005F233 /* UIKit.framework */,
@@ -395,6 +404,7 @@
 				A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */,
 				A50CAA0A1B0E9D78002CF7B8 /* categoryLUTPFObject.m in Sources */,
 				067CF4D11B0BE69600F9E879 /* main.m in Sources */,
+				A59286851B14251100427921 /* CurrentLocation.m in Sources */,
 				A591C2D91B0E5F2A00AA92A0 /* FSWebLogin.m in Sources */,
 				A591C2C71B0E330300AA92A0 /* Constants.m in Sources */,
 				A591C2D61B0E5F2A00AA92A0 /* FSKeychain.m in Sources */,

@@ -23,7 +23,7 @@
 @property (strong, nonatomic) ParksWithPerksQuery *query;
 @property (strong, nonatomic) PFImageView *pfImageView;
 @property (strong, nonatomic) UIImageView *imageView2;
-
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 

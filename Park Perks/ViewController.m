@@ -13,6 +13,7 @@
 #import "Foursquare2.h"
 #import "categoryLUTPFObject.h"
 #import "ParksWithPerksQuery.h"
+#import <Mapkit/Mapkit.h>
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
 static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
@@ -39,10 +40,19 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     self.imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MurrayParkWestPlaysystem"]];
     self.imageView2.backgroundColor = [UIColor redColor];
-    self.imageView2.frame = CGRectMake(15, 350, 160, 160);
+    self.imageView2.frame = CGRectMake(200, 350, 160, 160);
     
     [self.view addSubview:self.pfImageView];
     [self.view addSubview:self.imageView2];
+    
+    CGRect mapFrame = self.view.bounds;
+    mapFrame.size.height *= 0.8;
+    MKMapView *mapView = [[MKMapView alloc] initWithFrame:mapFrame];
+    [self.view addSubview:mapView];
+    
+    mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
+    MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
+    [mapView setRegion:region animated:YES];
     
     [Constants sharedInstance].delegate = self;
     //[[Constants sharedInstance] remakeParkTestDatabase];
