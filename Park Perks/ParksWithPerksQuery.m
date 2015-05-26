@@ -12,6 +12,7 @@
 #import "Park.h"
 #import <Parse/Parse.h>
 #import "ParkPFObject.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation ParksWithPerksQuery : NSObject
 
@@ -214,6 +215,18 @@
              park.rating = [parkPFObj.rating integerValue];
              park.city = parkPFObj.city;
              park.state = parkPFObj.state;
+             park.latitude = parkPFObj.latitude;
+             park.longitude = parkPFObj.longitude;
+             
+             CLLocationCoordinate2D destCoord;
+             destCoord.latitude = park.latitude;
+             destCoord.longitude = park.longitude;
+             
+             CLLocationCoordinate2D srcCoord;
+             srcCoord.latitude = 40.65928505282439;
+             srcCoord.longitude = -111.8822121620178;
+             
+             park.distance = [self haversineFormulaDistanceWithDestCoord:destCoord srcCoord:srcCoord];
              park.perks = [NSMutableArray new];
              for (int i=0; i<[parkPFObj.perks count]; i++)
              {
@@ -236,6 +249,28 @@
              [self.delegate queryCompleted];
          }
      }];
+}
+
+-(double)haversineFormulaDistanceWithDestCoord:(CLLocationCoordinate2D)destCoord srcCoord:(CLLocationCoordinate2D)srcCoord
+{
+    /* This is the method recommended for calculating short distances by Bob Chamberlain (rgc@jpl.nasa.gov) of Caltech and NASA's Jet Propulsion Laboratory as described on the U.S. Census Bureau Web site.
+     
+     dlon = lon2 - lon1
+     dlat = lat2 - lat1
+     a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
+     c = 2 * atan2( sqrt(a), sqrt(1-a) )
+     d = R * c (where R is the radius of the Earth) */
+    
+    double dlon = destCoord.longitude - srcCoord.longitude;
+    double dlat = destCoord.latitude - srcCoord.latitude;
+    double deg2rad = M_PI / 180.0;
+    double a = pow(sin((dlat/2.0)*deg2rad),2) + (cos(srcCoord.latitude*deg2rad) * cos(destCoord.latitude*deg2rad) * pow(sin((dlon/2)*deg2rad),2));
+    double c = 2 * atan2( sqrt(a), sqrt(1-a) );
+    //double R = 3963.1676; // Radius of earth in miles
+    double R = 6378100; // Radius of earth in meters
+    double distance = R * c; //(where R is the radius of the Earth)
+    
+    return distance;
 }
 
 -(NSArray *)queryForImagesPointingToPFObjId:(NSString *)pfObjIdStr
