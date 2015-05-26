@@ -49,7 +49,7 @@
     [Parse setApplicationId:@"Mo2pAMDtzihwcSN1FXxTE7sDTQPMxxpvj2KFeGpp"
                   clientKey:@"tW4GIjdulSegQTy4heDEeMDJ8mzoJmFqIVnwldeU"];
     
-//    [CurrentLocation sharedInstance]; // start current location updating
+    [CurrentLocation sharedInstance]; // start current location updating
 
     [Foursquare2 setupFoursquareWithClientId:@"Y0D0NQHGKR4CZY4PYVJHL5N55AZUZJICDNY43C4M24GYQZNC"
                                       secret:@"II2HF3VKGMCDH2IEM5TO2LDH4SJYVQA4MFD0T4FUOZM1MT4B"

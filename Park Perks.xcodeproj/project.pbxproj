@@ -39,6 +39,7 @@
 		A55BCD361B0C00D10005F233 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD351B0C00D10005F233 /* UIKit.framework */; };
 		A55BCD371B0C00E30005F233 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */; };
 		A56224991B0FFA7500C0C06E /* ParksWithPerksQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A56224981B0FFA7500C0C06E /* ParksWithPerksQuery.m */; };
+		A57737A31B1520A800BAE61C /* murrayPark.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A57737A21B1520A800BAE61C /* murrayPark.gpx */; };
 		A591C2C71B0E330300AA92A0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C41B0E330300AA92A0 /* Constants.m */; };
 		A591C2C81B0E330300AA92A0 /* ParkPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2C61B0E330300AA92A0 /* ParkPFObject.m */; };
 		A591C2D51B0E5F2A00AA92A0 /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = A591C2CB1B0E5F2A00AA92A0 /* Foursquare2.m */; };
@@ -104,6 +105,7 @@
 		A55BCD351B0C00D10005F233 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A56224971B0FFA7500C0C06E /* ParksWithPerksQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParksWithPerksQuery.h; sourceTree = "<group>"; };
 		A56224981B0FFA7500C0C06E /* ParksWithPerksQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParksWithPerksQuery.m; sourceTree = "<group>"; };
+		A57737A21B1520A800BAE61C /* murrayPark.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = murrayPark.gpx; path = ../../Downloads/murrayPark.gpx; sourceTree = "<group>"; };
 		A591C2C31B0E330300AA92A0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A591C2C41B0E330300AA92A0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		A591C2C51B0E330300AA92A0 /* ParkPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParkPFObject.h; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		067CF4C21B0BE69600F9E879 = {
 			isa = PBXGroup;
 			children = (
+				A57737A21B1520A800BAE61C /* murrayPark.gpx */,
 				A591C2C91B0E5E2600AA92A0 /* Foursquare2 */,
 				A55BCD381B0C01820005F233 /* Frameworks */,
 				067CF4CD1B0BE69600F9E879 /* Park Perks */,
@@ -375,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				067CF4DA1B0BE69600F9E879 /* Main.storyboard in Resources */,
+				A57737A31B1520A800BAE61C /* murrayPark.gpx in Resources */,
 				067CF4DF1B0BE69600F9E879 /* LaunchScreen.xib in Resources */,
 				067CF4DC1B0BE69600F9E879 /* Images.xcassets in Resources */,
 				A591C2DA1B0E5F2A00AA92A0 /* FSWebLogin.xib in Resources */,

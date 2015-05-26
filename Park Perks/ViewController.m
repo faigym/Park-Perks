@@ -29,7 +29,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.locationManager requestWhenInUseAuthorization];
+    //[self.locationManager requestWhenInUseAuthorization];
     self.view.backgroundColor = [UIColor redColor];
     
     self.tableView = [[UITableView alloc] initWithFrame:[self.view bounds]];
@@ -49,7 +49,6 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     CGRect mapFrame = self.view.bounds;
     mapFrame.size.height *= 0.8;
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:mapFrame];
-    [self.view addSubview:mapView];
     
     //mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
     mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
@@ -65,37 +64,14 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     mapView.delegate = self;
     [mapView addAnnotation:testPark];
+    [self.view addSubview:mapView];
+    
+    [CurrentLocation sharedInstance].delegate = self;
     
     [Constants sharedInstance].delegate = self;
-    //[CurrentLocation sharedInstance].locationManager.delegate = self;        
-    
-    self.locationManager = [CLLocationManager new];
-    
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    
-    // Set a movement threshold for new events.
-//    self.locationManager.distanceFilter = 500; // meters
-    
-    CLLocation *location = [CLLocation new];
-    
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    
-    self.locationManager.delegate = self;
-    [self.locationManager startUpdatingLocation];
-    
     
     //[[Constants sharedInstance] remakeParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
-    self.query = [ParksWithPerksQuery new];
-    self.query.delegate = self;
-    NSArray *perkArr = @[kPickleball];
-    //NSArray *perkArr = @[];
-    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
-    //[self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:1500.0 numResultsLimit:10];
-    [self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
 }
 
 -(void)constantsLoaded
@@ -112,6 +88,19 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     for (Park *park in self.query.filteredParksArr) {
         NSLog(@"park[%d] = %@", i++, park);
     }
+}
+
+-(void)oneShotLocationUpdateCompleted
+{
+    NSLog(@"locationUpdateCompleted");
+    self.query = [ParksWithPerksQuery new];
+    self.query.delegate = self;
+    NSArray *perkArr = @[kPickleball];
+    //NSArray *perkArr = @[];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:1500.0 numResultsLimit:10];
+    [self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
+    NSLog(@"currentLocation = %@", [CurrentLocation sharedInstance].location);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,24 +155,6 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
         //annotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIView
     }
     return annotationView;
-}
-
-// Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
-    
-    NSLog(@"locationManager got called");
-    // If it's a relatively recent event, turn off updates to save power.
-    CLLocation *location = (CLLocation *)locations[0];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (fabs(howRecent) < 15.0) {
-        // If the event is recent, do something with it.
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
-    }
-    //[self.locationManager stopUpdatingLocation];
 }
 
 @end

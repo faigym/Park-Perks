@@ -13,8 +13,9 @@
 #import "Park.h"
 #import "ParkPFObject.h"
 #import "ParksWithPerksQuery.h"
+#import "CurrentLocation.h"
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParksWithPerksQueryDelegate, ConstantsDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParksWithPerksQueryDelegate, ConstantsDelegate, MKMapViewDelegate, CurrentLocationDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *parkArray;
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) ParksWithPerksQuery *query;
 @property (strong, nonatomic) PFImageView *pfImageView;
 @property (strong, nonatomic) UIImageView *imageView2;
-@property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
