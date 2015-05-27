@@ -113,7 +113,14 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
         annotation.coordinate = CLLocationCoordinate2DMake(park.latitude, park.longitude);
         annotation.title = park.name;
-        annotation.subtitle = [NSString stringWithFormat:@"%.1f km", park.distance/1000.0];
+        NSString *units = [[NSLocale currentLocale] objectForKey: NSLocaleMeasurementSystem];
+        if ([units isEqualToString:@"Metric"]) {
+            annotation.subtitle = [NSString stringWithFormat:@"%.1f kilometers\r", park.distance/1000.0];
+        } else if ([units isEqualToString:@"U.S."]) {
+            annotation.subtitle = [NSString stringWithFormat:@"%.1f miles\r", (park.distance/1000.0)*(1.0/KM_PER_MILE)];
+        } else {
+            annotation.subtitle = [NSString stringWithFormat:@"%f ?\r", park.distance];
+        }
         [self.mapView addAnnotation:annotation];
     }
 }
@@ -125,7 +132,8 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //NSArray *perkArr = @[kPickleball];
     NSArray *perkArr = @[];
     //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
-    [self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:15000.0 numResultsLimit:3];
+    //40.65928505282439, -111.8822121620178
+    [self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:5000.0 numResultsLimit:30];
     //[self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
 }
 
@@ -193,5 +201,15 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 //
 //    return pinView;
 }*/
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    
+}
 
 @end
