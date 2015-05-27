@@ -8,7 +8,26 @@
 
 #import "Park.h"
 
+@interface Park()
+
+@property(nonatomic, readwrite, copy) NSString *title;
+@property(nonatomic, readwrite, copy) NSString *subtitle;
+@property(nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+
+@end
+
 @implementation Park : NSObject
+
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle coordinate:(CLLocationCoordinate2D)coordinate
+{
+    self = [super init];
+    if (self) {
+        self.title = title;
+        self.subtitle = subtitle;
+        self.coordinate = coordinate;
+    }
+    return self;
+}
 
 - (NSString *)description
 {
@@ -27,7 +46,7 @@
     [mutStr appendString:[NSString stringWithFormat:@"longitude: %f\r", self.longitude]];
     [mutStr appendString:[NSString stringWithFormat:@"phone number: %@\r", self.phoneNumber]];
     if (self.rating >= 0) {
-        [mutStr appendString:[NSString stringWithFormat:@"rating: %ld\r", self.rating]];
+        [mutStr appendString:[NSString stringWithFormat:@"rating: %ld\r", (long)self.rating]];
     } else {
         [mutStr appendString:[NSString stringWithFormat:@"rating: no data\r"]];
     }
@@ -37,6 +56,11 @@
     }
     
     return mutStr;
+}
+
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
+{
+    _coordinate = newCoordinate;
 }
 
 @end

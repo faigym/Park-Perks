@@ -53,23 +53,37 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
     mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     //MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
-    double regionRadius = 1000; // in meters
+    double regionRadius = 2000; // in meters
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(40.645818, -111.879023), regionRadius*2.0, regionRadius*2.0);
     [mapView setRegion:region animated:YES];
     
-    Park *testPark = [Park new];
+    /*Park *testPark = [Park new];
     testPark.title = @"Murray City Park";
     testPark.subtitle = @"awesome sauce";
     testPark.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     
+    [mapView addAnnotation:testPark];*/
+    
     mapView.delegate = self;
-    [mapView addAnnotation:testPark];
     [self.view addSubview:mapView];
     
     [CurrentLocation sharedInstance].delegate = self;
-    
     [Constants sharedInstance].delegate = self;
+
+    MKPointAnnotation *murrayParkAnnotation = [[MKPointAnnotation alloc] init];
+    murrayParkAnnotation.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+    murrayParkAnnotation.title = @"Murray Park";
+    murrayParkAnnotation.subtitle = @"Awesome Sauce";
     
+    [mapView addAnnotation:murrayParkAnnotation];
+    
+    
+    MKPointAnnotation *friendshipParkAnnotation = [[MKPointAnnotation alloc] init];
+    friendshipParkAnnotation.coordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
+    friendshipParkAnnotation.title = @"Friendship Park";
+    friendshipParkAnnotation.subtitle = @"Merry Go Round Power";
+    
+    [mapView addAnnotation:friendshipParkAnnotation];
     //[[Constants sharedInstance] remakeParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
 }
@@ -138,23 +152,34 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+// use the following to customize the pin appearance i.e. annotationview given the annotation data
+/*-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"mapViewAnnotationId"];
     if (!annotationView)
     {
-        Park *testPark = [Park new];
-        testPark.title = @"Murray City Park";
-        testPark.subtitle = @"awesome sauce";
-        testPark.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+        annotation = [[Park alloc] initWithTitle:@"Murray City Park" subtitle:@"awesome sauce" coordinate:CLLocationCoordinate2DMake(40.65928505282439,-111.8822121620178)];
         
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:testPark reuseIdentifier:@"mapViewAnnotationId"];
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapViewAnnotationId"];
         
-        annotationView.canShowCallout = false;
-        annotationView.calloutOffset = CGPointMake(-5.0, 5.0);
+        annotationView.canShowCallout = YES;
+        //annotationView.calloutOffset = CGPointMake(-5.0, 5.0);
         //annotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIView
     }
     return annotationView;
-}
+    
+//    MKPinAnnotationView *pinView = nil;
+//
+//    static NSString *defaultPinID = @"com.invasivecode.pin";
+//    pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+//    if ( pinView == nil ) pinView = [[MKPinAnnotationView alloc]
+//                                      initWithAnnotation:annotation reuseIdentifier:defaultPinID];
+    
+//    pinView.pinColor = MKPinAnnotationColorPurple;
+//    pinView.canShowCallout = YES;
+//    pinView.animatesDrop = YES;
+//
+//    return pinView;
+}*/
 
 @end
