@@ -21,6 +21,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 @interface ViewController ()
 
 @property (nonatomic, strong) categoryLUTPFObject *perkPropLUT;
+@property (nonatomic, assign) BOOL nextRegionChangeIsFromUserInteraction;
 
 @end
 
@@ -133,8 +134,11 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     NSArray *perkArr = @[];
     //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
     //40.65928505282439, -111.8822121620178
-    [self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:5000.0 numResultsLimit:30];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:5000.0 numResultsLimit:30];
     //[self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
+    
+    MKCoordinateRegion region = self.mapView.region;
+    [self.query foursquareQueryForPerks:perkArr latitude:region.center.latitude longitude:region.center.longitude radius:(region.span.latitudeDelta*M_PER_DEG_LAT) numResultsLimit:NUM_SEARCH_RESULTS_LIMIT];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,12 +208,38 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
+    UIView* view = mapView.subviews.firstObject;
     
+    //	Look through gesture recognizers to determine
+    //	whether this region change is from user interaction
+    for(UIGestureRecognizer* recognizer in view.gestureRecognizers)
+    {
+        //	The user caused of this...
+        if(recognizer.state == UIGestureRecognizerStateBegan
+           || recognizer.state == UIGestureRecognizerStateEnded)
+        {
+            self.nextRegionChangeIsFromUserInteraction = YES;
+            
+        }
+    }
+    NSLog(@"regionWillChange called");
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    
+    if(self.nextRegionChangeIsFromUserInteraction)
+    {
+        self.nextRegionChangeIsFromUserInteraction = NO;
+        
+        //	Perform code here
+        NSLog(@"regionDidChange called from user interaction");
+        MKCoordinateRegion region = self.mapView.region;
+        double radius = (region.span.latitudeDelta*M_PER_DEG_LAT);
+        NSLog(@"radius=%f; latitudeDelta=%f", radius, region.span.latitudeDelta);
+        [self.query foursquareQueryForPerks:@[] latitude:region.center.latitude longitude:region.center.longitude radius:radius numResultsLimit:NUM_SEARCH_RESULTS_LIMIT];
+    } else {
+        NSLog(@"regionDidChange called from something else");
+    }
 }
 
 @end
