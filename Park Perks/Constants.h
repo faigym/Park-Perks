@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "categoryLUTPFObject.h"
 
+#define KM_PER_MILE 1.60934
+
 // ******** Playground
 static NSString *kCategoryPlayground = @"Playground";
 static NSString *kSeeSaw = @"Seesaw";

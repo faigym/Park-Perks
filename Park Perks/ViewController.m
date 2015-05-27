@@ -13,7 +13,6 @@
 #import "Foursquare2.h"
 #import "categoryLUTPFObject.h"
 #import "ParksWithPerksQuery.h"
-#import <Mapkit/Mapkit.h>
 #import "CurrentLocation.h"
 
 static NSString *kMurrayParkFoursquareId = @"4bc0fe774cdfc9b671ee9321";
@@ -36,26 +35,26 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     
-    self.pfImageView = [[PFImageView alloc] initWithFrame:CGRectMake(15, 30, 160, 160)];
+    self.pfImageView = [[PFImageView alloc] initWithFrame:CGRectMake(175, 350, 160, 160)];
     self.pfImageView.backgroundColor = [UIColor blueColor];
     
     self.imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MurrayParkWestPlaysystem"]];
     self.imageView2.backgroundColor = [UIColor redColor];
-    self.imageView2.frame = CGRectMake(200, 350, 160, 160);
+    self.imageView2.frame = CGRectMake(225, 350, 160, 160);
     
     [self.view addSubview:self.pfImageView];
     [self.view addSubview:self.imageView2];
     
     CGRect mapFrame = self.view.bounds;
     mapFrame.size.height *= 0.8;
-    MKMapView *mapView = [[MKMapView alloc] initWithFrame:mapFrame];
+    self.mapView = [[MKMapView alloc] initWithFrame:mapFrame];
     
     //mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
-    mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     //MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
-    double regionRadius = 2000; // in meters
+    double regionRadius = 15000; // in meters
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(40.645818, -111.879023), regionRadius*2.0, regionRadius*2.0);
-    [mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:YES];
     
     /*Park *testPark = [Park new];
     testPark.title = @"Murray City Park";
@@ -64,18 +63,21 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     [mapView addAnnotation:testPark];*/
     
-    mapView.delegate = self;
-    [self.view addSubview:mapView];
+    self.mapView.delegate = self;
+    [self.view addSubview:self.mapView];
     
     [CurrentLocation sharedInstance].delegate = self;
     [Constants sharedInstance].delegate = self;
+    
+    self.query = [ParksWithPerksQuery new];
+    self.query.delegate = self;
 
-    MKPointAnnotation *murrayParkAnnotation = [[MKPointAnnotation alloc] init];
+    /*MKPointAnnotation *murrayParkAnnotation = [[MKPointAnnotation alloc] init];
     murrayParkAnnotation.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     murrayParkAnnotation.title = @"Murray Park";
     murrayParkAnnotation.subtitle = @"Awesome Sauce";
     
-    [mapView addAnnotation:murrayParkAnnotation];
+     [mapView addAnnotation:murrayParkAnnotation];
     
     
     MKPointAnnotation *friendshipParkAnnotation = [[MKPointAnnotation alloc] init];
@@ -83,7 +85,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     friendshipParkAnnotation.title = @"Friendship Park";
     friendshipParkAnnotation.subtitle = @"Merry Go Round Power";
     
-    [mapView addAnnotation:friendshipParkAnnotation];
+    [mapView addAnnotation:friendshipParkAnnotation];*/
     //[[Constants sharedInstance] remakeParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
 }
@@ -98,23 +100,33 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
 {
     NSLog(@"queryCompleted!");
 
-    int i=0;
+    /*int i=0;
     for (Park *park in self.query.filteredParksArr) {
         NSLog(@"park[%d] = %@", i++, park);
+    }*/
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    for (Park *park in self.query.filteredParksArr)
+    {
+        NSLog(@"adding annotation for park %@", park);
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.coordinate = CLLocationCoordinate2DMake(park.latitude, park.longitude);
+        annotation.title = park.name;
+        annotation.subtitle = [NSString stringWithFormat:@"%.1f km", park.distance/1000.0];
+        [self.mapView addAnnotation:annotation];
     }
 }
 
 -(void)oneShotLocationUpdateCompleted
 {
     NSLog(@"locationUpdateCompleted");
-    self.query = [ParksWithPerksQuery new];
-    self.query.delegate = self;
-    NSArray *perkArr = @[kPickleball];
-    //NSArray *perkArr = @[];
-    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
-    //[self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:1500.0 numResultsLimit:10];
-    [self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
     NSLog(@"currentLocation = %@", [CurrentLocation sharedInstance].location);
+    //NSArray *perkArr = @[kPickleball];
+    NSArray *perkArr = @[];
+    //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:1500.0 numResultsLimit:10];
+    [self.query foursquareQueryForPerks:perkArr latitude:40.5181 longitude:-111.9322 radius:15000.0 numResultsLimit:3];
+    //[self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

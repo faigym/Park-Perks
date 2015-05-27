@@ -39,9 +39,15 @@
     [mutStr appendString:[NSString stringWithFormat:@"city: %@\r", self.city]];
     [mutStr appendString:[NSString stringWithFormat:@"zip: %@\r", self.zipCode]];
     [mutStr appendString:[NSString stringWithFormat:@"state: %@\r", self.state]];
-    NSLocale *locale = [NSLocale currentLocale];
-    NSString *units = [locale objectForKey: NSLocaleMeasurementSystem] ? @"meters" : @"feet";
-    [mutStr appendString:[NSString stringWithFormat:@"distance: %f %@\r", self.distance, units]];
+    NSString *units = [[NSLocale currentLocale] objectForKey: NSLocaleMeasurementSystem];
+    if ([units isEqualToString:@"Metric"]) {
+        [mutStr appendString:[NSString stringWithFormat:@"distance: %.1f kilometers\r", self.distance/1000.0]];
+    } else if ([units isEqualToString:@"U.S."]) {
+        [mutStr appendString:[NSString stringWithFormat:@"distance: %.1f miles\r", (self.distance/1000.0)*(1.0/KM_PER_MILE)]];
+    } else {
+        [mutStr appendString:[NSString stringWithFormat:@"distance: %f unknown units\r", self.distance]];
+    }
+    
     [mutStr appendString:[NSString stringWithFormat:@"latitude: %f\r", self.latitude]];
     [mutStr appendString:[NSString stringWithFormat:@"longitude: %f\r", self.longitude]];
     [mutStr appendString:[NSString stringWithFormat:@"phone number: %@\r", self.phoneNumber]];

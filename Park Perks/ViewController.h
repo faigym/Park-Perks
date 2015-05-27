@@ -14,6 +14,7 @@
 #import "ParkPFObject.h"
 #import "ParksWithPerksQuery.h"
 #import "CurrentLocation.h"
+#import <Mapkit/Mapkit.h>
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ParksWithPerksQueryDelegate, ConstantsDelegate, MKMapViewDelegate, CurrentLocationDelegate>
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) PFImageView *pfImageView;
 @property (strong, nonatomic) UIImageView *imageView2;
 //@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) MKMapView *mapView;
 
 @end
 

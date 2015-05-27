@@ -67,7 +67,7 @@
              //NSLog(@"dic=%@", dic);
              NSArray *venues = [dic valueForKeyPath:@"response.venues"];
              NSLog(@"foursquare query success");
-             NSLog(@"%@", venues);
+             //NSLog(@"%@", venues);
              
              self.parksInAreaArr = [NSMutableArray new];
              for (int i=0; i < [venues count]; i++)
@@ -143,8 +143,8 @@
               ^(NSArray *objects, NSError *error)
               {
                   NSLog(@"perk query success");
-                  NSLog(@"objects: %@", objects);
-                  NSLog(@"found %ld objects", objects.count);
+                  //NSLog(@"objects: %@", objects);
+                  NSLog(@"found %d objects", objects.count);
                   
                   NSMutableArray *objIdArr = [NSMutableArray new];
                   for (int i=0; i<[self.parksInAreaArr count]; i++)
