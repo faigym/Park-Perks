@@ -122,61 +122,42 @@
     categoryLUT.perksForCategoryDict =
     @{
       kCategoryPlayground:@[
-              kSeeSaw,
               kBabySwing,
               kSwings,
-              kToddlerPlayEquipment,
               kClimbingNet,
-              kWoodChips,
+              kClimbingWall,
+              kElectronicGameStations,
+              kMerryGoRound,
+              kMonkeyBars,
+              kPlaySystem,
               kRubberMat,
               kSand,
-              kMonkeyBars,
-              kPreschoolActivities,
-              kSplashPad,
-              kClimbingWall,
-              kExerciseStations,
-              kElectronicGameStations,
-              kZipLine,
-              kMerryGoRound,
-              kPlaySystem,
               kSandDigger,
+              kSeeSaw,
+              kShadedPlayground,
+              kSlide,
+              kSplashPad,
               kSpringRocker,
-              kShade],
-      kCategoryExercise:@[
-              kWalkingJoggingPath,
-              kMonkeyBars,
-              kExerciseStations],
-      kCategoryNature:@[
-              kCreek,
-              kPond,
-              kArboretum,
-              kDucks,
-              kFishing,
-              kAviary,
-              kLargeTrees,
-              kHills],
-      kCategoryWater:@[
-              kOutdoorPool,
-              kWaterSlide,
-              kBabyPool,
-              kHighDive,
-              kWaterNozzle,
-              kPond,
-              kCreek],
+              kTireSwing,
+              kToddler,
+              kWoodChips,
+              kZipLine],
       kCategorySports:@[
               kBaseball,
-              kSoccerField,
               kSoccerGoals,
+              kMultipurposeField,
               kBasketBall,
+              kLightedBasketBall,
               kTennis,
               kRaquetBall,
+              kVolleyBallCement,
               kVolleyBallSand,
+              kBMXPark,
               kSkatePark,
               kDiscGolf,
               kBicycling,
               kHorseShoes,
-              kPickleball,
-              kIceRink],
+              kPickleball],
       kCategoryFacilities:@[
               kBathrooms,
               kWaterFountain,
@@ -185,25 +166,39 @@
               kDogsAllowed,
               kDogsOffLeashAllowed,
               kShade,
-              kBBQGas,
-              kBBQFirePit,
-              kBBQCharcoal,
-              kShelter,
-              kPavilion,
               kRamada,
-              kAlcoholPermit,
-              kSeating,
-              kHorsetrails],
+              kBenches,
+              kReservable,
+              kParkingLot],
       kCategoryPicnic:@[
-              kBBQGas,
-              kBBQFirePit,
-              kBBQCharcoal,
+              kBBQ,
               kShelter,
               kPavilion,
               kRamada,
               kAlcoholPermit,
-              kSeating,
-              kPicnicTables]
+              kElectricity,
+              kPicnicTables],
+      kCategoryExerciseNature:@[
+              kWalkingJoggingPath,
+              kExerciseEquipment,
+              kCreek,
+              kPond,
+              kArboretum,
+              kWildlife,
+              kDucks,
+              kFishing,
+              kHistoryMonuments,
+              kShadeTrees,
+              kHills],
+      kCategoryWater:@[
+              kOutdoorPool,
+              kWaterSlide,
+              kCreek,
+              kPond,
+              kSplashPad,
+              kFishing,
+              kWaterFountain,
+              kWaterNozzle]
       };
     
     [categoryLUT pinInBackground];
@@ -222,7 +217,7 @@
     murrayPark.city = @"Murray";
     murrayPark.state = @"Utah";
     murrayPark.rating = [NSNumber numberWithInt:5];
-    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
+    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddler, kSand, kOutdoorPool, kWaterSlide, kMultipurposeField, kShadeTrees, kHills, kVolleyBallSand, kExerciseEquipment, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
     /*murrayPark.images =
     @[
       UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5),
@@ -270,7 +265,7 @@
     friendshipPark.city = @"Murray";
     friendshipPark.state = @"Utah";
     friendshipPark.rating = [NSNumber numberWithInt:3];
-    friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
+    friendshipPark.perks = @[kSand, kMerryGoRound, kToddler, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
     //friendshipPark.images = @[];
     [friendshipPark pinInBackground];
     [friendshipPark saveInBackground];
@@ -285,7 +280,7 @@
     southCottonwoodPark.city = @"Murray";
     southCottonwoodPark.state = @"Utah";
     southCottonwoodPark.rating = [NSNumber numberWithInt:3];
-    southCottonwoodPark.perks = @[kPavilion, kBathrooms, kPicnicTables, kPlaySystem, kLargeTrees];
+    southCottonwoodPark.perks = @[kPavilion, kBathrooms, kPicnicTables, kPlaySystem, kShadeTrees];
     //southCottonwoodPark.images = @[];
     [southCottonwoodPark pinInBackground];
     [southCottonwoodPark saveInBackground];
@@ -408,7 +403,7 @@
     chaparrelPark.state = @"Arizona";
     chaparrelPark.zipCode = @"85210";
     chaparrelPark.rating = [NSNumber numberWithInt:-1];
-    chaparrelPark.perks = @[kSoccerField];
+    chaparrelPark.perks = @[kMultipurposeField];
     //chaparrelPark.images = @[];
     [chaparrelPark pinInBackground];
     [chaparrelPark saveInBackground];
@@ -698,20 +693,485 @@
     [harmonyPark pinInBackground];
     [harmonyPark saveInBackground];
     
-    ParkPFObject *pimaPark = [ParkPFObject new];
-    pimaPark.name = @"Pima Park";
-    pimaPark.latitude = 33.3875894;
-    pimaPark.longitude = -111.82805000000002;
-    pimaPark.phoneNumber = @"(480) 644-2352";
-    pimaPark.street = @"1501 S Pima";
-    pimaPark.city = @"Mesa";
-    pimaPark.state = @"Arizona";
-    pimaPark.zipCode = @"85210";
-    pimaPark.rating = [NSNumber numberWithInt:-1];
-    pimaPark.perks = @[];
-    //pimaPark.images = @[];
-    [pimaPark pinInBackground];
-    [pimaPark saveInBackground];
+    ParkPFObject *heritagePark = [ParkPFObject new];
+    heritagePark.name = @"Heritage Park";
+    heritagePark.latitude = 33.3875894;
+    heritagePark.longitude = -111.82805000000002;
+    heritagePark.phoneNumber = @"(480) 644-2352";
+    heritagePark.street = @"1501 S Pima";
+    heritagePark.city = @"Mesa";
+    heritagePark.state = @"Arizona";
+    heritagePark.zipCode = @"85210";
+    heritagePark.rating = [NSNumber numberWithInt:-1];
+    heritagePark.perks = @[];
+    //heritagePark.images = @[];
+    [heritagePark pinInBackground];
+    [heritagePark saveInBackground];
+    
+    ParkPFObject *hermosaVistaPark = [ParkPFObject new];
+    hermosaVistaPark.name = @"Hermosa Vista Park";
+    hermosaVistaPark.latitude = 33.4572205;
+    hermosaVistaPark.longitude = -111.77068639999999;
+    hermosaVistaPark.phoneNumber = @"(480) 644-2011";
+    hermosaVistaPark.street = @"2255 N Lindsay Rd";
+    hermosaVistaPark.city = @"Mesa";
+    hermosaVistaPark.state = @"Arizona";
+    hermosaVistaPark.zipCode = @"85213";
+    hermosaVistaPark.rating = [NSNumber numberWithInt:-1];
+    hermosaVistaPark.perks = @[];
+    //hermosaVistaPark.images = @[];
+    [hermosaVistaPark pinInBackground];
+    [hermosaVistaPark saveInBackground];
+    
+    ParkPFObject *holmesPark = [ParkPFObject new];
+    holmesPark.name = @"Holmes Park";
+    holmesPark.latitude = 33.4572205;
+    holmesPark.longitude = -111.73672829999998;
+    holmesPark.phoneNumber = @"(480) 644-2352";
+    holmesPark.street = @"1450 S Greenfield Rd";
+    holmesPark.city = @"Mesa";
+    holmesPark.state = @"Arizona";
+    holmesPark.zipCode = @"85206";
+    holmesPark.rating = [NSNumber numberWithInt:-1];
+    holmesPark.perks = @[];
+    //holmesPark.images = @[];
+    [holmesPark pinInBackground];
+    [holmesPark saveInBackground];
+    
+    ParkPFObject *jeffersonPark = [ParkPFObject new];
+    jeffersonPark.name = @"Jefferson Park";
+    jeffersonPark.latitude = 33.40979799999999;
+    jeffersonPark.longitude = -111.67935299999999;
+    jeffersonPark.phoneNumber = @"(480) 644-2352";
+    jeffersonPark.street = @"306 S Jefferson Ave";
+    jeffersonPark.city = @"Mesa";
+    jeffersonPark.state = @"Arizona";
+    jeffersonPark.zipCode = @"85208";
+    jeffersonPark.rating = [NSNumber numberWithInt:-1];
+    jeffersonPark.perks = @[];
+    //jeffersonPark.images = @[];
+    [jeffersonPark pinInBackground];
+    [jeffersonPark saveInBackground];
+    
+    ParkPFObject *kingsboroughPark = [ParkPFObject new];
+    kingsboroughPark.name = @"Kingsborough Park";
+    kingsboroughPark.latitude = 33.3890028;
+    kingsboroughPark.longitude = -111.7816277;
+    kingsboroughPark.phoneNumber = @"";
+    kingsboroughPark.street = @"2311 E Holmes Ave";
+    kingsboroughPark.city = @"Mesa";
+    kingsboroughPark.state = @"Arizona";
+    kingsboroughPark.zipCode = @"85204";
+    kingsboroughPark.rating = [NSNumber numberWithInt:-1];
+    kingsboroughPark.perks = @[];
+    //kingsboroughPark.images = @[];
+    [kingsboroughPark pinInBackground];
+    [kingsboroughPark saveInBackground];
+    
+    ParkPFObject *kleinmanPark = [ParkPFObject new];
+    kleinmanPark.name = @"Kleinman Park";
+    kleinmanPark.latitude = 33.4014835;
+    kleinmanPark.longitude = -111.847535;
+    kleinmanPark.phoneNumber = @"(480) 644-2352";
+    kleinmanPark.street = @"710 S Ext Rd";
+    kleinmanPark.city = @"Mesa";
+    kleinmanPark.state = @"Arizona";
+    kleinmanPark.zipCode = @"85210";
+    kleinmanPark.rating = [NSNumber numberWithInt:-1];
+    kleinmanPark.perks = @[];
+    //kleinmanPark.images = @[];
+    [kleinmanPark pinInBackground];
+    [kleinmanPark saveInBackground];
+    
+    ParkPFObject *losAlmosPark = [ParkPFObject new];
+    losAlmosPark.name = @"Los Almos Park";
+    losAlmosPark.latitude = 33.4014835;
+    losAlmosPark.longitude = -111.76988499999999;
+    losAlmosPark.phoneNumber = @"(480) 644-2352";
+    losAlmosPark.street = @"2840 E Covina St";
+    losAlmosPark.city = @"Mesa";
+    losAlmosPark.state = @"Arizona";
+    losAlmosPark.zipCode = @"85213";
+    losAlmosPark.rating = [NSNumber numberWithInt:-1];
+    losAlmosPark.perks = @[];
+    //losAlmosPark.images = @[];
+    [losAlmosPark pinInBackground];
+    [losAlmosPark saveInBackground];
+    
+    ParkPFObject *meadowgreenPark = [ParkPFObject new];
+    meadowgreenPark.name = @"Meadowgreen Park";
+    meadowgreenPark.latitude = 33.4019912;
+    meadowgreenPark.longitude = -111.76981890000002;
+    meadowgreenPark.phoneNumber = @"(480) 644-2352";
+    meadowgreenPark.street = @"2821 E Pueblo Ave";
+    meadowgreenPark.city = @"Mesa";
+    meadowgreenPark.state = @"Arizona";
+    meadowgreenPark.zipCode = @"85204";
+    meadowgreenPark.rating = [NSNumber numberWithInt:-1];
+    meadowgreenPark.perks = @[];
+    //meadowgreenPark.images = @[];
+    [meadowgreenPark pinInBackground];
+    [meadowgreenPark saveInBackground];
+    
+    ParkPFObject *montereyPark = [ParkPFObject new];
+    montereyPark.name = @"Monterey Park";
+    montereyPark.latitude = 33.4019912;
+    montereyPark.longitude = -111.76981890000002;
+    montereyPark.phoneNumber = @"(480) 644-2352";
+    montereyPark.street = @"7045 E Monterey Ave";
+    montereyPark.city = @"Mesa";
+    montereyPark.state = @"Arizona";
+    montereyPark.zipCode = @"85212";
+    montereyPark.rating = [NSNumber numberWithInt:-1];
+    montereyPark.perks = @[];
+    //montereyPark.images = @[];
+    [montereyPark pinInBackground];
+    [montereyPark saveInBackground];
+    
+    ParkPFObject *mountainViewPark = [ParkPFObject new];
+    mountainViewPark.name = @"Mountain View Park";
+    mountainViewPark.latitude = 33.4311563;
+    mountainViewPark.longitude = -111.7697053;
+    mountainViewPark.phoneNumber = @"(480) 644-2011";
+    mountainViewPark.street = @"845 N Lindsay Rd";
+    mountainViewPark.city = @"Mesa";
+    mountainViewPark.state = @"Arizona";
+    mountainViewPark.zipCode = @"85213";
+    mountainViewPark.rating = [NSNumber numberWithInt:-1];
+    mountainViewPark.perks = @[];
+    //mountainViewPark.images = @[];
+    [mountainViewPark pinInBackground];
+    [mountainViewPark saveInBackground];
+    
+    ParkPFObject *paloVerdePark = [ParkPFObject new];
+    paloVerdePark.name = @"Palo Verde Park";
+    paloVerdePark.latitude = 33.357841;
+    paloVerdePark.longitude = -111.87449200000003;
+    paloVerdePark.phoneNumber = @"(480) 644-2011";
+    paloVerdePark.street = @"3135 S Dobson Rd";
+    paloVerdePark.city = @"Mesa";
+    paloVerdePark.state = @"Arizona";
+    paloVerdePark.zipCode = @"85202";
+    paloVerdePark.rating = [NSNumber numberWithInt:-1];
+    paloVerdePark.perks = @[];
+    //paloVerdePark.images = @[];
+    [paloVerdePark pinInBackground];
+    [paloVerdePark saveInBackground];
+    
+    ParkPFObject *parkOfTheCanalsPark = [ParkPFObject new];
+    parkOfTheCanalsPark.name = @"Park Of The Canals";
+    parkOfTheCanalsPark.latitude = 33.443226;
+    parkOfTheCanalsPark.longitude = -111.81685099999999;
+    parkOfTheCanalsPark.phoneNumber = @"(480) 644-4271";
+    parkOfTheCanalsPark.street = @"1710 N Horne";
+    parkOfTheCanalsPark.city = @"Mesa";
+    parkOfTheCanalsPark.state = @"Arizona";
+    parkOfTheCanalsPark.zipCode = @"85203";
+    parkOfTheCanalsPark.rating = [NSNumber numberWithInt:-1];
+    parkOfTheCanalsPark.perks = @[];
+    //parkOfTheCanalsPark.images = @[];
+    [parkOfTheCanalsPark pinInBackground];
+    [parkOfTheCanalsPark saveInBackground];
+    
+    ParkPFObject *pequenoPark = [ParkPFObject new];
+    pequenoPark.name = @"Pequeno Park";
+    pequenoPark.latitude = 33.443226;
+    pequenoPark.longitude = -111.81685099999999;
+    pequenoPark.phoneNumber = @"(480) 644-2352";
+    pequenoPark.street = @"537 N Oakland";
+    pequenoPark.city = @"Mesa";
+    pequenoPark.state = @"Arizona";
+    pequenoPark.zipCode = @"85205";
+    pequenoPark.rating = [NSNumber numberWithInt:-1];
+    pequenoPark.perks = @[];
+    //pequenoPark.images = @[];
+    [pequenoPark pinInBackground];
+    [pequenoPark saveInBackground];
+    
+    ParkPFObject *pioneerPark = [ParkPFObject new];
+    pioneerPark.name = @"Pioneer Park";
+    pioneerPark.latitude = 33.443226;
+    pioneerPark.longitude = -111.81967400000002;
+    pioneerPark.phoneNumber = @"(480) 644-4271";
+    pioneerPark.street = @"526 E Main St";
+    pioneerPark.city = @"Mesa";
+    pioneerPark.state = @"Arizona";
+    pioneerPark.zipCode = @"85203";
+    pioneerPark.rating = [NSNumber numberWithInt:-1];
+    pioneerPark.perks = @[];
+    //pioneerPark.images = @[];
+    [pioneerPark pinInBackground];
+    [pioneerPark saveInBackground];
+    
+    ParkPFObject *porterPark = [ParkPFObject new];
+    porterPark.name = @"Porter Park";
+    porterPark.latitude = 33.4300207;
+    porterPark.longitude = -111.82107780000001;
+    porterPark.phoneNumber = @"";
+    porterPark.street = @"420 E 8th St";
+    porterPark.city = @"Mesa";
+    porterPark.state = @"Arizona";
+    porterPark.zipCode = @"85203";
+    porterPark.rating = [NSNumber numberWithInt:-1];
+    porterPark.perks = @[];
+    //porterPark.images = @[];
+    [porterPark pinInBackground];
+    [porterPark saveInBackground];
+    
+    ParkPFObject *princessPark = [ParkPFObject new];
+    princessPark.name = @"Princess Park";
+    princessPark.latitude = 33.440717;
+    princessPark.longitude = -111.73487;
+    princessPark.phoneNumber = @"(480) 644-2352";
+    princessPark.street = @"4461 E Princess Dr";
+    princessPark.city = @"Mesa";
+    princessPark.state = @"Arizona";
+    princessPark.zipCode = @"85205";
+    princessPark.rating = [NSNumber numberWithInt:-1];
+    princessPark.perks = @[];
+    //princessPark.images = @[];
+    [princessPark pinInBackground];
+    [princessPark saveInBackground];
+    
+    ParkPFObject *quailRunPark = [ParkPFObject new];
+    quailRunPark.name = @"Quail Run Park";
+    quailRunPark.latitude = 33.475536;
+    quailRunPark.longitude = -111.74187899999998;
+    quailRunPark.phoneNumber = @"(480) 644-3040";
+    quailRunPark.street = @"4155 E Virginia St";
+    quailRunPark.city = @"Mesa";
+    quailRunPark.state = @"Arizona";
+    quailRunPark.zipCode = @"85215";
+    quailRunPark.rating = [NSNumber numberWithInt:-1];
+    quailRunPark.perks = @[];
+    //quailRunPark.images = @[];
+    [quailRunPark pinInBackground];
+    [quailRunPark saveInBackground];
+    
+    ParkPFObject *ranchoDelMarPark = [ParkPFObject new];
+    ranchoDelMarPark.name = @"Rancho Del Mar Park";
+    ranchoDelMarPark.latitude = 33.3667596;
+    ranchoDelMarPark.longitude = -111.84954579999999;
+    ranchoDelMarPark.phoneNumber = @"(480) 644-2011";
+    ranchoDelMarPark.street = @"748 W Guadalupe Rd";
+    ranchoDelMarPark.city = @"Mesa";
+    ranchoDelMarPark.state = @"Arizona";
+    ranchoDelMarPark.zipCode = @"85210";
+    ranchoDelMarPark.rating = [NSNumber numberWithInt:-1];
+    ranchoDelMarPark.perks = @[];
+    //ranchoDelMarPark.images = @[];
+    [ranchoDelMarPark pinInBackground];
+    [ranchoDelMarPark saveInBackground];
+    
+    ParkPFObject *redMountainPark = [ParkPFObject new];
+    redMountainPark.name = @"Red Mountain Park";
+    redMountainPark.latitude = 33.4343467;
+    redMountainPark.longitude = -111.6694091;
+    redMountainPark.phoneNumber = @"(480) 644-4271";
+    redMountainPark.street = @"7745 E Brown Rd";
+    redMountainPark.city = @"Mesa";
+    redMountainPark.state = @"Arizona";
+    redMountainPark.zipCode = @"85207";
+    redMountainPark.rating = [NSNumber numberWithInt:-1];
+    redMountainPark.perks = @[];
+    //redMountainPark.images = @[];
+    [redMountainPark pinInBackground];
+    [redMountainPark saveInBackground];
+    
+    ParkPFObject *reedPark = [ParkPFObject new];
+    reedPark.name = @"Reed Skate Park";
+    reedPark.latitude = 33.406036;
+    reedPark.longitude = -111.79576099999997;
+    reedPark.phoneNumber = @"(480) 644-4271";
+    reedPark.street = @"1631 E Broadway Rd";
+    reedPark.city = @"Mesa";
+    reedPark.state = @"Arizona";
+    reedPark.zipCode = @"85204";
+    reedPark.rating = [NSNumber numberWithInt:-1];
+    reedPark.perks = @[];
+    //reedPark.images = @[];
+    [reedPark pinInBackground];
+    [reedPark saveInBackground];
+    
+    ParkPFObject *riverviewPark = [ParkPFObject new];
+    riverviewPark.name = @"Riverview Park";
+    riverviewPark.latitude = 33.4322497;
+    riverviewPark.longitude = -111.8744021;
+    riverviewPark.phoneNumber = @"(480) 644-2352";
+    riverviewPark.street = @"2100 W 8th St";
+    riverviewPark.city = @"Mesa";
+    riverviewPark.state = @"Arizona";
+    riverviewPark.zipCode = @"85201";
+    riverviewPark.rating = [NSNumber numberWithInt:-1];
+    riverviewPark.perks = @[];
+    //riverviewPark.images = @[];
+    [riverviewPark pinInBackground];
+    [riverviewPark saveInBackground];
+    
+    ParkPFObject *sheepherdersPark = [ParkPFObject new];
+    sheepherdersPark.name = @"Sheepherders Park";
+    sheepherdersPark.latitude = 33.466322;
+    sheepherdersPark.longitude = -111.77815099999998;
+    sheepherdersPark.phoneNumber = @"(480) 644-2352";
+    sheepherdersPark.street = @"2455 E McDowell Rd";
+    sheepherdersPark.city = @"Mesa";
+    sheepherdersPark.state = @"Arizona";
+    sheepherdersPark.zipCode = @"85213";
+    sheepherdersPark.rating = [NSNumber numberWithInt:-1];
+    sheepherdersPark.perks = @[];
+    //sheepherdersPark.images = @[];
+    [sheepherdersPark pinInBackground];
+    [sheepherdersPark saveInBackground];
+    
+    ParkPFObject *sherwoodPark = [ParkPFObject new];
+    sherwoodPark.name = @"Sherwood Park";
+    sherwoodPark.latitude = 33.3890862;
+    sherwoodPark.longitude = -111.81420300000002;
+    sherwoodPark.phoneNumber = @"(480) 644-2011";
+    sherwoodPark.street = @"1453 S Horne";
+    sherwoodPark.city = @"Mesa";
+    sherwoodPark.state = @"Arizona";
+    sherwoodPark.zipCode = @"85204";
+    sherwoodPark.rating = [NSNumber numberWithInt:-1];
+    sherwoodPark.perks = @[];
+    //sherwoodPark.images = @[];
+    [sherwoodPark pinInBackground];
+    [sherwoodPark saveInBackground];
+    
+    ParkPFObject *silvergatePark = [ParkPFObject new];
+    silvergatePark.name = @"Silvergate Park";
+    silvergatePark.latitude = 33.3985386;
+    silvergatePark.longitude = -111.7849976;
+    silvergatePark.phoneNumber = @"(480) 644-2011";
+    silvergatePark.street = @"2121 E Enid Ave";
+    silvergatePark.city = @"Mesa";
+    silvergatePark.state = @"Arizona";
+    silvergatePark.zipCode = @"85204";
+    silvergatePark.rating = [NSNumber numberWithInt:-1];
+    silvergatePark.perks = @[];
+    //silvergatePark.images = @[];
+    [silvergatePark pinInBackground];
+    [silvergatePark saveInBackground];
+    
+    ParkPFObject *skylinePark = [ParkPFObject new];
+    skylinePark.name = @"Skyline Park";
+    skylinePark.latitude = 33.4023394;
+    skylinePark.longitude = -111.61239109999997;
+    skylinePark.phoneNumber = @"(480) 644-4271";
+    skylinePark.street = @"655 S Crismon Rd";
+    skylinePark.city = @"Mesa";
+    skylinePark.state = @"Arizona";
+    skylinePark.zipCode = @"85208";
+    skylinePark.rating = [NSNumber numberWithInt:-1];
+    skylinePark.perks = @[];
+    //skylinePark.images = @[];
+    [skylinePark pinInBackground];
+    [skylinePark saveInBackground];
+    
+    ParkPFObject *stapleyPark = [ParkPFObject new];
+    stapleyPark.name = @"Stapley Park";
+    stapleyPark.latitude = 33.4085536;
+    stapleyPark.longitude = -111.82068900000002	;
+    stapleyPark.phoneNumber = @"(480) 644-2352";
+    stapleyPark.street = @"360 S Lesueur";
+    stapleyPark.city = @"Mesa";
+    stapleyPark.state = @"Arizona";
+    stapleyPark.zipCode = @"85204";
+    stapleyPark.rating = [NSNumber numberWithInt:-1];
+    stapleyPark.perks = @[];
+    //stapleyPark.images = @[];
+    [stapleyPark pinInBackground];
+    [stapleyPark saveInBackground];
+    
+    ParkPFObject *summitPark = [ParkPFObject new];
+    summitPark.name = @"Summit Park";
+    summitPark.latitude = 33.4772041;
+    summitPark.longitude = -111.69633450000003;
+    summitPark.phoneNumber = @"(480) 644-2011";
+    summitPark.street = @"6237 E Virginia St";
+    summitPark.city = @"Mesa";
+    summitPark.state = @"Arizona";
+    summitPark.zipCode = @"85215";
+    summitPark.rating = [NSNumber numberWithInt:-1];
+    summitPark.perks = @[];
+    //summitPark.images = @[];
+    [summitPark pinInBackground];
+    [summitPark saveInBackground];
+    
+    ParkPFObject *valenciaPark = [ParkPFObject new];
+    valenciaPark.name = @"Valencia Park";
+    valenciaPark.latitude = 33.4271453;
+    valenciaPark.longitude = -111.73213169999997;
+    valenciaPark.phoneNumber = @"(480) 644-2011";
+    valenciaPark.street = @"634 N Quail";
+    valenciaPark.city = @"Mesa";
+    valenciaPark.state = @"Arizona";
+    valenciaPark.zipCode = @"85205";
+    valenciaPark.rating = [NSNumber numberWithInt:-1];
+    valenciaPark.perks = @[];
+    //valenciaPark.images = @[];
+    [valenciaPark pinInBackground];
+    [valenciaPark saveInBackground];
+    
+    ParkPFObject *vistaMontereyPark = [ParkPFObject new];
+    vistaMontereyPark.name = @"Vista Monterey Park";
+    vistaMontereyPark.latitude = 33.427561;
+    vistaMontereyPark.longitude = -111.75305600000002;
+    vistaMontereyPark.phoneNumber = @"(480) 644-2011";
+    vistaMontereyPark.street = @"633 N Val Vista Dr";
+    vistaMontereyPark.city = @"Mesa";
+    vistaMontereyPark.state = @"Arizona";
+    vistaMontereyPark.zipCode = @"85205";
+    vistaMontereyPark.rating = [NSNumber numberWithInt:-1];
+    vistaMontereyPark.perks = @[];
+    //vistaMontereyPark.images = @[];
+    [vistaMontereyPark pinInBackground];
+    [vistaMontereyPark saveInBackground];
+    
+    ParkPFObject *washingtonPark = [ParkPFObject new];
+    washingtonPark.name = @"Washington Park";
+    washingtonPark.latitude = 33.4241416;
+    washingtonPark.longitude = -111.8302089;
+    washingtonPark.phoneNumber = @"";
+    washingtonPark.street = @"44 E 5th St";
+    washingtonPark.city = @"Mesa";
+    washingtonPark.state = @"Arizona";
+    washingtonPark.zipCode = @"85201";
+    washingtonPark.rating = [NSNumber numberWithInt:-1];
+    washingtonPark.perks = @[];
+    //washingtonPark.images = @[];
+    [washingtonPark pinInBackground];
+    [washingtonPark saveInBackground];
+    
+    ParkPFObject *whitmanPark = [ParkPFObject new];
+    whitmanPark.name = @"Whitman Park";
+    whitmanPark.latitude = 33.4470718;
+    whitmanPark.longitude = -111.83549590000001;
+    whitmanPark.phoneNumber = @"(480) 644-2011";
+    whitmanPark.street = @"1700 N Grand";
+    whitmanPark.city = @"Mesa";
+    whitmanPark.state = @"Arizona";
+    whitmanPark.zipCode = @"85201";
+    whitmanPark.rating = [NSNumber numberWithInt:-1];
+    whitmanPark.perks = @[];
+    //whitmanPark.images = @[];
+    [whitmanPark pinInBackground];
+    [whitmanPark saveInBackground];
+    
+    ParkPFObject *woodglenPark = [ParkPFObject new];
+    woodglenPark.name = @"Woodglen Park";
+    woodglenPark.latitude = 33.372351;
+    woodglenPark.longitude = -111.85519399999998;
+    woodglenPark.phoneNumber = @"(480) 644-2352";
+    woodglenPark.street = @"2342 S Beverly";
+    woodglenPark.city = @"Mesa";
+    woodglenPark.state = @"Arizona";
+    woodglenPark.zipCode = @"85210";
+    woodglenPark.rating = [NSNumber numberWithInt:-1];
+    woodglenPark.perks = @[];
+    //woodglenPark.images = @[];
+    [woodglenPark pinInBackground];
+    [woodglenPark saveInBackground];
 }
 
 @end

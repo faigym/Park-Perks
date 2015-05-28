@@ -72,7 +72,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     self.query = [ParksWithPerksQuery new];
     self.query.delegate = self;
-
+    
     /*MKPointAnnotation *murrayParkAnnotation = [[MKPointAnnotation alloc] init];
     murrayParkAnnotation.coordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     murrayParkAnnotation.title = @"Murray Park";
@@ -88,6 +88,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     
     [mapView addAnnotation:friendshipParkAnnotation];*/
     //[[Constants sharedInstance] remakeParkTestDatabase];
+    //[[Constants sharedInstance] remakeMesaArizonaParkTestDatabase];
     //[[Constants sharedInstance] remakeCategoryLUT];
 }
 
