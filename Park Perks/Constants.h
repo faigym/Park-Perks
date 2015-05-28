@@ -13,104 +13,108 @@
 #define M_PER_DEG_LAT 111000
 #define NUM_SEARCH_RESULTS_LIMIT 50
 
-// ******** Playground
+// *****************************
 static NSString *kCategoryPlayground = @"Playground";
-static NSString *kSeeSaw = @"Seesaw";
+// ******** Playground
 static NSString *kBabySwing = @"Baby Swing";
 static NSString *kSwings = @"Swings";
-static NSString *kToddlerPlayEquipment = @"Toddler Play Equipment";
 static NSString *kClimbingNet = @"Climbing Net";
-static NSString *kWoodChips = @"Woodchips";
-static NSString *kRubberMat = @"Rubber Mats";
-static NSString *kSand = @"Sand";
-static NSString *kMonkeyBars = @"Monkeybars";
-static NSString *kPreschoolActivities = @"Preschool Activities";
-static NSString *kSplashPad = @"Splashpad";
 static NSString *kClimbingWall = @"Climbing Wall";
 static NSString *kElectronicGameStations = @"Electronic Game Stations";
-static NSString *kZipLine = @"Zipline";
 static NSString *kMerryGoRound = @"Merry-go-round";
+static NSString *kMonkeyBars = @"Monkeybars";
 static NSString *kPlaySystem = @"Play System";
+static NSString *kRubberMat = @"Rubber Mats";
+static NSString *kSand = @"Sand";
 static NSString *kSandDigger = @"Sand Digger";
+static NSString *kSeeSaw = @"Seesaw";
+static NSString *kShadedPlayground = @"Shaded Playground";
+static NSString *kSlide = @"Slide";
+static NSString *kSplashPad = @"Splash Pad";
 static NSString *kSpringRocker = @"Spring Rocker";
-//
-// ******** Exercise
-static NSString *kCategoryExercise = @"Exercise";
-static NSString *kExerciseStations = @"Exercise Stations";
-static NSString *kWalkingJoggingPath = @"Walking/Jogging Path";
-//
-// ******** Nature
-static NSString *kCategoryNature = @"Nature";
-static NSString *kCreek = @"Creek";
-static NSString *kPond = @"Pond";
-static NSString *kArboretum = @"Arboretum";
-static NSString *kDucks = @"Ducks";
-static NSString *kFishing = @"Fishing";
-static NSString *kAviary = @"Aviary";
-static NSString *kLargeTrees = @"Large Trees";
-static NSString *kHills = @"Hills";
-//
-// ******** Water
-static NSString *kCategoryWater = @"Water";
-static NSString *kOutdoorPool = @"Outdoor Pool";
-static NSString *kWaterSlide = @"Waterslide";
-static NSString *kBabyPool = @"Baby Pool";
-//static NSString *kCreek = @"Creek";
-//static NSString *kPond = @"Pond";
-//static NSString *kSplashPad = @"Splashpad";
-static NSString *kHighDive = @"High-dive";
-static NSString *kWaterNozzle = @"Water Nozzle";
-//
-// ******** Sports
+static NSString *kTireSwing = @"Tire swing";
+static NSString *kToddler = @"Toddler";
+static NSString *kWoodChips = @"Woodchips";
+static NSString *kZipLine = @"Zipline";
+
+// *****************************
 static NSString *kCategorySports = @"Sports";
+// ******** Sports
 static NSString *kBaseball = @"Baseball Field";
-static NSString *kSoccerField = @"Soccer Field";
 static NSString *kSoccerGoals = @"Soccer Goals";
-static NSString *kBasketBall = @"Basketball court";
+static NSString *kMultipurposeField = @"Multipurpose Field";
+static NSString *kBasketBall = @"Basketball Court";
+static NSString *kLightedBasketBall = @"Lighted Basketball Court";
 static NSString *kTennis = @"Tennis Court";
 static NSString *kRaquetBall = @"RaquetBall";
-static NSString *kVolleyBallSand = @"VolleyBall Court Sand";
+static NSString *kVolleyBallCement = @"Cement VolleyBall Court";
+static NSString *kVolleyBallSand = @"Sand VolleyBall Court";
+static NSString *kBMXPark = @"Dirt BMX Park";
 static NSString *kSkatePark = @"Skate Park";
 static NSString *kDiscGolf = @"Disc Golf";
 static NSString *kBicycling = @"Bicycling";
 static NSString *kHorseShoes = @"Horse-shoes";
 static NSString *kPickleball = @"Pickleball Court";
-static NSString *kIceRink = @"Ice Rink";
-//
-// ******** Facilities
+
+// *****************************
 static NSString *kCategoryFacilities = @"Facilities";
+// ******** Facilities
 static NSString *kBathrooms = @"Bathrooms";
 static NSString *kWaterFountain = @"Water Fountain";
 static NSString *kElectricity = @"Electricity";
 static NSString *kLighting = @"Lighting";
 static NSString *kDogsAllowed = @"Dogs Allowed";
 static NSString *kDogsOffLeashAllowed = @"Dogs off Leash Allowed";
-static NSString *kSurface = @"Surface";
 static NSString *kShade = @"Shade";
-static NSString *kHorsetrails = @"Horse trails";
-//
-// ******** Picnic
+static NSString *kRamada = @"Ramada";
+static NSString *kBenches = @"Benches";
+static NSString *kReservable = @"Reservable";
+static NSString *kParkingLot = @"Parking Lot";
+
+// *****************************
 static NSString *kCategoryPicnic = @"Picnic";
-static NSString *kBBQGas = @"BBQ Gas";
-static NSString *kBBQFirePit = @"BBQ FirePit";
-static NSString *kBBQCharcoal = @"BBQ Charcoal";
+// ******** Picnic *************
+static NSString *kBBQ = @"BBQ";
 static NSString *kShelter = @"Shelter";
 static NSString *kPavilion = @"Pavilion";
-static NSString *kRamada = @"Ramada";
+//static NSString *kRamada = @"Ramada";
 static NSString *kAlcoholPermit = @"Alcohol Permit";
-static NSString *kSeating = @"Seating";
+//static NSString *kElectricity = @"Electricity";
 static NSString *kPicnicTables = @"Picnic Tables";
 
+// *****************************
+static NSString *kCategoryExerciseNature = @"Exercise/Nature";
+// ******** Exercise/Nature ****
+static NSString *kWalkingJoggingPath = @"Walking/Jogging Path";
+static NSString *kExerciseEquipment = @"Exercise Equipment";
+static NSString *kCreek = @"Creek";
+static NSString *kPond = @"Pond";
+static NSString *kArboretum = @"Arboretum";
+static NSString *kWildlife = @"Wildlife";
+static NSString *kDucks = @"Ducks";
+static NSString *kFishing = @"Fishing";
+static NSString *kHistoryMonuments = @"History/Monuments";
+static NSString *kShadeTrees = @"Shade Trees";
+static NSString *kHills = @"Hills";
+
+// *****************************
+static NSString *kCategoryWater = @"Water";
+// ******** Water
+static NSString *kOutdoorPool = @"Outdoor Pool";
+static NSString *kWaterSlide = @"Waterslide";
+//static NSString *kCreek = @"Creek";
+//static NSString *kPond = @"Pond";
+//static NSString *kSplashPad = @"Splashpad";
+//static NSString *kFishing = @"Fishing";
+//static NSString *kWaterFountain = @"Water Fountain";
+static NSString *kWaterNozzle = @"Water Nozzle";
 
 // ******** Others (just a section title placeholder for rogue categories that have creeped on us).  Shouldn't ever come up
 static NSString *kCategoryOther = @"Other";
 
 static NSString *kPerkPropLUTLoaded = @"PerkPropLUTLoaded";
-
 static NSString *kPerkSearchCellId = @"PerkSearchCellId";
-
 static NSString *kFoursquareCategoryParkID = @"4bf58dd8d48988d163941735";
-
 static NSString *kFoursquareQueryCompletedId = @"FoursquareQueryCompletedId";
 static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 
@@ -134,6 +138,7 @@ static NSString *kParseQueryCompletedId = @"ParseQueryCompletedId";
 - (NSArray *)perksForTableviewSection:(NSInteger)section;
 -(void)remakeCategoryLUT;
 -(void)remakeParkTestDatabase;
+-(void)remakeMesaArizonaParkTestDatabase;
 
 @end
 

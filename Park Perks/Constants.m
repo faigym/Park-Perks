@@ -122,61 +122,42 @@
     categoryLUT.perksForCategoryDict =
     @{
       kCategoryPlayground:@[
-              kSeeSaw,
               kBabySwing,
               kSwings,
-              kToddlerPlayEquipment,
               kClimbingNet,
-              kWoodChips,
+              kClimbingWall,
+              kElectronicGameStations,
+              kMerryGoRound,
+              kMonkeyBars,
+              kPlaySystem,
               kRubberMat,
               kSand,
-              kMonkeyBars,
-              kPreschoolActivities,
-              kSplashPad,
-              kClimbingWall,
-              kExerciseStations,
-              kElectronicGameStations,
-              kZipLine,
-              kMerryGoRound,
-              kPlaySystem,
               kSandDigger,
+              kSeeSaw,
+              kShadedPlayground,
+              kSlide,
+              kSplashPad,
               kSpringRocker,
-              kShade],
-      kCategoryExercise:@[
-              kWalkingJoggingPath,
-              kMonkeyBars,
-              kExerciseStations],
-      kCategoryNature:@[
-              kCreek,
-              kPond,
-              kArboretum,
-              kDucks,
-              kFishing,
-              kAviary,
-              kLargeTrees,
-              kHills],
-      kCategoryWater:@[
-              kOutdoorPool,
-              kWaterSlide,
-              kBabyPool,
-              kHighDive,
-              kWaterNozzle,
-              kPond,
-              kCreek],
+              kTireSwing,
+              kToddler,
+              kWoodChips,
+              kZipLine],
       kCategorySports:@[
               kBaseball,
-              kSoccerField,
               kSoccerGoals,
+              kMultipurposeField,
               kBasketBall,
+              kLightedBasketBall,
               kTennis,
               kRaquetBall,
+              kVolleyBallCement,
               kVolleyBallSand,
+              kBMXPark,
               kSkatePark,
               kDiscGolf,
               kBicycling,
               kHorseShoes,
-              kPickleball,
-              kIceRink],
+              kPickleball],
       kCategoryFacilities:@[
               kBathrooms,
               kWaterFountain,
@@ -185,25 +166,39 @@
               kDogsAllowed,
               kDogsOffLeashAllowed,
               kShade,
-              kBBQGas,
-              kBBQFirePit,
-              kBBQCharcoal,
-              kShelter,
-              kPavilion,
               kRamada,
-              kAlcoholPermit,
-              kSeating,
-              kHorsetrails],
+              kBenches,
+              kReservable,
+              kParkingLot],
       kCategoryPicnic:@[
-              kBBQGas,
-              kBBQFirePit,
-              kBBQCharcoal,
+              kBBQ,
               kShelter,
               kPavilion,
               kRamada,
               kAlcoholPermit,
-              kSeating,
-              kPicnicTables]
+              kElectricity,
+              kPicnicTables],
+      kCategoryExerciseNature:@[
+              kWalkingJoggingPath,
+              kExerciseEquipment,
+              kCreek,
+              kPond,
+              kArboretum,
+              kWildlife,
+              kDucks,
+              kFishing,
+              kHistoryMonuments,
+              kShadeTrees,
+              kHills],
+      kCategoryWater:@[
+              kOutdoorPool,
+              kWaterSlide,
+              kCreek,
+              kPond,
+              kSplashPad,
+              kFishing,
+              kWaterFountain,
+              kWaterNozzle]
       };
     
     [categoryLUT pinInBackground];
@@ -222,7 +217,7 @@
     murrayPark.city = @"Murray";
     murrayPark.state = @"Utah";
     murrayPark.rating = [NSNumber numberWithInt:5];
-    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddlerPlayEquipment, kSand, kOutdoorPool, kIceRink, kWaterSlide, kSoccerField, kLargeTrees, kHills, kVolleyBallSand, kExerciseStations, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
+    murrayPark.perks = @[kPond, kDucks, kMonkeyBars, kToddler, kSand, kOutdoorPool, kWaterSlide, kMultipurposeField, kShadeTrees, kHills, kVolleyBallSand, kExerciseEquipment, kCreek, kLighting, kPavilion, kWaterFountain, kPlaySystem, kSwings, kBabySwing];
     /*murrayPark.images =
     @[
       UIImageJPEGRepresentation([UIImage imageNamed:@"MurrayParkEastPlaysystem.jpg"], 0.5),
@@ -270,7 +265,7 @@
     friendshipPark.city = @"Murray";
     friendshipPark.state = @"Utah";
     friendshipPark.rating = [NSNumber numberWithInt:3];
-    friendshipPark.perks = @[kSand, kMerryGoRound, kToddlerPlayEquipment, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
+    friendshipPark.perks = @[kSand, kMerryGoRound, kToddler, kVolleyBallSand, kSwings, kPavilion, kBaseball, kWalkingJoggingPath,kPlaySystem, kBabySwing];
     //friendshipPark.images = @[];
     [friendshipPark pinInBackground];
     [friendshipPark saveInBackground];
@@ -285,7 +280,7 @@
     southCottonwoodPark.city = @"Murray";
     southCottonwoodPark.state = @"Utah";
     southCottonwoodPark.rating = [NSNumber numberWithInt:3];
-    southCottonwoodPark.perks = @[kPavilion, kBathrooms, kPicnicTables, kPlaySystem, kLargeTrees];
+    southCottonwoodPark.perks = @[kPavilion, kBathrooms, kPicnicTables, kPlaySystem, kShadeTrees];
     //southCottonwoodPark.images = @[];
     [southCottonwoodPark pinInBackground];
     [southCottonwoodPark saveInBackground];
@@ -408,7 +403,7 @@
     chaparrelPark.state = @"Arizona";
     chaparrelPark.zipCode = @"85210";
     chaparrelPark.rating = [NSNumber numberWithInt:-1];
-    chaparrelPark.perks = @[kSoccerField];
+    chaparrelPark.perks = @[kMultipurposeField];
     //chaparrelPark.images = @[];
     [chaparrelPark pinInBackground];
     [chaparrelPark saveInBackground];
