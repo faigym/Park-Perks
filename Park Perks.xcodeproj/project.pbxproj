@@ -14,6 +14,7 @@
 		067CF4DC1B0BE69600F9E879 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 067CF4DB1B0BE69600F9E879 /* Images.xcassets */; };
 		067CF4DF1B0BE69600F9E879 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 067CF4DD1B0BE69600F9E879 /* LaunchScreen.xib */; };
 		067CF4EB1B0BE69600F9E879 /* Park_PerksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 067CF4EA1B0BE69600F9E879 /* Park_PerksTests.m */; };
+		9F3657021B16ADC900B4CA47 /* SkylersNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */; };
 		A50CAA0A1B0E9D78002CF7B8 /* categoryLUTPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */; };
 		A55BCD0A1B0BFF6C0005F233 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD091B0BFF6C0005F233 /* Parse.framework */; };
 		A55BCD0E1B0BFF9D0005F233 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD0D1B0BFF9D0005F233 /* ParseUI.framework */; };
@@ -77,6 +78,7 @@
 		067CF4E41B0BE69600F9E879 /* Park PerksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Park PerksTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		067CF4E91B0BE69600F9E879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		067CF4EA1B0BE69600F9E879 /* Park_PerksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Park_PerksTests.m; sourceTree = "<group>"; };
+		9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = SkylersNotes.rtf; sourceTree = "<group>"; };
 		A50CAA081B0E9D78002CF7B8 /* categoryLUTPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryLUTPFObject.h; sourceTree = "<group>"; };
 		A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryLUTPFObject.m; sourceTree = "<group>"; };
 		A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A57737A21B1520A800BAE61C /* murrayPark.gpx */,
+				9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */,
 				A591C2C91B0E5E2600AA92A0 /* Foursquare2 */,
 				A55BCD381B0C01820005F233 /* Frameworks */,
 				067CF4CD1B0BE69600F9E879 /* Park Perks */,
@@ -377,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F3657021B16ADC900B4CA47 /* SkylersNotes.rtf in Resources */,
 				067CF4DA1B0BE69600F9E879 /* Main.storyboard in Resources */,
 				A57737A31B1520A800BAE61C /* murrayPark.gpx in Resources */,
 				067CF4DF1B0BE69600F9E879 /* LaunchScreen.xib in Resources */,
