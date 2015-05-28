@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *street;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *zipCode;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSArray *perks;
 @property (nonatomic, strong) PFFile *thumbnail;

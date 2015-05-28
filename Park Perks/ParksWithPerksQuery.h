@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <ParseUI/ParseUI.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol ParksWithPerksQueryDelegate;
 
@@ -25,6 +26,7 @@
 -(void)foursquareQueryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radius:(double)radius numResultsLimit:(NSUInteger)numResultsLimit;
 -(void)parseOnlyQueryForPerks:(NSArray *)perkArr city:(NSString *)city state:(NSString *)state;
 -(NSArray *)queryForImagesPointingToPFObjId:(NSString *)pfObjIdStr;
+-(double)haversineFormulaDistanceWithDestCoord:(CLLocationCoordinate2D)destCoord srcCoord:(CLLocationCoordinate2D)srcCoord;
 
 @end
 

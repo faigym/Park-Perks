@@ -321,4 +321,204 @@
     [westFieldDownsPark saveInBackground];
 }
 
+-(void)remakeMesaArizonaParkTestDatabase
+{
+    ParkPFObject *altaMesaPark = [ParkPFObject new];
+    altaMesaPark.name = @"Alta Mesa Park";
+    altaMesaPark.latitude = 33.449874;
+    altaMesaPark.longitude = -111.711141;
+    altaMesaPark.phoneNumber = @"(480) 644-2352";
+    altaMesaPark.street = @"1910 N Alta Mesa Dr";
+    altaMesaPark.city = @"Mesa";
+    altaMesaPark.state = @"Arizona";
+    altaMesaPark.zipCode = @"85205";
+    altaMesaPark.rating = [NSNumber numberWithInt:-1];
+    altaMesaPark.perks = @[kBasketBall];
+    //altaMesaPark.images = @[];
+    [altaMesaPark pinInBackground];
+    [altaMesaPark saveInBackground];
+    
+    ParkPFObject *augustaRanchPark = [ParkPFObject new];
+    augustaRanchPark.name = @"Augusta Ranch Park";
+    augustaRanchPark.latitude = 33.366883;
+    augustaRanchPark.longitude = -111.653403;
+    augustaRanchPark.phoneNumber = @"(480) 644-2352";
+    augustaRanchPark.street = @"9455 E Neville Ave";
+    augustaRanchPark.city = @"Mesa";
+    augustaRanchPark.state = @"Arizona";
+    augustaRanchPark.zipCode = @"85209";
+    augustaRanchPark.rating = [NSNumber numberWithInt:-1];
+    augustaRanchPark.perks = @[kSand];
+    //augustaRanchPark.images = @[];
+    [augustaRanchPark pinInBackground];
+    [augustaRanchPark saveInBackground];
+    
+    ParkPFObject *beverlyPark = [ParkPFObject new];
+    beverlyPark.name = @"Beverly Park";
+    beverlyPark.latitude = 33.417163;
+    beverlyPark.longitude = -111.854381;
+    beverlyPark.phoneNumber = @"(480) 644-2011";
+    beverlyPark.street = @"115 N Beverly";
+    beverlyPark.city = @"Mesa";
+    beverlyPark.state = @"Arizona";
+    beverlyPark.zipCode = @"85201";
+    beverlyPark.rating = [NSNumber numberWithInt:-1];
+    beverlyPark.perks = @[kSandDigger];
+    //beverlyPark.images = @[];
+    [beverlyPark pinInBackground];
+    [beverlyPark saveInBackground];
+    
+    ParkPFObject *candleLightPark = [ParkPFObject new];
+    candleLightPark.name = @"Candle Light Park";
+    candleLightPark.latitude = 33.443195;
+    candleLightPark.longitude = -111.798476;
+    candleLightPark.phoneNumber = @"(480) 644-2352";
+    candleLightPark.street = @"1540 N Barkley";
+    candleLightPark.city = @"Mesa";
+    candleLightPark.state = @"Arizona";
+    candleLightPark.zipCode = @"85203";
+    candleLightPark.rating = [NSNumber numberWithInt:-1];
+    candleLightPark.perks = @[kMerryGoRound];
+    //candleLightPark.images = @[];
+    [candleLightPark pinInBackground];
+    [candleLightPark saveInBackground];
+    
+    ParkPFObject *carriageLanePark = [ParkPFObject new];
+    carriageLanePark.name = @"Carriage Lane Park";
+    carriageLanePark.latitude = 33.353208;
+    carriageLanePark.longitude = -111.722836;
+    carriageLanePark.phoneNumber = @"(480) 644-2352";
+    carriageLanePark.street = @"3140 S Carriage Ln";
+    carriageLanePark.city = @"Mesa";
+    carriageLanePark.state = @"Arizona";
+    carriageLanePark.zipCode = @"85210";
+    carriageLanePark.rating = [NSNumber numberWithInt:-1];
+    carriageLanePark.perks = @[kSplashPad];
+    //carriageLanePark.images = @[];
+    [carriageLanePark pinInBackground];
+    [carriageLanePark saveInBackground];
+    
+    ParkPFObject *chaparrelPark = [ParkPFObject new];
+    chaparrelPark.name = @"Chaparrel Park";
+    chaparrelPark.latitude = 33.445611;
+    chaparrelPark.longitude = -111.787724;
+    chaparrelPark.phoneNumber = @"(480) 644-5300";
+    chaparrelPark.street = @"1645 N. Gilbert";
+    chaparrelPark.city = @"Mesa";
+    chaparrelPark.state = @"Arizona";
+    chaparrelPark.zipCode = @"85210";
+    chaparrelPark.rating = [NSNumber numberWithInt:-1];
+    chaparrelPark.perks = @[kSoccerField];
+    //chaparrelPark.images = @[];
+    [chaparrelPark pinInBackground];
+    [chaparrelPark saveInBackground];
+    
+    ParkPFObject *chelseaPark = [ParkPFObject new];
+    chelseaPark.name = @"chelsea Park";
+    chelseaPark.latitude = 33.4125235;
+    chelseaPark.longitude = -111.74504030000003;
+    chelseaPark.phoneNumber = @"(480) 644-2352";
+    chelseaPark.street = @"145 S 40th St";
+    chelseaPark.city = @"Mesa";
+    chelseaPark.state = @"Arizona";
+    chelseaPark.zipCode = @"85206";
+    chelseaPark.rating = [NSNumber numberWithInt:-1];
+    chelseaPark.perks = @[];
+    //chelseaPark.images = @[];
+    [chelseaPark pinInBackground];
+    [chelseaPark saveInBackground];
+    
+    ParkPFObject *countrySidePark = [ParkPFObject new];
+    countrySidePark.name = @"Country Side Park";
+    countrySidePark.latitude = 33.3944188;
+    countrySidePark.longitude = -111.76258559999997;
+    countrySidePark.phoneNumber = @"(480) 644-2352";
+    countrySidePark.street = @"3130 E Southern Ave";
+    countrySidePark.city = @"Mesa";
+    countrySidePark.state = @"Arizona";
+    countrySidePark.zipCode = @"85204";
+    countrySidePark.rating = [NSNumber numberWithInt:-1];
+    countrySidePark.perks = @[];
+    //countrySidePark.images = @[];
+    [countrySidePark pinInBackground];
+    [countrySidePark saveInBackground];
+    
+    ParkPFObject *desertTrailsPark = [ParkPFObject new];
+    desertTrailsPark.name = @"Desert Trails Bike Park";
+    desertTrailsPark.latitude = 33.4692574;
+    desertTrailsPark.longitude = -111.70119890000001;
+    desertTrailsPark.phoneNumber = @"";
+    desertTrailsPark.street = @"2955 N. Recker Road";
+    desertTrailsPark.city = @"Mesa";
+    desertTrailsPark.state = @"Arizona";
+    desertTrailsPark.zipCode = @"85215";
+    desertTrailsPark.rating = [NSNumber numberWithInt:-1];
+    desertTrailsPark.perks = @[];
+    //desertTrailsPark.images = @[];
+    [desertTrailsPark pinInBackground];
+    [desertTrailsPark saveInBackground];
+    
+    ParkPFObject *dobsonRanchPark = [ParkPFObject new];
+    dobsonRanchPark.name = @"Dobson Ranch Park";
+    dobsonRanchPark.latitude = 33.3717491;
+    dobsonRanchPark.longitude = -111.88014880000003;
+    dobsonRanchPark.phoneNumber = @"(480) 644-4271";
+    dobsonRanchPark.street = @"2359 S Dobson Rd";
+    dobsonRanchPark.city = @"Mesa";
+    dobsonRanchPark.state = @"Arizona";
+    dobsonRanchPark.zipCode = @"85202";
+    dobsonRanchPark.rating = [NSNumber numberWithInt:-1];
+    dobsonRanchPark.perks = @[];
+    //dobsonRanchPark.images = @[];
+    [dobsonRanchPark pinInBackground];
+    [dobsonRanchPark saveInBackground];
+    
+    ParkPFObject *eastmarkGreatPark = [ParkPFObject new];
+    eastmarkGreatPark.name = @"Eastmark Great Park";
+    eastmarkGreatPark.latitude = 33.326149;
+    eastmarkGreatPark.longitude = -111.61569280000003	;
+    eastmarkGreatPark.phoneNumber = @"(480) 625-3005";
+    eastmarkGreatPark.street = @"10100 E. Ray Road";
+    eastmarkGreatPark.city = @"Mesa";
+    eastmarkGreatPark.state = @"Arizona";
+    eastmarkGreatPark.zipCode = @"85212";
+    eastmarkGreatPark.rating = [NSNumber numberWithInt:-1];
+    eastmarkGreatPark.perks = @[];
+    //eastmarkGreatPark.images = @[];
+    [eastmarkGreatPark pinInBackground];
+    [eastmarkGreatPark saveInBackground];
+    
+    ParkPFObject *emeraldPark = [ParkPFObject new];
+    emeraldPark.name = @"Emerald Park";
+    emeraldPark.latitude = 33.3887257;
+    emeraldPark.longitude = -111.79690570000002;
+    emeraldPark.phoneNumber = @"(480) 644-2352";
+    emeraldPark.street = @"1455 S Harris Dr";
+    emeraldPark.city = @"Mesa";
+    emeraldPark.state = @"Arizona";
+    emeraldPark.zipCode = @"85204";
+    emeraldPark.rating = [NSNumber numberWithInt:-1];
+    emeraldPark.perks = @[];
+    //emeraldPark.images = @[];
+    [emeraldPark pinInBackground];
+    [emeraldPark saveInBackground];
+    
+    ParkPFObject *enidPark = [ParkPFObject new];
+    enidPark.name = @"Enid Park";
+    enidPark.latitude = 33.3977239;
+    enidPark.longitude = -111.71679699999999;
+    enidPark.phoneNumber = @"(480) 644-2011";
+    enidPark.street = @"5319 E Enid Ave";
+    enidPark.city = @"Mesa";
+    enidPark.state = @"Arizona";
+    enidPark.zipCode = @"85206";
+    enidPark.rating = [NSNumber numberWithInt:-1];
+    enidPark.perks = @[];
+    //enidPark.images = @[];
+    [enidPark pinInBackground];
+    [enidPark saveInBackground];
+    
+    
+}
+
 @end

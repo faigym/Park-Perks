@@ -18,6 +18,7 @@
 @dynamic street;
 @dynamic city;
 @dynamic state;
+@dynamic zipCode;
 @dynamic rating;
 @dynamic perks;
 @dynamic thumbnail;
