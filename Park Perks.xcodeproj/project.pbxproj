@@ -20,6 +20,7 @@
 		9F36570B1B16B9A200B4CA47 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36570A1B16B9A200B4CA47 /* DetailViewController.m */; };
 		9F36570E1B16BBE800B4CA47 /* AdsMarketing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36570D1B16BBE800B4CA47 /* AdsMarketing.m */; };
 		9F3657111B16C7E600B4CA47 /* PerkCategoryVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3657101B16C7E600B4CA47 /* PerkCategoryVController.m */; };
+		9F3657141B16C94500B4CA47 /* PerksInParkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3657131B16C94500B4CA47 /* PerksInParkVC.m */; };
 		A50CAA0A1B0E9D78002CF7B8 /* categoryLUTPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */; };
 		A55BCD0A1B0BFF6C0005F233 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD091B0BFF6C0005F233 /* Parse.framework */; };
 		A55BCD0E1B0BFF9D0005F233 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD0D1B0BFF9D0005F233 /* ParseUI.framework */; };
@@ -94,6 +95,8 @@
 		9F36570D1B16BBE800B4CA47 /* AdsMarketing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsMarketing.m; sourceTree = "<group>"; };
 		9F36570F1B16C7E600B4CA47 /* PerkCategoryVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerkCategoryVController.h; sourceTree = "<group>"; };
 		9F3657101B16C7E600B4CA47 /* PerkCategoryVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerkCategoryVController.m; sourceTree = "<group>"; };
+		9F3657121B16C94500B4CA47 /* PerksInParkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerksInParkVC.h; sourceTree = "<group>"; };
+		9F3657131B16C94500B4CA47 /* PerksInParkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerksInParkVC.m; sourceTree = "<group>"; };
 		A50CAA081B0E9D78002CF7B8 /* categoryLUTPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryLUTPFObject.h; sourceTree = "<group>"; };
 		A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryLUTPFObject.m; sourceTree = "<group>"; };
 		A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -193,6 +196,8 @@
 			children = (
 				A57737A21B1520A800BAE61C /* murrayPark.gpx */,
 				9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */,
+				9F3657121B16C94500B4CA47 /* PerksInParkVC.h */,
+				9F3657131B16C94500B4CA47 /* PerksInParkVC.m */,
 				9F36570F1B16C7E600B4CA47 /* PerkCategoryVController.h */,
 				9F3657101B16C7E600B4CA47 /* PerkCategoryVController.m */,
 				9F36570C1B16BBE800B4CA47 /* AdsMarketing.h */,
@@ -445,6 +450,7 @@
 				A591C2D91B0E5F2A00AA92A0 /* FSWebLogin.m in Sources */,
 				9F36570E1B16BBE800B4CA47 /* AdsMarketing.m in Sources */,
 				A591C2C71B0E330300AA92A0 /* Constants.m in Sources */,
+				9F3657141B16C94500B4CA47 /* PerksInParkVC.m in Sources */,
 				A591C2D61B0E5F2A00AA92A0 /* FSKeychain.m in Sources */,
 				9F3657111B16C7E600B4CA47 /* PerkCategoryVController.m in Sources */,
 			);
