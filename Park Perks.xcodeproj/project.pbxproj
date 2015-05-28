@@ -17,6 +17,7 @@
 		9F3657021B16ADC900B4CA47 /* SkylersNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */; };
 		9F3657051B16B2C000B4CA47 /* MapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3657041B16B2C000B4CA47 /* MapsViewController.m */; };
 		9F3657081B16B60100B4CA47 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3657071B16B60100B4CA47 /* ListViewController.m */; };
+		9F36570B1B16B9A200B4CA47 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36570A1B16B9A200B4CA47 /* DetailViewController.m */; };
 		A50CAA0A1B0E9D78002CF7B8 /* categoryLUTPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */; };
 		A55BCD0A1B0BFF6C0005F233 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD091B0BFF6C0005F233 /* Parse.framework */; };
 		A55BCD0E1B0BFF9D0005F233 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55BCD0D1B0BFF9D0005F233 /* ParseUI.framework */; };
@@ -85,6 +86,8 @@
 		9F3657041B16B2C000B4CA47 /* MapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapsViewController.m; sourceTree = "<group>"; };
 		9F3657061B16B60100B4CA47 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		9F3657071B16B60100B4CA47 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		9F3657091B16B9A200B4CA47 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		9F36570A1B16B9A200B4CA47 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A50CAA081B0E9D78002CF7B8 /* categoryLUTPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryLUTPFObject.h; sourceTree = "<group>"; };
 		A50CAA091B0E9D78002CF7B8 /* categoryLUTPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryLUTPFObject.m; sourceTree = "<group>"; };
 		A55BCD071B0BFF090005F233 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -184,6 +187,8 @@
 			children = (
 				A57737A21B1520A800BAE61C /* murrayPark.gpx */,
 				9F3657011B16ADC900B4CA47 /* SkylersNotes.rtf */,
+				9F3657091B16B9A200B4CA47 /* DetailViewController.h */,
+				9F36570A1B16B9A200B4CA47 /* DetailViewController.m */,
 				9F3657061B16B60100B4CA47 /* ListViewController.h */,
 				9F3657071B16B60100B4CA47 /* ListViewController.m */,
 				9F3657031B16B2C000B4CA47 /* MapsViewController.h */,
@@ -415,6 +420,7 @@
 			files = (
 				A591C2D81B0E5F2A00AA92A0 /* FSOperation.m in Sources */,
 				A591C2C81B0E330300AA92A0 /* ParkPFObject.m in Sources */,
+				9F36570B1B16B9A200B4CA47 /* DetailViewController.m in Sources */,
 				067CF4D71B0BE69600F9E879 /* ViewController.m in Sources */,
 				067CF4D41B0BE69600F9E879 /* AppDelegate.m in Sources */,
 				A591C2D71B0E5F2A00AA92A0 /* FSOAuthNoAppStore.m in Sources */,
