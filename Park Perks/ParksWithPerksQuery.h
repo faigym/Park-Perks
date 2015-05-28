@@ -27,6 +27,7 @@
 -(void)parseOnlyQueryForPerks:(NSArray *)perkArr city:(NSString *)city state:(NSString *)state;
 -(NSArray *)queryForImagesPointingToPFObjId:(NSString *)pfObjIdStr;
 -(double)haversineFormulaDistanceWithDestCoord:(CLLocationCoordinate2D)destCoord srcCoord:(CLLocationCoordinate2D)srcCoord;
+-(void)parseOnlyQueryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radiusInMeters:(double)radius;
 
 @end
 

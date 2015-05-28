@@ -42,7 +42,8 @@
     // put in the [Parse setApplicationId:whateverItIs,
     //                          clientKey:whateverThatIs];
     // here
-
+    
+    
     [ParkPFObject registerSubclass];
     [categoryLUTPFObject registerSubclass];
     

@@ -252,6 +252,84 @@
      }];
 }
 
+-(void)parseOnlyQueryForPerks:(NSArray *)perkArr latitude:(double)latitude longitude:(double)longitude radiusInMeters:(double)radius
+{
+    PFQuery *query = [ParkPFObject query];
+    self.searchPerksArr = perkArr;
+
+    double radiusInDegreesOfLatitude = radius / METERS_PER_DEG_LAT;
+    
+    double minLatitude = latitude - (radius/radiusInDegreesOfLatitude);
+    double maxLatitude = latitude + (radius/radiusInDegreesOfLatitude);
+    
+    double radiusInRadians = radiusInDegreesOfLatitude * (M_PI/180.0);
+    double latitudeInRadians = latitude * (M_PI/180.0);
+    double deltaLongInRadians = asin(sin(radiusInRadians)/cos(latitudeInRadians));
+    double deltaLongInDegrees = deltaLongInRadians * (180.0/M_PI);
+    double minLongitude = longitude - deltaLongInDegrees;
+    double maxLongitude = longitude + deltaLongInDegrees;
+    
+    [query whereKey:@"latitude" lessThan:[NSNumber numberWithDouble:maxLatitude]];
+    [query whereKey:@"latitude" greaterThan:[NSNumber numberWithDouble:minLatitude]];
+    [query whereKey:@"longitude" lessThan:[NSNumber numberWithDouble:maxLongitude]];
+    [query whereKey:@"longitude" greaterThan:[NSNumber numberWithDouble:minLongitude]];
+    //[query whereKey:@"perks" containsAllObjectsInArray:self.searchPerksArr];
+    [query findObjectsInBackgroundWithBlock:
+     ^(NSArray *objects, NSError *error)
+     {
+         //NSLog(@"perk query success");
+         //NSLog(@"objects: %@", objects);
+         //NSLog(@"found %ld objects", objects.count);
+         
+         self.parksInAreaArr = [NSMutableArray new];
+         self.filteredParksArr = [NSMutableArray new];
+         self.filteredParksPFObjIdArr = [NSMutableArray new];
+         for (int i=0; i<[objects count]; i++)
+         {
+             ParkPFObject *parkPFObj = objects[i];
+             
+             Park *park = [Park new];
+             park.name = parkPFObj.name;
+             park.rating = [parkPFObj.rating integerValue];
+             park.city = parkPFObj.city;
+             park.state = parkPFObj.state;
+             park.latitude = parkPFObj.latitude;
+             park.longitude = parkPFObj.longitude;
+             
+             CLLocationCoordinate2D destCoord;
+             destCoord.latitude = park.latitude;
+             destCoord.longitude = park.longitude;
+             
+             CLLocationCoordinate2D srcCoord=[CurrentLocation sharedInstance].location.coordinate;
+             NSLog(@"srcCoord.latitude=%f longitude=%f", srcCoord.latitude, srcCoord.longitude);
+             //srcCoord.latitude = 40.65928505282439;
+             //srcCoord.longitude = -111.8822121620178;
+             
+             park.distance = [self haversineFormulaDistanceWithDestCoord:destCoord srcCoord:srcCoord];
+             park.perks = [NSMutableArray new];
+             for (int i=0; i<[parkPFObj.perks count]; i++)
+             {
+                 //NSLog(@"perks[%d]==%@", i, parkPFObj.perks[i]);
+                 [park.perks addObject:parkPFObj.perks[i]];
+             }
+             [self.filteredParksArr addObject:park];
+             [self.filteredParksPFObjIdArr addObject:parkPFObj.objectId];
+             
+         }
+         self.parksInAreaArr = self.filteredParksArr;
+         
+         /*for (int i=0; i<[self.filteredParksArr count]; i++)
+          {
+          Park *park = self.filteredParksArr[i];
+          NSLog(@"park[%d].perks=%@", i, park.perks);
+          }*/
+         if (self.delegate && [self.delegate respondsToSelector:@selector(queryCompleted)])
+         {
+             [self.delegate queryCompleted];
+         }
+     }];
+}
+
 -(double)haversineFormulaDistanceWithDestCoord:(CLLocationCoordinate2D)destCoord srcCoord:(CLLocationCoordinate2D)srcCoord
 {
     /* This is the method recommended for calculating short distances by Bob Chamberlain (rgc@jpl.nasa.gov) of Caltech and NASA's Jet Propulsion Laboratory as described on the U.S. Census Bureau Web site.

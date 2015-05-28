@@ -10,7 +10,7 @@
 #import "categoryLUTPFObject.h"
 
 #define KM_PER_MILE 1.60934
-#define M_PER_DEG_LAT 111000
+#define METERS_PER_DEG_LAT 111000
 #define NUM_SEARCH_RESULTS_LIMIT 50
 
 // *****************************

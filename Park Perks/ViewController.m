@@ -51,7 +51,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     self.mapView = [[MKMapView alloc] initWithFrame:mapFrame];
     
     //mapView.centerCoordinate = CLLocationCoordinate2DMake(40.645818, -111.879023);
-    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
+    //self.mapView.centerCoordinate = CLLocationCoordinate2DMake(40.65928505282439, -111.8822121620178);
     //MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(40.645818, -111.879023), MKCoordinateSpanMake(0.02, 0.02));
     double regionRadius = 15000; // in meters
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(40.645818, -111.879023), regionRadius*2.0, regionRadius*2.0);
@@ -138,8 +138,15 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
     //[self.query foursquareQueryForPerks:perkArr latitude:40.65928505282439 longitude:-111.8822121620178 radius:5000.0 numResultsLimit:30];
     //[self.query parseOnlyQueryForPerks:perkArr city:@"Riverton" state:@"Utah"];
     
-    MKCoordinateRegion region = self.mapView.region;
-    [self.query foursquareQueryForPerks:perkArr latitude:region.center.latitude longitude:region.center.longitude radius:(region.span.latitudeDelta*M_PER_DEG_LAT) numResultsLimit:NUM_SEARCH_RESULTS_LIMIT];
+    //MKCoordinateRegion region = self.mapView.region;
+    //[self.query foursquareQueryForPerks:perkArr latitude:region.center.latitude longitude:region.center.longitude radius:(region.span.latitudeDelta*METERS_PER_DEG_LAT) numResultsLimit:NUM_SEARCH_RESULTS_LIMIT];
+    
+    CLLocationCoordinate2D coordinate = [CurrentLocation sharedInstance].location.coordinate;
+    double regionRadius = 15000; // in meters
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, regionRadius*2.0, regionRadius*2.0);
+    [self.mapView setRegion:region animated:YES];
+    
+    [self.query parseOnlyQueryForPerks:@[] latitude:coordinate.latitude longitude:coordinate.longitude radiusInMeters:10000];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,7 +242,7 @@ static NSString *kFriendshipParkFoursquareId = @"4bf6ab6f5efe2d7f428d6734";
         //	Perform code here
         NSLog(@"regionDidChange called from user interaction");
         MKCoordinateRegion region = self.mapView.region;
-        double radius = (region.span.latitudeDelta*M_PER_DEG_LAT);
+        double radius = (region.span.latitudeDelta*METERS_PER_DEG_LAT);
         NSLog(@"radius=%f; latitudeDelta=%f", radius, region.span.latitudeDelta);
         [self.query foursquareQueryForPerks:@[] latitude:region.center.latitude longitude:region.center.longitude radius:radius numResultsLimit:NUM_SEARCH_RESULTS_LIMIT];
     } else {
